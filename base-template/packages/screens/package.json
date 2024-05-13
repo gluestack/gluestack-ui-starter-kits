@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@base-template/screens",
   "version": "0.0.0",
   "main": "index.js",
   "module": "index.js",
@@ -19,8 +19,7 @@
     "react-native": "^0.73.1"
   },
   "files": [
-    "button/index.d.ts",
-    "button/index.js",
+    "button",
     "index.js",
     "index.d.ts"
   ]
