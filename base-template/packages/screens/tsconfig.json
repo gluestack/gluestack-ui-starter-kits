@@ -13,6 +13,7 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",
+    "jsxImportSource": "nativewind",
     "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",

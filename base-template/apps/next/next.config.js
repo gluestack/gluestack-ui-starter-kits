@@ -1,5 +1,11 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  transpilePackages: [
+    "@gluestack-ui/nativewind-utils",
+    "nativewind",
+    "react-native-css-interop",
+  ],
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),

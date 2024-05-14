@@ -1,12 +1,14 @@
 "use client";
 
+import "../styles/global.css";
 import React, { useRef, useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { StyleRegistry, createStyleRegistry } from "styled-jsx";
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import { Main } from "next/document";
+import { flush } from "@gluestack-ui/nativewind-utils/flush";
 // @ts-ignore
 import { AppRegistry } from "react-native-web";
-import { flush } from "@gluestack-ui/nativewind-utils/flush";
 
 export default function StyledJsxRegistry({
   children,

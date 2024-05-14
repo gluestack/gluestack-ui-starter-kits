@@ -13,7 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-web": "latest",
-    "@base-template/ui": "*",
+    "@base-template/components": "*",
     "postcss": "latest",
     "autoprefixer": "latest",
     "@gluestack/ui-next-adapter": "latest",

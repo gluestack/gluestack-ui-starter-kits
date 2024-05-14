@@ -1,5 +1,5 @@
 {
-  "name": "@base-template/ui",
+  "name": "@base-template/components",
   "version": "0.0.0",
   "main": "index.js",
   "module": "index.js",

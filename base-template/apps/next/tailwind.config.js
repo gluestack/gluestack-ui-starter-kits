@@ -3,6 +3,7 @@ module.exports = {
   darkMode: "class",
   content: [
     "../../packages/components/**/*.{js,jsx,ts,tsx}",
+    "../../packages/screens/**/*.{js,jsx,ts,tsx}",
     "./app/**/*.{js,jsx,ts,tsx}",
     "./app/*.{js,jsx,ts,tsx}",
   ],
@@ -19,6 +20,7 @@ module.exports = {
     },
   ],
   presets: [require("nativewind/preset")],
+  important: "html",
   theme: {
     extend: {
       colors: {

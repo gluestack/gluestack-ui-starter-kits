@@ -1,9 +1,8 @@
 "use client";
 
 import { Inter } from "next/font/google";
-import "../styles/global.css";
 import StyledJsxRegistry from "./registry";
-import { GluestackUIProvider } from "@base-template/ui/gluestack-ui-provider";
+import { GluestackUIProvider } from "@base-template/components/gluestack-ui-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
@@ -15,7 +14,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} style={{ display: "flex" }}>
         <StyledJsxRegistry>
-          <GluestackUIProvider mode="dark">{children}</GluestackUIProvider>
+          <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
         </StyledJsxRegistry>
       </body>
     </html>

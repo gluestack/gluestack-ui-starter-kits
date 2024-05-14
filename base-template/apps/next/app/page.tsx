@@ -1,14 +1,12 @@
 "use client";
 
-import { Button, ButtonText } from "@base-template/ui/button";
+import SignIn from "@base-template/screens/auth/signin";
 
 export default function Web() {
   return (
     <div>
       <h1>Web</h1>
-      <Button>
-        <ButtonText>Hello world</ButtonText>
-      </Button>
+      <SignIn />
     </div>
   );
 }
