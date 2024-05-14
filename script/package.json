@@ -1,0 +1,29 @@
+{
+  "name": "@gluestack-ui/starter-kit-cli",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "prepare": "tsc"
+  },
+  "author": "gluestack-ui",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.12.12",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.2.0",
+    "nodemon": "^3.1.0"
+  },
+  "bin": {
+    "@gluestack-ui/starter-kit-cli": "dist/index.js"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
