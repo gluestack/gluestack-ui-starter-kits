@@ -1,3 +1,4 @@
+const imageBabel = require("@unitools/babel-plugin-universal-image");
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -5,6 +6,22 @@ module.exports = function (api) {
       ["babel-preset-expo", { jsxImportSource: "nativewind" }],
       "nativewind/babel",
     ],
-    plugins: ["react-native-reanimated/plugin"],
+    plugins: [
+      [
+        "module-resolver",
+        {
+          alias: {
+            "@unitools/image": "@unitools/image-expo",
+          },
+        },
+      ],
+      [
+        imageBabel,
+        {
+          assetPath: "assets",
+        },
+      ],
+      "react-native-reanimated/plugin",
+    ],
   };
 };

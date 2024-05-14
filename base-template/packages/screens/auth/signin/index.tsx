@@ -49,6 +49,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
+// import Image from "@unitools/image";
 
 const USERS = [
   {
@@ -176,8 +177,6 @@ const LoginWithLeftBackground = () => {
                     <Avatar className="hidden lg:flex" size="md">
                       <AvatarImage
                         source={avatar}
-                        height={50}
-                        width={50}
                         className=" border-[2px] border-primary-500"
                       />
                     </Avatar>

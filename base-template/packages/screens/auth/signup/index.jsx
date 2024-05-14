@@ -17,66 +17,67 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
-import Image from "@unitools/image";
-const USERS = [
-    {
-        email: "gabrial@gmail.com",
-        password: "Gabrial@123",
-    },
-    {
-        email: "tom@gmail.com",
-        password: "Tom@123",
-    },
-    {
-        email: "thomas@gmail.com",
-        password: "Thomas@1234",
-    },
-];
-const loginSchema = z.object({
+const signUpSchema = z.object({
     email: z.string().min(1, "Email is required").email(),
-    password: z.string().min(1, "Password is required"),
+    password: z
+        .string()
+        .min(6, "Must be at least 8 characters in length")
+        .regex(new RegExp(".*[A-Z].*"), "One uppercase character")
+        .regex(new RegExp(".*[a-z].*"), "One lowercase character")
+        .regex(new RegExp(".*\\d.*"), "One number")
+        .regex(new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"), "One special character"),
+    confirmpassword: z
+        .string()
+        .min(6, "Must be at least 8 characters in length")
+        .regex(new RegExp(".*[A-Z].*"), "One uppercase character")
+        .regex(new RegExp(".*[a-z].*"), "One lowercase character")
+        .regex(new RegExp(".*\\d.*"), "One number")
+        .regex(new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"), "One special character"),
     rememberme: z.boolean().optional(),
 });
 const ProfileAvatars = [
-    "/assets/image.png",
-    "/assets/image1.png",
-    "/assets/image2.png",
-    "/assets/image3.png",
+    require("./assets/image.png"),
+    require("./assets/image1.png"),
+    require("./assets/image2.png"),
+    require("./assets/image3.png"),
 ];
-const LoginWithLeftBackground = () => {
+const SignUpWithLeftBackground = () => {
     const { control, handleSubmit, reset, formState: { errors }, } = useForm({
-        resolver: zodResolver(loginSchema),
+        resolver: zodResolver(signUpSchema),
     });
     const toast = useToast();
-    const [validated, setValidated] = useState({
-        emailValid: true,
-        passwordValid: true,
-    });
     const onSubmit = (data) => {
-        const user = USERS.find((element) => element.email === data.email);
-        if (user) {
-            if (user.password !== data.password)
-                setValidated({ emailValid: true, passwordValid: false });
-            else {
-                setValidated({ emailValid: true, passwordValid: true });
-                toast.show({
-                    placement: "bottom right",
-                    render: ({ id }) => {
-                        return (<Toast nativeID={id} variant="accent" action="success">
-                <ToastTitle>Logged in successfully!</ToastTitle>
-              </Toast>);
-                    },
-                });
-                reset();
-            }
+        if (data.password === data.confirmpassword) {
+            toast.show({
+                placement: "bottom right",
+                render: ({ id }) => {
+                    return (<Toast nativeID={id} variant="accent" action="success">
+              <ToastTitle>Success</ToastTitle>
+            </Toast>);
+                },
+            });
+            reset();
         }
         else {
-            setValidated({ emailValid: false, passwordValid: true });
+            toast.show({
+                placement: "bottom right",
+                render: ({ id }) => {
+                    return (<Toast nativeID={id} variant="accent" action="error">
+              <ToastTitle>Passwords do not match</ToastTitle>
+            </Toast>);
+                },
+            });
         }
     };
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const handleState = () => {
         setShowPassword((showState) => {
+            return !showState;
+        });
+    };
+    const handleConfirmPwState = () => {
+        setShowConfirmPassword((showState) => {
             return !showState;
         });
     };
@@ -113,7 +114,7 @@ const LoginWithLeftBackground = () => {
         })}
                 {ProfileAvatars.map((avatar) => {
             return (<Avatar className="hidden lg:flex" size="md">
-                      <Image source={"/assets/image.png"} height={50} width={50} className=" border-[2px] border-primary-500"/>
+                      <AvatarImage source={avatar} height={50} width={50} className=" border-[2px] border-primary-500"/>
                     </Avatar>);
         })}
                 <Avatar className="flex lg:hidden" size="md">
@@ -137,19 +138,19 @@ const LoginWithLeftBackground = () => {
         <VStack className="md:items-center" space="xs">
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
           <Heading className="md:text-center" size="3xl">
-            Log in to your account
+            Sign up to continue
           </Heading>
           <Text>Start making your dreams come true</Text>
         </VStack>
         <VStack space="xl" className="w-full">
-          <FormControl isInvalid={!!errors?.email || !validated.emailValid} className="w-full">
+          <FormControl isInvalid={!!errors.email}>
             <FormControlLabel>
               <FormControlLabelText>Email</FormControlLabelText>
             </FormControlLabel>
-            <Controller defaultValue="" name="email" control={control} rules={{
+            <Controller name="email" defaultValue="" control={control} rules={{
             validate: async (value) => {
                 try {
-                    await loginSchema.parseAsync({ email: value });
+                    await signUpSchema.parseAsync({ email: value });
                     return true;
                 }
                 catch (error) {
@@ -157,25 +158,25 @@ const LoginWithLeftBackground = () => {
                 }
             },
         }} render={({ field: { onChange, onBlur, value } }) => (<Input>
-                  <InputField placeholder="Enter email" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done"/>
+                  <InputField className="text-sm" placeholder="Email" type="text" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done"/>
                 </Input>)}/>
             <FormControlError>
-              <FormControlErrorIcon as={AlertTriangle}/>
+              <FormControlErrorIcon size="md" as={AlertTriangle}/>
               <FormControlErrorText>
-                {errors?.email?.message ||
-            (!validated.emailValid && "Email ID not found")}
+                {errors?.email?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          {/* Label Message */}
-          <FormControl isInvalid={!!errors.password || !validated.passwordValid} className="w-full">
+          <FormControl isInvalid={!!errors.password}>
             <FormControlLabel>
               <FormControlLabelText>Password</FormControlLabelText>
             </FormControlLabel>
             <Controller defaultValue="" name="password" control={control} rules={{
             validate: async (value) => {
                 try {
-                    await loginSchema.parseAsync({ password: value });
+                    await signUpSchema.parseAsync({
+                        password: value,
+                    });
                     return true;
                 }
                 catch (error) {
@@ -183,36 +184,61 @@ const LoginWithLeftBackground = () => {
                 }
             },
         }} render={({ field: { onChange, onBlur, value } }) => (<Input>
-                  <InputField type={showPassword ? "text" : "password"} placeholder="Enter password" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done"/>
+                  <InputField className="text-sm" placeholder="Password" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done" type={showPassword ? "text" : "password"}/>
                   <InputSlot onPress={handleState} className="pr-3">
                     <InputIcon as={showPassword ? EyeIcon : EyeOffIcon}/>
                   </InputSlot>
                 </Input>)}/>
             <FormControlError>
-              <FormControlErrorIcon as={AlertTriangle}/>
+              <FormControlErrorIcon size="sm" as={AlertTriangle}/>
               <FormControlErrorText>
-                {errors?.password?.message ||
-            (!validated.passwordValid && "Password was incorrect")}
+                {errors?.password?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          <HStack className="w-full justify-between items-center">
-            <Controller name="rememberme" defaultValue={false} control={control} render={({ field: { onChange, value } }) => (<Checkbox size="sm" value="Remember me" isChecked={value} onChange={onChange} aria-label="Remember me">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon}/>
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Remember me</CheckboxLabel>
-                </Checkbox>)}/>
-            <Link href="" isExternal>
-              <LinkText className="font-medium text-sm text-primary-700 group-hover/link:text-primary-600">
-                Forgot Password?
-              </LinkText>
-            </Link>
-          </HStack>
+          <FormControl isInvalid={!!errors.confirmpassword}>
+            <FormControlLabel>
+              <FormControlLabelText>Confirm Password</FormControlLabelText>
+            </FormControlLabel>
+            <Controller defaultValue="" name="confirmpassword" control={control} rules={{
+            validate: async (value) => {
+                try {
+                    await signUpSchema.parseAsync({
+                        password: value,
+                    });
+                    return true;
+                }
+                catch (error) {
+                    return error.message;
+                }
+            },
+        }} render={({ field: { onChange, onBlur, value } }) => (<Input>
+                  <InputField placeholder="Confirm Password" className="text-sm" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done" type={showConfirmPassword ? "text" : "password"}/>
+
+                  <InputSlot onPress={handleConfirmPwState} className="pr-3">
+                    <InputIcon as={showConfirmPassword ? EyeIcon : EyeOffIcon}/>
+                  </InputSlot>
+                </Input>)}/>
+            <FormControlError>
+              <FormControlErrorIcon size="sm" as={AlertTriangle}/>
+              <FormControlErrorText>
+                {errors?.confirmpassword?.message}
+              </FormControlErrorText>
+            </FormControlError>
+          </FormControl>
+
+          <Controller name="rememberme" defaultValue={false} control={control} render={({ field: { onChange, value } }) => (<Checkbox size="sm" value="Remember me" isChecked={value} onChange={onChange} aria-label="Remember me">
+                <CheckboxIndicator>
+                  <CheckboxIcon as={CheckIcon}/>
+                </CheckboxIndicator>
+                <CheckboxLabel>
+                  I accept the Terms of Use & Privacy Policy
+                </CheckboxLabel>
+              </Checkbox>)}/>
         </VStack>
         <VStack className="w-full" space="lg">
           <Button className="w-full" onPress={handleSubmit(onSubmit)}>
-            <ButtonText className="font-medium">Log in</ButtonText>
+            <ButtonText className="font-medium">Sign up</ButtonText>
           </Button>
           <Button variant="outline" action="secondary" className="w-full gap-1" onPress={() => { }}>
             <ButtonText className="font-medium">
@@ -222,16 +248,16 @@ const LoginWithLeftBackground = () => {
           </Button>
         </VStack>
         <HStack>
-          <Text size="md">Don't have an account?</Text>
+          <Text size="md">Already have an account?</Text>
           <Link href="" isExternal>
             <LinkText className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
-              Sign up
+              Login
             </LinkText>
           </Link>
         </HStack>
       </VStack>
     </HStack>);
 };
-export const SignIn = () => {
-    return <LoginWithLeftBackground />;
+export const SignUp = () => {
+    return <SignUpWithLeftBackground />;
 };
