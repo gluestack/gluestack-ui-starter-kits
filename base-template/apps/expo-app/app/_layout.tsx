@@ -57,13 +57,11 @@ function RootLayoutNav() {
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          <Stack.Screen name="signin" options={{ headerShown: false }} />
+          <Stack.Screen name="signup" options={{ headerShown: false }} />
           <Stack.Screen
-            name="signin"
-            options={{ presentation: "modal", headerShown: false }}
-          />
-          <Stack.Screen
-            name="signup"
-            options={{ presentation: "modal", headerShown: false }}
+            name="forgot-password"
+            options={{ headerShown: false }}
           />
         </Stack>
       </ThemeProvider>

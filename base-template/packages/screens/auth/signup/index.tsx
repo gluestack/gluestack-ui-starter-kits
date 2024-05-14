@@ -31,7 +31,13 @@ import {
   CheckboxIndicator,
   CheckboxLabel,
 } from "@base-template/components/checkbox";
-import { CheckIcon, EyeIcon, EyeOffIcon } from "@base-template/components/icon";
+import {
+  ArrowLeftIcon,
+  CheckIcon,
+  EyeIcon,
+  EyeOffIcon,
+  Icon,
+} from "@base-template/components/icon";
 import {
   Button,
   ButtonText,
@@ -207,6 +213,11 @@ const SignUpWithLeftBackground = () => {
         space="2xl"
       >
         <VStack className="md:items-center" space="xs">
+          <Icon
+            as={ArrowLeftIcon}
+            className="md:hidden stroke-background-800"
+            size="xl"
+          />
           <Heading className="md:text-center" size="3xl">
             Sign up to continue
           </Heading>
