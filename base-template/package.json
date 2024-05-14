@@ -20,5 +20,11 @@
   "packageManager": "yarn@1.22.19",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "lucide-react-native": "^0.378.0",
+    "react-hook-form": "^7.51.4",
+    "zod": "^3.23.8"
   }
 }
