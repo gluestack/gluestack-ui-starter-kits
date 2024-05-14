@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { headingStyle } from './styles';
 const Heading = memo(({ className, size = 'lg', as: AsComp, ...props }) => {
     const MappedHeading = ({ size }) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import { config } from './config';
 import { View } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/overlay';

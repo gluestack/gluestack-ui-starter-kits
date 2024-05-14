@@ -1,6 +1,5 @@
-import React from 'react';
 declare const Heading: {
-    ({ className, size, as: AsComp, ...props }: any): React.JSX.Element;
+    ({ className, size, as: AsComp, ...props }: any): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 export { Heading };

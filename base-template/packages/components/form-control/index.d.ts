@@ -1215,7 +1215,7 @@ declare const formControlLabelTextStyle: import("@gluestack-ui/nativewind-utils/
     };
 }>, unknown, unknown, undefined>>;
 declare const FormControlLabelAstrick: {
-    ({ className, ...props }: any): React.JSX.Element;
+    ({ className, ...props }: any): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 export declare const UIFormControl: import("@gluestack-ui/form-control/lib/typescript/types").IFormControlComponentType<import("react-native").ViewProps & {
@@ -1287,14 +1287,14 @@ declare const FormControl: {
             md: string;
             lg: string;
         };
-    }>, unknown, unknown, undefined>>>): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlErrorProps = React.ComponentProps<typeof UIFormControl.Error> & VariantProps<typeof formControlErrorStyle>;
 declare const FormControlError: {
     ({ className, ...props }: {
         className?: string | undefined;
-    } & import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "flex flex-row justify-start items-center mt-1 gap-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "flex flex-row justify-start items-center mt-1 gap-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>>): React.JSX.Element;
+    } & import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "flex flex-row justify-start items-center mt-1 gap-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "flex flex-row justify-start items-center mt-1 gap-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlErrorTextProps = React.ComponentProps<typeof UIFormControl.Error.Text> & VariantProps<typeof formControlErrorTextStyle>;
@@ -1652,7 +1652,7 @@ declare const FormControlErrorText: {
         highlight: {
             true: string;
         };
-    }>, unknown, unknown, undefined>>>): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlErrorIconProps = React.ComponentProps<typeof UIFormControl.Error.Icon> & VariantProps<typeof formControlErrorIconStyle>;
@@ -1755,14 +1755,14 @@ declare const FormControlErrorIcon: {
             lg: string;
             xl: string;
         };
-    }>, unknown, unknown, undefined>>>, ref?: any): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>, ref?: any): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlLabelProps = React.ComponentProps<typeof UIFormControl.Label> & VariantProps<typeof formControlLabelStyle>;
 declare const FormControlLabel: {
     ({ className, ...props }: {
         className?: string | undefined;
-    } & import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "flex flex-row justify-start items-center mb-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "flex flex-row justify-start items-center mb-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>>): React.JSX.Element;
+    } & import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "flex flex-row justify-start items-center mb-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "flex flex-row justify-start items-center mb-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlLabelTextProps = React.ComponentProps<typeof UIFormControl.Label.Text> & VariantProps<typeof formControlLabelTextStyle>;
@@ -2120,14 +2120,14 @@ declare const FormControlLabelText: {
         highlight: {
             true: string;
         };
-    }>, unknown, unknown, undefined>>>): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlHelperProps = React.ComponentProps<typeof UIFormControl.Helper> & VariantProps<typeof formControlHelperStyle>;
 declare const FormControlHelper: {
     ({ className, ...props }: {
         className?: string | undefined;
-    } & import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "flex flex-row justify-start items-center mt-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "flex flex-row justify-start items-center mt-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>>): React.JSX.Element;
+    } & import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "flex flex-row justify-start items-center mt-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "flex flex-row justify-start items-center mt-1", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IFormControlHelperTextProps = React.ComponentProps<typeof UIFormControl.Helper.Text> & VariantProps<typeof formControlHelperTextStyle>;
@@ -2485,7 +2485,7 @@ declare const FormControlHelperText: {
         highlight: {
             true: string;
         };
-    }>, unknown, unknown, undefined>>>): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 export { FormControl, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlLabel, FormControlLabelText, FormControlLabelAstrick, FormControlHelper, FormControlHelperText, };

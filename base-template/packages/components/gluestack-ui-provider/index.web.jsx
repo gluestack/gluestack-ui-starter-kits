@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import 'react';
 import { config } from './config';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';

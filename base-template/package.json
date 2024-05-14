@@ -10,7 +10,8 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "run:expo": "cd apps/expo && yarn start",
     "run:next": "cd apps/next && yarn dev",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "prettier": "^3.1.1",

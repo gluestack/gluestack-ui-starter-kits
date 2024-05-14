@@ -525,7 +525,7 @@ declare const Badge: {
             md: string;
             lg: string;
         };
-    }>, unknown, unknown, undefined>>>): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 type IBadgeTextProps = React.ComponentProps<typeof Text> & VariantProps<typeof badgeTextStyle>;
@@ -699,7 +699,7 @@ declare const BadgeText: {
         highlight: {
             true: string;
         };
-    }>, unknown, unknown, undefined>>>): React.JSX.Element;
+    }>, unknown, unknown, undefined>>>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 declare const BadgeIcon: React.ForwardRefExoticComponent<{

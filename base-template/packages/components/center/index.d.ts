@@ -1,6 +1,5 @@
-import React from 'react';
 declare const Center: {
-    ({ className, ...props }: any): React.JSX.Element;
+    ({ className, ...props }: any): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 export { Center };

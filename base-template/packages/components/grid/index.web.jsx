@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import { gridStyle, gridItemStyle } from './styles';
 const Grid = ({ className, numColumns = 12, ...props }) => {
     return (<div className={gridStyle({

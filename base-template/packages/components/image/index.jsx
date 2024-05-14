@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import 'react';
 import { createImage } from '@gluestack-ui/image';
 import { Platform, Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';

@@ -236,7 +236,7 @@ declare const Image: {
             '2xl': string;
             full: string;
         };
-    }>, unknown, unknown, undefined>>> & import("@gluestack-ui/image/lib/typescript/types").IImageProps & Omit<import("react-native").ImageProps, "source" | "alt">): React.JSX.Element;
+    }>, unknown, unknown, undefined>>> & import("@gluestack-ui/image/lib/typescript/types").IImageProps & Omit<import("react-native").ImageProps, "source" | "alt">): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 export { Image };

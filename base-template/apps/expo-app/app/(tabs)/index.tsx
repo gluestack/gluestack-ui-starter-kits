@@ -2,8 +2,7 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
-// import { Button } from "@base-template/ui/button";
-import { Button } from "@base-template/screens/button";
+import { Button, ButtonText } from "@base-template/ui/button";
 
 export default function TabOneScreen() {
   return (
@@ -15,7 +14,9 @@ export default function TabOneScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <EditScreenInfo path="app/(tabs)/index.tsx" />
-      <Button text="Click me" onClick={() => console.log("clicked")} />
+      <Button>
+        <ButtonText>Hello world</ButtonText>
+      </Button>
     </View>
   );
 }
