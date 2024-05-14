@@ -61,6 +61,10 @@ function RootLayoutNav() {
             name="signin"
             options={{ presentation: "modal", headerShown: false }}
           />
+          <Stack.Screen
+            name="signup"
+            options={{ presentation: "modal", headerShown: false }}
+          />
         </Stack>
       </ThemeProvider>
     </GluestackUIProvider>
