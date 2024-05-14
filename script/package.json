@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/starter-kit-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "nodemon": "^3.1.0"
   },
   "bin": {
-    "starter-kit-cli": "dist/index.js"
+    "start": "dist/index.js"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
