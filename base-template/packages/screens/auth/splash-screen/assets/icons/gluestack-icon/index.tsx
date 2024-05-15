@@ -1,4 +1,3 @@
-import React from "react";
 import { createIcon } from "@gluestack-ui/icon";
 import { Path, G, Svg, Rect } from "react-native-svg";
 

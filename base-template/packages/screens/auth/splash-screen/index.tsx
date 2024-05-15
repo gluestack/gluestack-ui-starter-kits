@@ -18,6 +18,7 @@ import { Icon } from "@base-template/components/icon";
 import { GluestackIcon } from "./assets/icons/gluestack-icon";
 import useRouter from "@unitools/router";
 import { MonitorCheck } from "lucide-react-native";
+import { GoogleIcon } from "../signin/assets/icons/google";
 const ProfileAvatars = [
   require("./assets/image.png"),
   require("./assets/image1.png"),
@@ -125,6 +126,14 @@ const SplashScreenWithLeftBackground = () => {
           >
             <ButtonIcon as={GluestackIcon} className="w-[219px] h-10" />
             <ButtonText>GluestackIcon</ButtonText>
+          </Button>
+          <Button
+            onPress={() => {
+              router.push("/auth/signup");
+            }}
+          >
+            <ButtonIcon as={GoogleIcon} />
+            <ButtonText>GoogleIcon</ButtonText>
           </Button>
         </VStack>
       </VStack>
