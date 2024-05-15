@@ -100,14 +100,14 @@ const SplashScreenWithLeftBackground = () => {
           <Button
             className="w-full"
             onPress={() => {
-              router.push("/signin");
+              router.push("/auth/signin");
             }}
           >
             <ButtonText className="font-medium">Log in</ButtonText>
           </Button>
           <Button
             onPress={() => {
-              router.push("/signup");
+              router.push("/auth/signup");
             }}
           >
             <ButtonText className="font-medium">Sign Up</ButtonText>
