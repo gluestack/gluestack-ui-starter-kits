@@ -202,7 +202,7 @@ const LoginWithLeftBackground = () => {
       </VStack>
 
       <VStack
-        className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2"
+        className="md:items-center md:justify-center w-full md:max-w-[440px] p-9 md:gap-1 gap-16 md:m-auto md:w-1/2"
         space="2xl"
       >
         <VStack className="md:items-center" space="md">
@@ -212,7 +212,7 @@ const LoginWithLeftBackground = () => {
             size="xl"
           />
           <Heading className="md:text-center" size="3xl">
-            Log in to your account
+            Log in
           </Heading>
           <Text>Start making your dreams come true</Text>
         </VStack>
@@ -332,34 +332,36 @@ const LoginWithLeftBackground = () => {
               </LinkText>
             </Link>
           </HStack>
+          <VStack className="w-full gap-8" space="lg">
+            <VStack className="w-full " space="lg">
+              <Button className="w-full" onPress={handleSubmit(onSubmit)}>
+                <ButtonText className="font-medium">Log in</ButtonText>
+              </Button>
+              <Button
+                variant="outline"
+                action="secondary"
+                className="w-full gap-1"
+                onPress={() => {}}
+              >
+                <ButtonText className="font-medium">
+                  Continue with Google
+                </ButtonText>
+                <ButtonIcon as={GoogleIcon} />
+              </Button>
+            </VStack>
+            <HStack className="self-center">
+              <Text size="md">Don't have an account?</Text>
+              <Link href="/auth/signup" isExternal>
+                <LinkText
+                  className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
+                  size="md"
+                >
+                  Sign up
+                </LinkText>
+              </Link>
+            </HStack>
+          </VStack>
         </VStack>
-        <VStack className="w-full" space="lg">
-          <Button className="w-full" onPress={handleSubmit(onSubmit)}>
-            <ButtonText className="font-medium">Log in</ButtonText>
-          </Button>
-          <Button
-            variant="outline"
-            action="secondary"
-            className="w-full gap-1"
-            onPress={() => {}}
-          >
-            <ButtonText className="font-medium">
-              Continue with Google
-            </ButtonText>
-            <ButtonIcon as={GoogleIcon} />
-          </Button>
-        </VStack>
-        <HStack className="self-center">
-          <Text size="md">Don't have an account?</Text>
-          <Link href="/auth/signup" isExternal>
-            <LinkText
-              className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
-              size="md"
-            >
-              Sign up
-            </LinkText>
-          </Link>
-        </HStack>
       </VStack>
     </HStack>
   );

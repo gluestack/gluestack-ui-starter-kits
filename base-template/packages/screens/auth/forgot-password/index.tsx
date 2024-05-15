@@ -143,7 +143,7 @@ const ForgotPasswordScreen = () => {
       </VStack>
 
       <VStack
-        className="md:items-center md:justify-center w-full max-w-[440px] p-9 gap-16 md:gap-10 md:m-auto md:w-1/2"
+        className="md:items-center md:justify-center w-full md:max-w-[440px] p-9 gap-16 md:gap-10 md:m-auto md:w-1/2"
         space="3xl"
       >
         <VStack className="md:items-center" space="xs">
