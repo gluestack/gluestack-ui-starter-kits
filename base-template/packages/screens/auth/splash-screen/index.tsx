@@ -99,8 +99,7 @@ const SplashScreenWithLeftBackground = () => {
 
       <VStack className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2 gap-16">
         <HStack className="md:items-center" space="lg">
-          <Icon as={GluestackIcon} className="w-[219px] h-10" />
-          <Icon as={MonitorCheck} className="stroke-red-500" />
+          <Icon as={GluestackIcon} />
         </HStack>
 
         <VStack className="w-full" space="lg">

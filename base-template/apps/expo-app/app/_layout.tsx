@@ -60,6 +60,7 @@ function RootLayoutNav() {
           <Stack.Screen name="signup" />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           <Stack.Screen name="forgot-password" />
+          <Stack.Screen name="create-password" />
         </Stack>
       </ThemeProvider>
     </GluestackUIProvider>

@@ -38,6 +38,13 @@ const Page = () => {
       >
         <ButtonText>Forgot password</ButtonText>
       </Button>
+      <Button
+        onPress={() => {
+          router.push("auth/create-password");
+        }}
+      >
+        <ButtonText>Create password</ButtonText>
+      </Button>
     </VStack>
   );
 };
