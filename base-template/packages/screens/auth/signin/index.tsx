@@ -204,11 +204,11 @@ const LoginWithLeftBackground = () => {
         space="2xl"
       >
         <VStack className="md:items-center" space="xs">
-          <Icon
+          {/* <Icon
             as={ArrowLeftIcon}
             className="md:hidden stroke-background-800"
             size="xl"
-          />
+          /> */}
           <Heading className="md:text-center" size="3xl">
             Log in to your account
           </Heading>

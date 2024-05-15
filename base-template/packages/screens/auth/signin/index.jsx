@@ -9,7 +9,7 @@ import { Link, LinkText } from "@base-template/components/link";
 import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlLabel, FormControlLabelText, } from "@base-template/components/form-control";
 import { Input, InputField, InputIcon, InputSlot, } from "@base-template/components/input";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel, } from "@base-template/components/checkbox";
-import { ArrowLeftIcon, CheckIcon, EyeIcon, EyeOffIcon, Icon, } from "@base-template/components/icon";
+import { CheckIcon, EyeIcon, EyeOffIcon, } from "@base-template/components/icon";
 import { Button, ButtonText, ButtonIcon, } from "@base-template/components/button";
 import { Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
@@ -17,7 +17,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
-import Image from "@unitools/image";
+// import Image from "@unitools/image";
 const USERS = [
     {
         email: "gabrial@gmail.com",
@@ -38,10 +38,10 @@ const loginSchema = z.object({
     rememberme: z.boolean().optional(),
 });
 const ProfileAvatars = [
-    "/assets/image.png",
-    "/assets/image1.png",
-    "/assets/image2.png",
-    "/assets/image3.png",
+    require("./assets/image.png"),
+    require("./assets/image1.png"),
+    require("./assets/image2.png"),
+    require("./assets/image3.png"),
 ];
 const LoginWithLeftBackground = () => {
     const { control, handleSubmit, reset, formState: { errors }, } = useForm({
@@ -113,7 +113,7 @@ const LoginWithLeftBackground = () => {
         })}
                 {ProfileAvatars.map((avatar) => {
             return (<Avatar className="hidden lg:flex" size="md">
-                      <Image source={"/assets/image.png"} height={50} width={50} className=" border-[2px] border-primary-500"/>
+                      <AvatarImage source={avatar} className=" border-[2px] border-primary-500"/>
                     </Avatar>);
         })}
                 <Avatar className="flex lg:hidden" size="md">
@@ -135,7 +135,11 @@ const LoginWithLeftBackground = () => {
 
       <VStack className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2" space="2xl">
         <VStack className="md:items-center" space="xs">
-          <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
+          {/* <Icon
+          as={ArrowLeftIcon}
+          className="md:hidden stroke-background-800"
+          size="xl"
+        /> */}
           <Heading className="md:text-center" size="3xl">
             Log in to your account
           </Heading>
