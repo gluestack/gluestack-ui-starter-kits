@@ -13,6 +13,7 @@ import { Button, ButtonText } from "@base-template/components/button";
 import { Icon } from "@base-template/components/icon";
 import { GluestackIcon } from "./assets/icons/gluestack-icon";
 import useRouter from "@unitools/router";
+import { MonitorCheck } from "lucide-react-native";
 const ProfileAvatars = [
   require("./assets/image.png"),
   require("./assets/image1.png"),
@@ -94,6 +95,7 @@ const SplashScreenWithLeftBackground = () => {
       <VStack className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2 gap-16">
         <HStack className="md:items-center" space="lg">
           <Icon as={GluestackIcon} className="w-[219px] h-10" />
+          <Icon as={MonitorCheck} className="stroke-red-500" />
         </HStack>
 
         <VStack className="w-full" space="lg">
