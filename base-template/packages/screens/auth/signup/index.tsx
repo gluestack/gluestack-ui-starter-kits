@@ -12,7 +12,8 @@ import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
-import { Link, LinkText } from "@base-template/components/link";
+import { LinkText } from "@base-template/components/link";
+import Link from "@unitools/link";
 import {
   FormControl,
   FormControlError,
@@ -400,7 +401,7 @@ const SignUpWithLeftBackground = () => {
         </VStack>
         <HStack className="self-center">
           <Text size="md">Already have an account?</Text>
-          <Link href="" isExternal>
+          <Link href="/auth/signin" isExternal>
             <LinkText
               className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
               size="md"

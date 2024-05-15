@@ -14,6 +14,7 @@ module.exports = {
     };
     config.resolve.alias["@unitools/router"] = "@unitools/router-next";
     config.resolve.alias["@unitools/image"] = "@unitools/image-next";
+    config.resolve.alias["@unitools/link"] = "@unitools/link-next";
     config.resolve.extensions = [
       ".web.js",
       ".web.jsx",

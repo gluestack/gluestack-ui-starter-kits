@@ -10,7 +10,8 @@ import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
-import { Link, LinkText } from "@base-template/components/link";
+import { LinkText } from "@base-template/components/link";
+import Link from "@unitools/link";
 import {
   FormControl,
   FormControlError,
@@ -325,7 +326,7 @@ const LoginWithLeftBackground = () => {
                 </Checkbox>
               )}
             />
-            <Link href="" isExternal>
+            <Link href="/auth/forgot-password" isExternal>
               <LinkText className="font-medium text-sm text-primary-700 group-hover/link:text-primary-600">
                 Forgot Password?
               </LinkText>
@@ -350,7 +351,7 @@ const LoginWithLeftBackground = () => {
         </VStack>
         <HStack className="self-center">
           <Text size="md">Don't have an account?</Text>
-          <Link href="" isExternal>
+          <Link href="/auth/signup" isExternal>
             <LinkText
               className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
               size="md"
