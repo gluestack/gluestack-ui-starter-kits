@@ -3,7 +3,7 @@ import { Button, ButtonText } from "@base-template/components/button";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { useRouter } from "next/navigation";
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   return (
@@ -42,4 +42,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

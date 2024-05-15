@@ -9,9 +9,10 @@ import { Link, LinkText } from "@base-template/components/link";
 import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlLabel, FormControlLabelText, } from "@base-template/components/form-control";
 import { Input, InputField, InputIcon, InputSlot, } from "@base-template/components/input";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel, } from "@base-template/components/checkbox";
-import { CheckIcon, EyeIcon, EyeOffIcon, } from "@base-template/components/icon";
+import { ArrowLeftIcon, CheckIcon, EyeIcon, EyeOffIcon, Icon, } from "@base-template/components/icon";
 import { Button, ButtonText, ButtonIcon, } from "@base-template/components/button";
 import { Keyboard } from "react-native";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -133,13 +134,9 @@ const LoginWithLeftBackground = () => {
         </Heading>
       </VStack>
 
-      <VStack className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2" space="2xl">
-        <VStack className="md:items-center" space="xs">
-          {/* <Icon
-          as={ArrowLeftIcon}
-          className="md:hidden stroke-background-800"
-          size="xl"
-        /> */}
+      <VStack className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2" space="2xl">
+        <VStack className="md:items-center" space="md">
+          <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
           <Heading className="md:text-center" size="3xl">
             Log in to your account
           </Heading>
@@ -225,7 +222,7 @@ const LoginWithLeftBackground = () => {
             <ButtonIcon as={GoogleIcon}/>
           </Button>
         </VStack>
-        <HStack>
+        <HStack className="self-center">
           <Text size="md">Don't have an account?</Text>
           <Link href="" isExternal>
             <LinkText className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
@@ -237,5 +234,7 @@ const LoginWithLeftBackground = () => {
     </HStack>);
 };
 export const SignIn = () => {
-    return <LoginWithLeftBackground />;
+    return (<SafeAreaView className="w-full h-full">
+      <LoginWithLeftBackground />
+    </SafeAreaView>);
 };

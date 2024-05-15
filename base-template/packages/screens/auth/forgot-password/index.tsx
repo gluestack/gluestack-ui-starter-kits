@@ -160,6 +160,7 @@ const ForgotPasswordScreen = () => {
             link.
           </Text>
         </VStack>
+
         <VStack space="xl" className="w-full">
           <FormControl isInvalid={!!errors?.email} className="w-full">
             <FormControlLabel>

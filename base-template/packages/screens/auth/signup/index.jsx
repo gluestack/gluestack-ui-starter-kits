@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Avatar, AvatarFallbackText, AvatarGroup, AvatarImage, } from "@base-template/components/avatar";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
 import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
 import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
@@ -134,7 +135,7 @@ const SignUpWithLeftBackground = () => {
         </Heading>
       </VStack>
 
-      <VStack className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2" space="2xl">
+      <VStack className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2" space="2xl">
         <VStack className="md:items-center" space="xs">
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
           <Heading className="md:text-center" size="3xl">
@@ -247,7 +248,7 @@ const SignUpWithLeftBackground = () => {
             <ButtonIcon as={GoogleIcon}/>
           </Button>
         </VStack>
-        <HStack>
+        <HStack className="self-center">
           <Text size="md">Already have an account?</Text>
           <Link href="" isExternal>
             <LinkText className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
@@ -259,5 +260,7 @@ const SignUpWithLeftBackground = () => {
     </HStack>);
 };
 export const SignUp = () => {
-    return <SignUpWithLeftBackground />;
+    return (<SafeAreaView className="w-full h-full">
+      <SignUpWithLeftBackground />
+    </SafeAreaView>);
 };

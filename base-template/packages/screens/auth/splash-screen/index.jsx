@@ -5,9 +5,9 @@ import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
 import { Button, ButtonText } from "@base-template/components/button";
-import { router } from "expo-router";
 import { Icon } from "@base-template/components/icon";
 import { GluestackIcon } from "./assets/icons/gluestackIcon";
+import useRouter from "@unitools/router";
 const ProfileAvatars = [
     require("./assets/image.png"),
     require("./assets/image1.png"),
@@ -24,6 +24,7 @@ const SplashScreenWithLeftBackground = () => {
         subDescription: "Join 10,000+ users",
         license: " © 2023 gluestack UI. All rights reserved.",
     };
+    const router = useRouter();
     return (<HStack className="w-full h-full bg-background-0">
       <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7" space="md">
         <VStack space="md" className="justify-center flex-1">
@@ -71,12 +72,12 @@ const SplashScreenWithLeftBackground = () => {
 
         <VStack className="w-full" space="lg">
           <Button className="w-full" onPress={() => {
-            router.push("/signin");
+            router.push("/auth/signin");
         }}>
             <ButtonText className="font-medium">Log in</ButtonText>
           </Button>
           <Button onPress={() => {
-            router.push("/signup");
+            router.push("/auth/signup");
         }}>
             <ButtonText className="font-medium">Sign Up</ButtonText>
           </Button>
