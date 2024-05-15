@@ -11,7 +11,7 @@ import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
 import { Button, ButtonText } from "@base-template/components/button";
 import { Icon } from "@base-template/components/icon";
-import { GluestackIcon } from "./assets/icons/gluestackIcon";
+import { GluestackIcon } from "./assets/icons/gluestack-icon";
 import useRouter from "@unitools/router";
 const ProfileAvatars = [
   require("./assets/image.png"),
