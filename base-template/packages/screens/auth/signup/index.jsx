@@ -6,7 +6,8 @@ import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
-import { Link, LinkText } from "@base-template/components/link";
+import { LinkText } from "@base-template/components/link";
+import Link from "@unitools/link";
 import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlLabel, FormControlLabelText, } from "@base-template/components/form-control";
 import { Input, InputField, InputIcon, InputSlot, } from "@base-template/components/input";
 import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel, } from "@base-template/components/checkbox";
@@ -135,11 +136,11 @@ const SignUpWithLeftBackground = () => {
         </Heading>
       </VStack>
 
-      <VStack className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2" space="2xl">
-        <VStack className="md:items-center" space="xs">
+      <VStack className="md:items-center md:justify-center w-full md:max-w-[440px] p-9 md:gap-1 gap-16 md:m-auto md:w-1/2" space="2xl">
+        <VStack className="md:items-center" space="md">
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
           <Heading className="md:text-center" size="3xl">
-            Sign up to continue
+            Sign up
           </Heading>
           <Text>Start making your dreams come true</Text>
         </VStack>
@@ -237,25 +238,27 @@ const SignUpWithLeftBackground = () => {
                 </CheckboxLabel>
               </Checkbox>)}/>
         </VStack>
-        <VStack className="w-full" space="lg">
-          <Button className="w-full" onPress={handleSubmit(onSubmit)}>
-            <ButtonText className="font-medium">Sign up</ButtonText>
-          </Button>
-          <Button variant="outline" action="secondary" className="w-full gap-1" onPress={() => { }}>
-            <ButtonText className="font-medium">
-              Continue with Google
-            </ButtonText>
-            <ButtonIcon as={GoogleIcon}/>
-          </Button>
+        <VStack className="w-full gap-8 mt-8" space="lg">
+          <VStack className="w-full " space="lg">
+            <Button className="w-full" onPress={handleSubmit(onSubmit)}>
+              <ButtonText className="font-medium">Sign up</ButtonText>
+            </Button>
+            <Button variant="outline" action="secondary" className="w-full gap-1" onPress={() => { }}>
+              <ButtonText className="font-medium">
+                Continue with Google
+              </ButtonText>
+              <ButtonIcon as={GoogleIcon}/>
+            </Button>
+          </VStack>
+          <HStack className="self-center">
+            <Text size="md">Already have an account?</Text>
+            <Link href="/auth/signin" isExternal>
+              <LinkText className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
+                Login
+              </LinkText>
+            </Link>
+          </HStack>
         </VStack>
-        <HStack className="self-center">
-          <Text size="md">Already have an account?</Text>
-          <Link href="" isExternal>
-            <LinkText className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
-              Login
-            </LinkText>
-          </Link>
-        </HStack>
       </VStack>
     </HStack>);
 };

@@ -4,10 +4,12 @@ import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
-import { Button, ButtonText } from "@base-template/components/button";
+import { Button, ButtonIcon, ButtonText, } from "@base-template/components/button";
 import { Icon } from "@base-template/components/icon";
-import { GluestackIcon } from "./assets/icons/gluestackIcon";
+import { GluestackIcon } from "./assets/icons/gluestack-icon";
 import useRouter from "@unitools/router";
+import { MonitorCheck } from "lucide-react-native";
+import { GoogleIcon } from "../signin/assets/icons/google";
 const ProfileAvatars = [
     require("./assets/image.png"),
     require("./assets/image1.png"),
@@ -68,6 +70,7 @@ const SplashScreenWithLeftBackground = () => {
       <VStack className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2 gap-16">
         <HStack className="md:items-center" space="lg">
           <Icon as={GluestackIcon} className="w-[219px] h-10"/>
+          <Icon as={MonitorCheck} className="stroke-red-500"/>
         </HStack>
 
         <VStack className="w-full" space="lg">
@@ -80,6 +83,18 @@ const SplashScreenWithLeftBackground = () => {
             router.push("/auth/signup");
         }}>
             <ButtonText className="font-medium">Sign Up</ButtonText>
+          </Button>
+          <Button onPress={() => {
+            router.push("/auth/signup");
+        }}>
+            <ButtonIcon as={GluestackIcon} className="w-[219px] h-10"/>
+            <ButtonText>GluestackIcon</ButtonText>
+          </Button>
+          <Button onPress={() => {
+            router.push("/auth/signup");
+        }}>
+            <ButtonIcon as={GoogleIcon}/>
+            <ButtonText>GoogleIcon</ButtonText>
           </Button>
         </VStack>
       </VStack>

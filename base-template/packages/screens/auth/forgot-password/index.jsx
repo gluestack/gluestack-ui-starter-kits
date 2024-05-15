@@ -93,18 +93,18 @@ const ForgotPasswordScreen = () => {
         </Heading>
       </VStack>
 
-      <VStack className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2" space="2xl">
+      <VStack className="md:items-center md:justify-center w-full md:max-w-[440px] p-9 gap-16 md:gap-10 md:m-auto md:w-1/2" space="3xl">
         <VStack className="md:items-center" space="xs">
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
           <Heading className="md:text-center" size="3xl">
             Forgot Password?
           </Heading>
-          <Text>
-            Enter email ID associated with your account to get the restoration
-            link.
+          <Text className="text-sm">
+            Enter email ID associated with your account.
           </Text>
         </VStack>
-        <VStack space="xl" className="w-full">
+
+        <VStack space="xl" className="w-full ">
           <FormControl isInvalid={!!errors?.email} className="w-full">
             <FormControlLabel>
               <FormControlLabelText>Email</FormControlLabelText>
@@ -129,9 +129,6 @@ const ForgotPasswordScreen = () => {
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          {/* Label Message */}
-        </VStack>
-        <VStack className="w-full" space="lg">
           <Button className="w-full" onPress={handleSubmit(onSubmit)}>
             <ButtonText className="font-medium">Send Link</ButtonText>
           </Button>
