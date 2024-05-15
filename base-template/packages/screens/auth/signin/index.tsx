@@ -44,6 +44,7 @@ import {
   ButtonIcon,
 } from "@base-template/components/button";
 import { Keyboard } from "react-native";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -200,15 +201,15 @@ const LoginWithLeftBackground = () => {
       </VStack>
 
       <VStack
-        className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2"
+        className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2"
         space="2xl"
       >
-        <VStack className="md:items-center" space="xs">
-          {/* <Icon
+        <VStack className="md:items-center" space="md">
+          <Icon
             as={ArrowLeftIcon}
             className="md:hidden stroke-background-800"
             size="xl"
-          /> */}
+          />
           <Heading className="md:text-center" size="3xl">
             Log in to your account
           </Heading>
@@ -347,7 +348,7 @@ const LoginWithLeftBackground = () => {
             <ButtonIcon as={GoogleIcon} />
           </Button>
         </VStack>
-        <HStack>
+        <HStack className="self-center">
           <Text size="md">Don't have an account?</Text>
           <Link href="" isExternal>
             <LinkText
@@ -364,5 +365,9 @@ const LoginWithLeftBackground = () => {
 };
 
 export const SignIn = () => {
-  return <LoginWithLeftBackground />;
+  return (
+    <SafeAreaView className="w-full h-full">
+      <LoginWithLeftBackground />
+    </SafeAreaView>
+  );
 };

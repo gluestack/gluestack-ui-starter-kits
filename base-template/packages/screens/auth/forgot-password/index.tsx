@@ -10,6 +10,7 @@ import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
 import {
   FormControl,
   FormControlError,
@@ -142,7 +143,7 @@ const ForgotPasswordScreen = () => {
       </VStack>
 
       <VStack
-        className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2"
+        className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2"
         space="2xl"
       >
         <VStack className="md:items-center" space="xs">
@@ -211,5 +212,9 @@ const ForgotPasswordScreen = () => {
 };
 
 export const ForgotPassword = () => {
-  return <ForgotPasswordScreen />;
+  return (
+    <SafeAreaView className="w-full h-full">
+      <ForgotPasswordScreen />
+    </SafeAreaView>
+  );
 };

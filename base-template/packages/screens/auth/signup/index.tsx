@@ -5,6 +5,8 @@ import {
   AvatarGroup,
   AvatarImage,
 } from "@base-template/components/avatar";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
+
 import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
 import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
@@ -209,7 +211,7 @@ const SignUpWithLeftBackground = () => {
       </VStack>
 
       <VStack
-        className="items-center justify-center w-full max-w-[440px] p-9 m-auto md:w-1/2"
+        className="md:items-center md:justify-center w-full max-w-[440px] p-9 md:m-auto md:w-1/2"
         space="2xl"
       >
         <VStack className="md:items-center" space="xs">
@@ -396,7 +398,7 @@ const SignUpWithLeftBackground = () => {
             <ButtonIcon as={GoogleIcon} />
           </Button>
         </VStack>
-        <HStack>
+        <HStack className="self-center">
           <Text size="md">Already have an account?</Text>
           <Link href="" isExternal>
             <LinkText
@@ -413,5 +415,9 @@ const SignUpWithLeftBackground = () => {
 };
 
 export const SignUp = () => {
-  return <SignUpWithLeftBackground />;
+  return (
+    <SafeAreaView className="w-full h-full">
+      <SignUpWithLeftBackground />
+    </SafeAreaView>
+  );
 };
