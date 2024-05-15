@@ -9,7 +9,11 @@ import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
-import { Button, ButtonText } from "@base-template/components/button";
+import {
+  Button,
+  ButtonIcon,
+  ButtonText,
+} from "@base-template/components/button";
 import { Icon } from "@base-template/components/icon";
 import { GluestackIcon } from "./assets/icons/gluestack-icon";
 import useRouter from "@unitools/router";
@@ -113,6 +117,14 @@ const SplashScreenWithLeftBackground = () => {
             }}
           >
             <ButtonText className="font-medium">Sign Up</ButtonText>
+          </Button>
+          <Button
+            onPress={() => {
+              router.push("/auth/signup");
+            }}
+          >
+            <ButtonIcon as={GluestackIcon} className="w-[219px] h-10" />
+            <ButtonText>GluestackIcon</ButtonText>
           </Button>
         </VStack>
       </VStack>
