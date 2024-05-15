@@ -55,9 +55,11 @@ function RootLayoutNav() {
   return (
     <GluestackUIProvider mode={(colorScheme ?? "light") as "light" | "dark"}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="signin" />
+          <Stack.Screen name="signup" />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          <Stack.Screen name="forgot-password" />
         </Stack>
       </ThemeProvider>
     </GluestackUIProvider>

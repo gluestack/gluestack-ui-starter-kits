@@ -12,6 +12,8 @@ module.exports = {
       // Transform all direct `react-native` imports to `react-native-web`
       "react-native$": "react-native-web",
     };
+    config.resolve.alias["@unitools/router"] = "@unitools/router-next";
+    config.resolve.alias["@unitools/image"] = "@unitools/image-next";
     config.resolve.extensions = [
       ".web.js",
       ".web.jsx",
@@ -19,6 +21,7 @@ module.exports = {
       ".web.tsx",
       ...config.resolve.extensions,
     ];
+
     return config;
   },
 };

@@ -1,17 +1,17 @@
-'use client';
-import React from 'react';
-import { createAvatar } from '@gluestack-ui/avatar';
+"use client";
+import React from "react";
+import { createAvatar } from "@gluestack-ui/avatar";
 
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image } from "react-native";
 
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
-const SCOPE = 'AVATAR';
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+} from "@gluestack-ui/nativewind-utils/withStyleContext";
+import { cssInterop } from "@gluestack-ui/nativewind-utils/cssInterop";
+const SCOPE = "AVATAR";
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 const UIAvatar = createAvatar({
   Root: withStyleContext(View, SCOPE),
@@ -21,68 +21,68 @@ const UIAvatar = createAvatar({
   FallbackText: Text,
 });
 
-cssInterop(UIAvatar, { className: 'style' });
-cssInterop(UIAvatar.Badge, { className: 'style' });
-cssInterop(UIAvatar.Group, { className: 'style' });
-cssInterop(UIAvatar.Image, { className: 'style' });
-cssInterop(UIAvatar.FallbackText, { className: 'style' });
+cssInterop(UIAvatar, { className: "style" });
+cssInterop(UIAvatar.Badge, { className: "style" });
+cssInterop(UIAvatar.Group, { className: "style" });
+cssInterop(UIAvatar.Image, { className: "style" });
+cssInterop(UIAvatar.FallbackText, { className: "style" });
 
 const avatarStyle = tva({
-  base: 'rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5',
+  base: "rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5",
   variants: {
     size: {
-      'xs': 'w-6 h-6',
-      'sm': 'w-8 h-8',
-      'md': 'w-12 h-12',
-      'lg': 'w-16 h-16',
-      'xl': 'w-24 h-24',
-      '2xl': 'w-32 h-32',
+      xs: "w-6 h-6",
+      sm: "w-8 h-8",
+      md: "w-12 h-12",
+      lg: "w-16 h-16",
+      xl: "w-24 h-24",
+      "2xl": "w-32 h-32",
     },
   },
 });
 
 const avatarFallbackTextStyle = tva({
-  base: 'text-typography-0 font-semibold overflow-hidden text-transform:uppercase web:cursor-default',
+  base: "text-typography-0 font-semibold overflow-hidden text-transform:uppercase web:cursor-default",
 
   parentVariants: {
     size: {
-      'xs': 'text-2xs',
-      'sm': 'text-xs',
-      'md': 'text-base',
-      'lg': 'text-xl',
-      'xl': 'text-3xl',
-      '2xl': 'text-5xl',
+      xs: "text-2xs",
+      sm: "text-xs",
+      md: "text-base",
+      lg: "text-xl",
+      xl: "text-3xl",
+      "2xl": "text-5xl",
     },
   },
 });
 
 const avatarGroupStyle = tva({
-  base: 'group/avatar-group flex-row-reverse relative avatar-group',
+  base: "group/avatar-group flex-row-reverse relative avatar-group",
 });
 
 const avatarBadgeStyle = tva({
-  base: 'w-5 h-5 bg-success-500 rounded-full absolute right-0 bottom-0 border-white border-2',
+  base: "w-5 h-5 bg-success-500 rounded-full absolute right-0 bottom-0 border-white border-2",
   parentVariants: {
     size: {
-      'xs': 'w-2 h-2',
-      'sm': 'w-2 h-2',
-      'md': 'w-3 h-3',
-      'lg': 'w-4 h-4',
-      'xl': 'w-6 h-6',
-      '2xl': 'w-8 h-8',
+      xs: "w-2 h-2",
+      sm: "w-2 h-2",
+      md: "w-3 h-3",
+      lg: "w-4 h-4",
+      xl: "w-6 h-6",
+      "2xl": "w-8 h-8",
     },
   },
 });
 
 const avatarImageStyle = tva({
-  base: 'h-full w-full rounded-full absolute',
+  base: "!h-full !w-full rounded-full absolute",
 });
 
-type IAvatarProps = Omit<React.ComponentProps<typeof UIAvatar>, 'context'> &
+type IAvatarProps = Omit<React.ComponentProps<typeof UIAvatar>, "context"> &
   VariantProps<typeof avatarStyle>;
 export const Avatar = React.forwardRef(
   (
-    { className, size = 'md', ...props }: { className?: string } & IAvatarProps,
+    { className, size = "md", ...props }: { className?: string } & IAvatarProps,
     ref?: any
   ) => {
     return (

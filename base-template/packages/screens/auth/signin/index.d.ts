@@ -1,2 +1,1 @@
-declare const SignIn: () => import("react/jsx-runtime").JSX.Element;
-export default SignIn;
+export declare const SignIn: () => import("react/jsx-runtime").JSX.Element;
