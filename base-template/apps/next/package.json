@@ -22,7 +22,6 @@
     "postcss": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native-svg": "13.4.0",
     "react-native-web": "latest",
     "tailwindcss": "3.4.3"
   },
