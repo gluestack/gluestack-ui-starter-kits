@@ -4225,6 +4225,21 @@
   resolved "https://registry.yarnpkg.com/@unitools/image/-/image-0.0.2.tgz#41d62fb05208750b300ffc3f87a0972da94a82fd"
   integrity sha512-CiCIt3yRAfjNa/n6lNIMBn4bRgcW3RWA8UluEb5EUxJyOyvAzpHR/uviL0/AGeB5Ca2dgNHRwrsNk5MYB9W8Jw==
 
+"@unitools/link-expo@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@unitools/link-expo/-/link-expo-0.0.1.tgz#fda588b83d760c889bb9d2c2b6aa4d26c2835139"
+  integrity sha512-UFs/DCH0I1r6Vq24NFf1dQ0KPuAvPWDQYcjGUM7TjO72oFgrYtH7tQgBg0CZpcDQKoWNxiMFAjmpONUGqEasVA==
+
+"@unitools/link-next@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@unitools/link-next/-/link-next-0.0.1.tgz#aafb215406e90afeedfd01f198d0a91edb08d2e2"
+  integrity sha512-k3Q28MoFifjEkJ/4hgx5/Go32fK/rlfwIv1HohOyOHFS9o1N1RnZkT7ZDk1mdw5YYKQanG2d+MKheBwrWGPOHg==
+
+"@unitools/link@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@unitools/link/-/link-0.0.3.tgz#d8c64514fee9437fdb00e7fc6f912ae855a6c1f2"
+  integrity sha512-0IxEr+g6hSwES1ZqetbwzeTvv/qsP59R3V2/l+yZhoexMYycjowQ6gwx1P72VxDdJ4Q/TV7Wod1y3+MiRF9szg==
+
 "@unitools/navigation@^0.0.1-alpha.0":
   version "0.0.1-alpha.0"
   resolved "https://registry.yarnpkg.com/@unitools/navigation/-/navigation-0.0.1-alpha.0.tgz#ad8bf3fc36c85cd17374a91604b258f816506bc3"

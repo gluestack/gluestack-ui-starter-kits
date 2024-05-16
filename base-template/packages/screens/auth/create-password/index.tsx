@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Avatar,
   AvatarFallbackText,
@@ -6,13 +6,12 @@ import {
   AvatarImage,
 } from "@base-template/components/avatar";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
+
 import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
 import { HStack } from "@base-template/components/hstack";
 import { VStack } from "@base-template/components/vstack";
 import { Heading } from "@base-template/components/heading";
 import { Text } from "@base-template/components/text";
-import { LinkText } from "@base-template/components/link";
-import Link from "@unitools/link";
 import {
   FormControl,
   FormControlError,
@@ -28,32 +27,19 @@ import {
   InputSlot,
 } from "@base-template/components/input";
 import {
-  Checkbox,
-  CheckboxIcon,
-  CheckboxIndicator,
-  CheckboxLabel,
-} from "@base-template/components/checkbox";
-import {
   ArrowLeftIcon,
-  CheckIcon,
   EyeIcon,
   EyeOffIcon,
   Icon,
 } from "@base-template/components/icon";
-import {
-  Button,
-  ButtonText,
-  ButtonIcon,
-} from "@base-template/components/button";
+import { Button, ButtonText } from "@base-template/components/button";
 import { Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
-import { GoogleIcon } from "./assets/icons/google";
 
-const signUpSchema = z.object({
-  email: z.string().min(1, "Email is required").email(),
+const createPasswordSchema = z.object({
   password: z
     .string()
     .min(6, "Must be at least 8 characters in length")
@@ -74,9 +60,9 @@ const signUpSchema = z.object({
       new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
       "One special character"
     ),
-  rememberme: z.boolean().optional(),
 });
-type SignUpSchemaType = z.infer<typeof signUpSchema>;
+
+type CreatePasswordSchemaType = z.infer<typeof createPasswordSchema>;
 
 const ProfileAvatars = [
   require("./assets/image.png"),
@@ -84,7 +70,6 @@ const ProfileAvatars = [
   require("./assets/image2.png"),
   require("./assets/image3.png"),
 ];
-
 type AuthLayoutProps = {
   children: React.ReactNode;
 };
@@ -166,18 +151,18 @@ const AuthLayout = (props: AuthLayoutProps) => {
   );
 };
 
-const SignUpWithLeftBackground = () => {
+const CreatePasswordWithLeftBackground = () => {
   const {
     control,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<SignUpSchemaType>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<CreatePasswordSchemaType>({
+    resolver: zodResolver(createPasswordSchema),
   });
   const toast = useToast();
 
-  const onSubmit = (data: SignUpSchemaType) => {
+  const onSubmit = (data: CreatePasswordSchemaType) => {
     if (data.password === data.confirmpassword) {
       toast.show({
         placement: "bottom right",
@@ -230,52 +215,14 @@ const SignUpWithLeftBackground = () => {
           size="xl"
         />
         <Heading className="md:text-center" size="3xl">
-          Sign up
+          Create new password
         </Heading>
-        <Text>Start making your dreams come true</Text>
+        <Text className="md:text-center">
+          Your new password must be different from previously used passwords{" "}
+        </Text>
       </VStack>
       <VStack className="w-full">
         <VStack space="xl" className="w-full">
-          <FormControl isInvalid={!!errors.email}>
-            <FormControlLabel>
-              <FormControlLabelText>Email</FormControlLabelText>
-            </FormControlLabel>
-            <Controller
-              name="email"
-              defaultValue=""
-              control={control}
-              rules={{
-                validate: async (value) => {
-                  try {
-                    await signUpSchema.parseAsync({ email: value });
-                    return true;
-                  } catch (error: any) {
-                    return error.message;
-                  }
-                },
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input>
-                  <InputField
-                    className="text-sm"
-                    placeholder="Email"
-                    type="text"
-                    value={value}
-                    onChangeText={onChange}
-                    onBlur={onBlur}
-                    onSubmitEditing={handleKeyPress}
-                    returnKeyType="done"
-                  />
-                </Input>
-              )}
-            />
-            <FormControlError>
-              <FormControlErrorIcon size="md" as={AlertTriangle} />
-              <FormControlErrorText>
-                {errors?.email?.message}
-              </FormControlErrorText>
-            </FormControlError>
-          </FormControl>
           <FormControl isInvalid={!!errors.password}>
             <FormControlLabel>
               <FormControlLabelText>Password</FormControlLabelText>
@@ -287,7 +234,7 @@ const SignUpWithLeftBackground = () => {
               rules={{
                 validate: async (value) => {
                   try {
-                    await signUpSchema.parseAsync({
+                    await createPasswordSchema.parseAsync({
                       password: value,
                     });
                     return true;
@@ -320,6 +267,11 @@ const SignUpWithLeftBackground = () => {
                 {errors?.password?.message}
               </FormControlErrorText>
             </FormControlError>
+            <FormControlLabel>
+              <FormControlLabelText className="text-typography-500">
+                Must be atleast 8 characters
+              </FormControlLabelText>
+            </FormControlLabel>
           </FormControl>
           <FormControl isInvalid={!!errors.confirmpassword}>
             <FormControlLabel>
@@ -332,7 +284,7 @@ const SignUpWithLeftBackground = () => {
               rules={{
                 validate: async (value) => {
                   try {
-                    await signUpSchema.parseAsync({
+                    await createPasswordSchema.parseAsync({
                       password: value,
                     });
                     return true;
@@ -368,67 +320,28 @@ const SignUpWithLeftBackground = () => {
                 {errors?.confirmpassword?.message}
               </FormControlErrorText>
             </FormControlError>
+            <FormControlLabel>
+              <FormControlLabelText className="text-typography-500">
+                Both passwords must match
+              </FormControlLabelText>
+            </FormControlLabel>
           </FormControl>
-
-          <Controller
-            name="rememberme"
-            defaultValue={false}
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Checkbox
-                size="sm"
-                value="Remember me"
-                isChecked={value}
-                onChange={onChange}
-                aria-label="Remember me"
-              >
-                <CheckboxIndicator>
-                  <CheckboxIcon as={CheckIcon} />
-                </CheckboxIndicator>
-                <CheckboxLabel>
-                  I accept the Terms of Use & Privacy Policy
-                </CheckboxLabel>
-              </Checkbox>
-            )}
-          />
         </VStack>
 
-        <VStack className="w-full my-7" space="lg">
+        <VStack className="mt-7 w-full">
           <Button className="w-full" onPress={handleSubmit(onSubmit)}>
-            <ButtonText className="font-medium">Sign up</ButtonText>
-          </Button>
-          <Button
-            variant="outline"
-            action="secondary"
-            className="w-full gap-1"
-            onPress={() => {}}
-          >
-            <ButtonText className="font-medium">
-              Continue with Google
-            </ButtonText>
-            <ButtonIcon as={GoogleIcon} />
+            <ButtonText className="font-medium">Update Password</ButtonText>
           </Button>
         </VStack>
-        <HStack className="self-center">
-          <Text size="md">Already have an account?</Text>
-          <Link href="/auth/signin">
-            <LinkText
-              className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
-              size="md"
-            >
-              Login
-            </LinkText>
-          </Link>
-        </HStack>
       </VStack>
     </>
   );
 };
 
-export const SignUp = () => {
+export const CreatePassword = () => {
   return (
     <AuthLayout>
-      <SignUpWithLeftBackground />
+      <CreatePasswordWithLeftBackground />
     </AuthLayout>
   );
 };
