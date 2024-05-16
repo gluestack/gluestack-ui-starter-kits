@@ -126,14 +126,6 @@ const SplashScreenWithLeftBackground = () => {
         >
           <ButtonText className="font-medium">Sign Up</ButtonText>
         </Button>
-        <Button
-          onPress={() => {
-            router.push("/auth/signup");
-          }}
-        >
-          <ButtonIcon as={GluestackIcon} />
-          <ButtonText>GluestackIcon</ButtonText>
-        </Button>
       </VStack>
     </>
   );
