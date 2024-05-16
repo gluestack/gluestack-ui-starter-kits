@@ -22,6 +22,14 @@ module.exports = {
   presets: [require("nativewind/preset")],
   important: "html",
   theme: {
+    screens: {
+      base: "0",
+      xs: "400px",
+      sm: "480px",
+      md: "768px",
+      lg: "992px",
+      xl: "1280px",
+    },
     extend: {
       colors: {
         primary: {
@@ -186,6 +194,9 @@ module.exports = {
       },
       fontSize: {
         "2xs": "10px",
+      },
+      border: {
+        2: "2px",
       },
     },
     plugins: [],

@@ -45,6 +45,13 @@ const Page = () => {
       >
         <ButtonText>Create password</ButtonText>
       </Button>
+      <Button
+        onPress={() => {
+          router.push("news-feed/news-and-feed");
+        }}
+      >
+        <ButtonText>News feed</ButtonText>
+      </Button>
     </VStack>
   );
 };
