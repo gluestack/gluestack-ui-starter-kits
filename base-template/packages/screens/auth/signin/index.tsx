@@ -82,7 +82,86 @@ const ProfileAvatars = [
   require("./assets/image2.png"),
   require("./assets/image3.png"),
 ];
+type AuthLayoutProps = {
+  children: React.ReactNode;
+};
+const AuthLayout = (props: AuthLayoutProps) => {
+  const formDetails = {
+    heading: " gluestack-ui",
+    badge: "Pro",
+    subHeading: "Start making your dreams come true",
+    description:
+      "Create an account and discover the worlds best UI component framework.",
+    avatarNumber: "+ 2",
+    subDescription: "Join 10,000+ users",
+    license: " © 2023 gluestack UI. All rights reserved.",
+  };
 
+  return (
+    <SafeAreaView className="w-full h-full">
+      <HStack className="w-full h-full bg-background-0">
+        <VStack
+          className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7"
+          space="md"
+        >
+          <VStack space="md" className="justify-center flex-1">
+            <Heading
+              className="md:w-[98%] text-typography-50 font-bold"
+              size="4xl"
+            >
+              {formDetails.subHeading}
+            </Heading>
+            <Text size="md" className="text-typography-50 leading-7">
+              {formDetails.description}
+            </Text>
+            <HStack className="-2 items-center">
+              <HStack className="justify-center items-center">
+                {/* @ts-ignore */}
+                <AvatarGroup>
+                  {ProfileAvatars.slice(0, 2).map((avatar) => {
+                    return (
+                      <Avatar className="flex lg:hidden" size="md">
+                        <AvatarImage
+                          source={avatar}
+                          className="border-[2px] border-primary-500"
+                        />
+                      </Avatar>
+                    );
+                  })}
+                  {ProfileAvatars.map((avatar) => {
+                    return (
+                      <Avatar className="hidden lg:flex" size="md">
+                        <AvatarImage
+                          source={avatar}
+                          className=" border-[2px] border-primary-500"
+                        />
+                      </Avatar>
+                    );
+                  })}
+                  <Avatar className="flex lg:hidden" size="md">
+                    <AvatarFallbackText>
+                      {formDetails.avatarNumber}
+                    </AvatarFallbackText>
+                  </Avatar>
+                </AvatarGroup>
+              </HStack>
+              <Text className="leading-7 text-typography-50 ml-4">
+                {formDetails.subDescription}
+              </Text>
+            </HStack>
+          </VStack>
+          <Heading className="text-xs font-bold tracking-[0.2px] text-typography-200">
+            {formDetails.license}
+          </Heading>
+        </VStack>
+
+        <VStack className="md:items-center md:justify-center w-full md:max-w-[440px] p-9 md:gap-10 gap-16 md:m-auto md:w-1/2">
+          {props.children}
+        </VStack>
+      </HStack>
+    </SafeAreaView>
+  );
+};
 const LoginWithLeftBackground = () => {
   const {
     control,
@@ -133,89 +212,20 @@ const LoginWithLeftBackground = () => {
     handleSubmit(onSubmit)();
   };
 
-  const formDetails = {
-    heading: " gluestack-ui",
-    badge: "Pro",
-    subHeading: "Start making your dreams come true",
-    description:
-      "Create an account and discover the worlds best UI component framework.",
-    avatarNumber: "+ 2",
-    subDescription: "Join 10,000+ users",
-    license: " © 2023 gluestack UI. All rights reserved.",
-  };
-
   return (
-    <HStack className="w-full h-full bg-background-0">
-      <VStack
-        className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7"
-        space="md"
-      >
-        <VStack space="md" className="justify-center flex-1">
-          <Heading
-            className="md:w-[98%] text-typography-50 font-bold"
-            size="4xl"
-          >
-            {formDetails.subHeading}
-          </Heading>
-          <Text size="md" className="text-typography-50 leading-7">
-            {formDetails.description}
-          </Text>
-          <HStack className="-2 items-center">
-            <HStack className="justify-center items-center">
-              {/* @ts-ignore */}
-              <AvatarGroup>
-                {ProfileAvatars.slice(0, 2).map((avatar) => {
-                  return (
-                    <Avatar className="flex lg:hidden" size="md">
-                      <AvatarImage
-                        source={avatar}
-                        className="border-[2px] border-primary-500"
-                      />
-                    </Avatar>
-                  );
-                })}
-                {ProfileAvatars.map((avatar) => {
-                  return (
-                    <Avatar className="hidden lg:flex" size="md">
-                      <AvatarImage
-                        source={avatar}
-                        className=" border-[2px] border-primary-500"
-                      />
-                    </Avatar>
-                  );
-                })}
-                <Avatar className="flex lg:hidden" size="md">
-                  <AvatarFallbackText>
-                    {formDetails.avatarNumber}
-                  </AvatarFallbackText>
-                </Avatar>
-              </AvatarGroup>
-            </HStack>
-            <Text className="leading-7 text-typography-50 ml-4">
-              {formDetails.subDescription}
-            </Text>
-          </HStack>
-        </VStack>
-        <Heading className="text-xs font-bold tracking-[0.2px] text-typography-200">
-          {formDetails.license}
+    <>
+      <VStack className="md:items-center" space="xs">
+        <Icon
+          as={ArrowLeftIcon}
+          className="md:hidden text-background-800 "
+          size="xl"
+        />
+        <Heading className="md:text-center" size="3xl">
+          Log in
         </Heading>
+        <Text>Start making your dreams come true</Text>
       </VStack>
-
-      <VStack
-        className="md:items-center md:justify-center w-full md:max-w-[440px] p-9 md:gap-1 gap-16 md:m-auto md:w-1/2"
-        space="2xl"
-      >
-        <VStack className="md:items-center" space="md">
-          <Icon
-            as={ArrowLeftIcon}
-            className="md:hidden stroke-background-800"
-            size="xl"
-          />
-          <Heading className="md:text-center" size="3xl">
-            Log in
-          </Heading>
-          <Text>Start making your dreams come true</Text>
-        </VStack>
+      <VStack className="w-full">
         <VStack space="xl" className="w-full">
           <FormControl
             isInvalid={!!errors?.email || !validated.emailValid}
@@ -306,7 +316,7 @@ const LoginWithLeftBackground = () => {
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          <HStack className="w-full justify-between items-center">
+          <HStack className="w-full justify-between ">
             <Controller
               name="rememberme"
               defaultValue={false}
@@ -326,51 +336,49 @@ const LoginWithLeftBackground = () => {
                 </Checkbox>
               )}
             />
-            <Link href="/auth/forgot-password" isExternal>
+            <Link href="/auth/forgot-password">
               <LinkText className="font-medium text-sm text-primary-700 group-hover/link:text-primary-600">
                 Forgot Password?
               </LinkText>
             </Link>
           </HStack>
-          <VStack className="w-full gap-8" space="lg">
-            <VStack className="w-full " space="lg">
-              <Button className="w-full" onPress={handleSubmit(onSubmit)}>
-                <ButtonText className="font-medium">Log in</ButtonText>
-              </Button>
-              <Button
-                variant="outline"
-                action="secondary"
-                className="w-full gap-1"
-                onPress={() => {}}
-              >
-                <ButtonText className="font-medium">
-                  Continue with Google
-                </ButtonText>
-                <ButtonIcon as={GoogleIcon} />
-              </Button>
-            </VStack>
-            <HStack className="self-center">
-              <Text size="md">Don't have an account?</Text>
-              <Link href="/auth/signup" isExternal>
-                <LinkText
-                  className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
-                  size="md"
-                >
-                  Sign up
-                </LinkText>
-              </Link>
-            </HStack>
-          </VStack>
         </VStack>
+        <VStack className="w-full my-7 " space="lg">
+          <Button className="w-full" onPress={handleSubmit(onSubmit)}>
+            <ButtonText className="font-medium">Log in</ButtonText>
+          </Button>
+          <Button
+            variant="outline"
+            action="secondary"
+            className="w-full gap-1"
+            onPress={() => {}}
+          >
+            <ButtonText className="font-medium">
+              Continue with Google
+            </ButtonText>
+            <ButtonIcon as={GoogleIcon} />
+          </Button>
+        </VStack>
+        <HStack className="self-center ">
+          <Text size="md">Don't have an account?</Text>
+          <Link href="/auth/signup">
+            <LinkText
+              className="font-medium text-primary-700 ml-1 group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
+              size="md"
+            >
+              Sign up
+            </LinkText>
+          </Link>
+        </HStack>
       </VStack>
-    </HStack>
+    </>
   );
 };
 
 export const SignIn = () => {
   return (
-    <SafeAreaView className="w-full h-full">
+    <AuthLayout>
       <LoginWithLeftBackground />
-    </SafeAreaView>
+    </AuthLayout>
   );
 };
