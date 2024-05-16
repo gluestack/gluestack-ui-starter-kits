@@ -21,6 +21,7 @@
         return content;
     };
     const transform = (file, api, options) => {
+        var _a;
         try {
             const j = api.jscodeshift;
             const root = j(file.source);
@@ -50,12 +51,13 @@
             });
             root.find(j.ExportDefaultDeclaration).forEach((path) => {
                 var _a;
+                //@ts-ignore
                 if (((_a = path.node.declaration) === null || _a === void 0 ? void 0 : _a.name) === importName) {
                     isDefaultExport = true;
                 }
             });
             if (isDefaultExport) {
-                return getScreenFile(screenPath, ogScreenPath);
+                return (_a = getScreenFile(screenPath, ogScreenPath)) !== null && _a !== void 0 ? _a : root.toSource();
             }
             return root.toSource();
         }
