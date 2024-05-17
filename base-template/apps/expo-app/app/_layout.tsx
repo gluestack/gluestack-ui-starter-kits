@@ -62,6 +62,7 @@ function RootLayoutNav() {
           <Stack.Screen name="forgot-password" />
           <Stack.Screen name="create-password" />
           <Stack.Screen name="news-feed" />
+          <Stack.Screen name="dashboard" />
         </Stack>
       </ThemeProvider>
     </GluestackUIProvider>
