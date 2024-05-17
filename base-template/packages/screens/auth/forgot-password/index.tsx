@@ -27,6 +27,8 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
+import useRouter from "@unitools/router";
+import { Pressable } from "@base-template/components/pressable";
 
 const forgotPasswordSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
@@ -149,15 +151,21 @@ const ForgotPasswordScreen = () => {
     Keyboard.dismiss();
     handleSubmit(onSubmit)();
   };
-
+  const router = useRouter();
   return (
     <>
       <VStack className="md:items-center" space="xs">
-        <Icon
-          as={ArrowLeftIcon}
-          className="md:hidden stroke-background-800"
-          size="xl"
-        />
+        <Pressable
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <Icon
+            as={ArrowLeftIcon}
+            className="md:hidden stroke-background-800"
+            size="xl"
+          />
+        </Pressable>
         <Heading className="md:text-center" size="3xl">
           Forgot Password?
         </Heading>

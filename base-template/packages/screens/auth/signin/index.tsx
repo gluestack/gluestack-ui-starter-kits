@@ -51,6 +51,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
+import { Pressable } from "@base-template/components/pressable";
+import useRouter from "@unitools/router";
 // import Image from "@unitools/image";
 
 const USERS = [
@@ -210,15 +212,21 @@ const LoginWithLeftBackground = () => {
     Keyboard.dismiss();
     handleSubmit(onSubmit)();
   };
-
+  const router = useRouter();
   return (
     <>
       <VStack className="md:items-center" space="xs">
-        <Icon
-          as={ArrowLeftIcon}
-          className="md:hidden text-background-800 "
-          size="xl"
-        />
+        <Pressable
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <Icon
+            as={ArrowLeftIcon}
+            className="md:hidden text-background-800 "
+            size="xl"
+          />
+        </Pressable>
         <Heading className="md:text-center" size="3xl">
           Log in
         </Heading>

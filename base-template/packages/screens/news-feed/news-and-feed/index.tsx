@@ -28,7 +28,11 @@ import {
   InputIcon,
   InputSlot,
 } from "@base-template/components/input";
-import { Avatar, AvatarImage } from "@base-template/components/avatar";
+import {
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from "@base-template/components/avatar";
 import useRouter from "@unitools/router";
 import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
@@ -263,20 +267,28 @@ function WebHeader(props: HeaderProps) {
         </Pressable>
         <Text className="text-2xl">{props.title}</Text>
       </HStack>
-      <Button className="rounded-full h-9 w-9 p-3">
-        <ButtonIcon as={ProfileIcon} />
-      </Button>
+
+      <Avatar className="h-9 w-9">
+        <AvatarFallbackText className="font-light">A</AvatarFallbackText>
+      </Avatar>
     </HStack>
   );
 }
 
 function MobileHeader(props: MobileHeaderProps) {
+  const router = useRouter();
   return (
     <HStack
       className="py-6 px-4  border-b border-border-50  bg-background-0  items-center"
       space="md"
     >
-      <Icon as={ChevronLeftIcon} />
+      <Pressable
+        onPress={() => {
+          router.back();
+        }}
+      >
+        <Icon as={ChevronLeftIcon} />
+      </Pressable>
       <Text className="text-xl">{props.title}</Text>
     </HStack>
   );
