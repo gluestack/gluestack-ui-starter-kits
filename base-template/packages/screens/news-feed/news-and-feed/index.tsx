@@ -10,7 +10,7 @@ import {
 import { Text } from "@base-template/components/text";
 import { VStack } from "@base-template/components/vstack";
 import { Pressable } from "@base-template/components/pressable";
-import { HeartIcon, Home, User, type LucideIcon } from "lucide-react-native";
+import type { LucideIcon } from "lucide-react-native";
 import { FeedIcon } from "./assets/icons/feed";
 import { GlobeIcon } from "./assets/icons/globe";
 import {
@@ -29,6 +29,10 @@ import {
   InputSlot,
 } from "@base-template/components/input";
 import { Avatar, AvatarImage } from "@base-template/components/avatar";
+import useRouter from "@unitools/router";
+import { HomeIcon } from "./assets/icons/home";
+import { HeartIcon } from "./assets/icons/heart";
+import { ProfileIcon } from "./assets/icons/profile";
 
 type MobileHeaderProps = {
   title: string;
@@ -38,44 +42,13 @@ type HeaderProps = {
   title: string;
   toggleSidebar: () => void;
 };
-function WebHeader(props: HeaderProps) {
-  return (
-    <HStack className="pt-4  pr-10 pb-3 bg-background-0 items-center justify-between border-b border-border-300">
-      <HStack className="items-center">
-        <Pressable
-          onPress={() => {
-            props.toggleSidebar();
-          }}
-        >
-          <Icon as={MenuIcon} size="lg" className="mx-5" />
-        </Pressable>
-        <Text className="text-2xl">{props.title}</Text>
-      </HStack>
-      <Button className="rounded-full h-9 w-9 p-3">
-        <ButtonIcon as={User} className="stroke-background-0" />
-      </Button>
-    </HStack>
-  );
-}
-
-function MobileHeader(props: MobileHeaderProps) {
-  return (
-    <HStack
-      className="pt-5 px-4 pb-1 border-b border-border-50  bg-background-0  items-center"
-      space="md"
-    >
-      <Icon as={ChevronLeftIcon} />
-      <Text className="text-xl">{props.title}</Text>
-    </HStack>
-  );
-}
 
 type Icons = {
   iconName: LucideIcon | typeof Icon;
 };
 const list: Icons[] = [
   {
-    iconName: Home,
+    iconName: HomeIcon,
   },
   {
     iconName: FeedIcon,
@@ -87,49 +60,34 @@ const list: Icons[] = [
     iconName: HeartIcon,
   },
 ];
-const Sidebar = () => {
-  return (
-    <VStack
-      className="w-14 pt-5  h-full  items-center  border-r border-border-300 "
-      space="md"
-    >
-      {list.map((item, index) => {
-        return (
-          <Pressable>
-            <Icon key={index} as={item.iconName} className="m-3" size="xl" />
-          </Pressable>
-        );
-      })}
-    </VStack>
-  );
+type BottomTabs = {
+  iconName: LucideIcon | typeof Icon;
+  iconText: string;
 };
-const DashboardLayout = (props: any) => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(
-    props.isSidebarVisible
-  );
-  function toggleSidebar() {
-    setIsSidebarVisible(!isSidebarVisible);
-  }
+const bottomTabsList: BottomTabs[] = [
+  {
+    iconName: HomeIcon,
+    iconText: "Home",
+  },
 
-  return (
-    <VStack className="h-full w-full bg-background-0">
-      <Box className="md:hidden">
-        <MobileHeader title={"News feed"} />
-      </Box>
-      <Box className="hidden md:flex ">
-        <WebHeader toggleSidebar={toggleSidebar} title={props.title} />
-      </Box>
-      <VStack className="h-full w-full">
-        <HStack className="h-full w-full">
-          <Box className="hidden md:flex h-full ">
-            {isSidebarVisible && <Sidebar />}
-          </Box>
-          <VStack className="w-full">{props.children}</VStack>
-        </HStack>
-      </VStack>
-    </VStack>
-  );
-};
+  {
+    iconName: GlobeIcon,
+    iconText: "Community",
+  },
+  {
+    iconName: FeedIcon,
+    iconText: "Feed",
+  },
+  {
+    iconName: HeartIcon,
+    iconText: "Favourite",
+  },
+  {
+    iconName: ProfileIcon,
+    iconText: "Profile",
+  },
+];
+
 interface BlogData {
   bannerUri: string;
   title: string;
@@ -219,12 +177,123 @@ const CREATORS_DATA: CreatorData[] = [
     description: "Creator of all things metal, talks about music and art. ",
   },
 ];
+
+const Sidebar = () => {
+  return (
+    <VStack
+      className="w-14 pt-5 h-full  items-center  border-r border-border-300 "
+      space="md"
+    >
+      {list.map((item, index) => {
+        return (
+          <Pressable className="px-4 py-3">
+            <Icon key={index} as={item.iconName} className="m-3" size="xl" />
+          </Pressable>
+        );
+      })}
+    </VStack>
+  );
+};
+
+const DashboardLayout = (props: any) => {
+  const [isSidebarVisible, setIsSidebarVisible] = useState(
+    props.isSidebarVisible
+  );
+  function toggleSidebar() {
+    setIsSidebarVisible(!isSidebarVisible);
+  }
+
+  return (
+    <VStack className="h-full w-full bg-background-0">
+      <Box className="md:hidden">
+        <MobileHeader title={"News feed"} />
+      </Box>
+      <Box className="hidden md:flex ">
+        <WebHeader toggleSidebar={toggleSidebar} title={props.title} />
+      </Box>
+      <VStack className="h-full w-full">
+        <HStack className="h-full w-full">
+          <Box className="hidden md:flex h-full ">
+            {isSidebarVisible && <Sidebar />}
+          </Box>
+          <VStack className="w-full">{props.children}</VStack>
+        </HStack>
+      </VStack>
+    </VStack>
+  );
+};
+
+function MobileFooter({ footerIcons }: { footerIcons: any }) {
+  const router = useRouter();
+  return (
+    <HStack className="bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-typography-200  md:hidden border-t">
+      {footerIcons.map(
+        (
+          item: { iconText: string; iconName: any },
+          index: React.Key | null | undefined
+        ) => {
+          return (
+            <Pressable
+              className="  px-0.5 flex-1 flex-col items-center"
+              key={index}
+              onPress={() => router.push("/news-feed/news-and-feed")}
+            >
+              <Icon as={item.iconName} size="md" />
+              <Text className="text-xs text-center text-typography-600">
+                {item.iconText}
+              </Text>
+            </Pressable>
+          );
+        }
+      )}
+    </HStack>
+  );
+}
+
+function WebHeader(props: HeaderProps) {
+  return (
+    <HStack className="pt-4  pr-10 pb-3 bg-background-0 items-center justify-between border-b border-border-300">
+      <HStack className="items-center">
+        <Pressable
+          onPress={() => {
+            props.toggleSidebar();
+          }}
+        >
+          <Icon as={MenuIcon} size="lg" className="mx-5" />
+        </Pressable>
+        <Text className="text-2xl">{props.title}</Text>
+      </HStack>
+      <Button className="rounded-full h-9 w-9 p-3">
+        <ButtonIcon as={ProfileIcon} />
+      </Button>
+    </HStack>
+  );
+}
+
+function MobileHeader(props: MobileHeaderProps) {
+  return (
+    <HStack
+      className="py-6 px-4  border-b border-border-50  bg-background-0  items-center"
+      space="md"
+    >
+      <Icon as={ChevronLeftIcon} />
+      <Text className="text-xl">{props.title}</Text>
+    </HStack>
+  );
+}
+
 const MainContent = () => {
   return (
     <VStack
-      className="px-10 pt-10 h-full w-full max-w-[1500px] self-center  "
+      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center  "
       space="2xl"
     >
+      <Input className="text-center md:hidden">
+        <InputField placeholder="Search" />
+        <InputSlot className="pr-3">
+          <InputIcon as={SearchIcon} />
+        </InputSlot>
+      </Input>
       <Heading size="2xl" className="font-roboto ">
         What's new?
       </Heading>
@@ -306,7 +375,9 @@ const MainContent = () => {
                           <ButtonIcon as={DownloadIcon} />
                         </Button>
                         <VStack>
-                          <Heading className="Heading-sm ">{item.name}</Heading>
+                          <Text className="  font-semibold text-typography-900 ">
+                            {item.name}
+                          </Text>
                           <Text className="line-clamp-1 text-sm">
                             {item.description}
                           </Text>
@@ -329,10 +400,14 @@ const MainContent = () => {
     </VStack>
   );
 };
+
 export const NewsAndFeed = () => {
   return (
-    <DashboardLayout title="News Feed" isSidebarVisible={true}>
-      <MainContent />
-    </DashboardLayout>
+    <>
+      <DashboardLayout title="News Feed" isSidebarVisible={true}>
+        <MainContent />
+      </DashboardLayout>
+      <MobileFooter footerIcons={bottomTabsList} />
+    </>
   );
 };
