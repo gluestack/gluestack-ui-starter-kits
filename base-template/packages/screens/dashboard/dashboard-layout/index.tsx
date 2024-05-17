@@ -2,10 +2,8 @@ import { Box } from "@base-template/components/box";
 import { HStack } from "@base-template/components/hstack";
 import {
   ChevronLeftIcon,
-  DownloadIcon,
   Icon,
   MenuIcon,
-  SearchIcon,
 } from "@base-template/components/icon";
 import { Text } from "@base-template/components/text";
 import { VStack } from "@base-template/components/vstack";
@@ -13,21 +11,11 @@ import { Pressable } from "@base-template/components/pressable";
 import type { LucideIcon } from "lucide-react-native";
 import { InboxIcon } from "./assets/icons/inbox";
 import { GlobeIcon } from "./assets/icons/globe";
-import {
-  Button,
-  ButtonIcon,
-  ButtonText,
-} from "@base-template/components/button";
+import { Button, ButtonText } from "@base-template/components/button";
 import { useState } from "react";
 import { Heading } from "@base-template/components/heading";
-import { Image } from "@base-template/components/image";
 import { ScrollView } from "@base-template/components/scroll-view";
-import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-} from "@base-template/components/input";
+import { Divider } from "@base-template/components/divider";
 import {
   Avatar,
   AvatarFallbackText,
@@ -37,6 +25,7 @@ import useRouter from "@unitools/router";
 import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
+import { CalendarIcon } from "./assets/icons/calendar";
 
 type MobileHeaderProps = {
   title: string;
@@ -92,93 +81,123 @@ const bottomTabsList: BottomTabs[] = [
   },
 ];
 
-interface BlogData {
+interface CardData {
   bannerUri: string;
   title: string;
   description: string;
-  publishedDate: string;
 }
-interface CreatorData {
-  bannerUri: string;
-  name: string;
+interface HolidaysCardData {
+  icon: any;
+  title: string;
   description: string;
 }
+interface LeavesCardData {
+  title: string;
+  description: string;
+  leaves: number;
+  isDisabled: boolean;
+}
+interface ColleaguesCardData {
+  image: any;
+  title: string;
+  position: string;
+}
 
-const WORLD_DATA: BlogData[] = [
-  {
-    bannerUri: require("./assets/image3.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
-  },
-  {
-    bannerUri: require("./assets/image4.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
-  },
-  {
-    bannerUri: require("./assets/image5.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
-  },
-  {
-    bannerUri: require("./assets/image3.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
-  },
-  {
-    bannerUri: require("./assets/image4.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
-  },
-];
-const BLOGS_DATA: BlogData[] = [
+const HeadingCards: CardData[] = [
   {
     bannerUri: require("./assets/image.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
+    title: "Update your profile",
+    description: "Add your details",
   },
   {
     bannerUri: require("./assets/image2.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
+    title: "Your skills",
+    description: "Add your skills here",
   },
   {
-    bannerUri: require("./assets/image2.png"),
-    title: "The Power of Positive Thinking",
-    description:
-      "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
-    publishedDate: "May 15, 2023",
+    bannerUri: require("./assets/image3.png"),
+    title: "Your goals",
+    description: "Set a target to accomplish",
+  },
+  {
+    bannerUri: require("./assets/image3.png"),
+    title: "Your goals",
+    description: "Set a target to accomplish",
+  },
+  {
+    bannerUri: require("./assets/image3.png"),
+    title: "Your goals",
+    description: "Set a target to accomplish",
   },
 ];
-const CREATORS_DATA: CreatorData[] = [
+const HolidaysCards: HolidaysCardData[] = [
   {
-    bannerUri: require("./assets/image6.png"),
-    name: "Emily Zho",
-    description: "Designer by heart, writer by profession, talks about design",
+    icon: CalendarIcon,
+    title: "Navaratri",
+    description: "12 March, Monday (Optional holiday)",
   },
   {
-    bannerUri: require("./assets/image7.png"),
-    name: "Ram Narayan",
-    description: "Founder of Fortune 500 company Alo, talks about",
+    icon: CalendarIcon,
+    title: "Durga Puja",
+    description: "12 October, Tuesday",
   },
   {
-    bannerUri: require("./assets/image8.png"),
-    name: "David John",
-    description: "Creator of all things metal, talks about music and art. ",
+    icon: CalendarIcon,
+    title: "Diwali",
+    description: "12 March, Wednesday",
+  },
+  {
+    icon: CalendarIcon,
+    title: "Christmas",
+    description: "12 March, Thursday",
+  },
+];
+const LeavesCards: LeavesCardData[] = [
+  {
+    title: "Earned Leaves",
+    description: "Available 24",
+    leaves: 24,
+    isDisabled: false,
+  },
+  {
+    title: "Sick Leaves",
+    description: "Available 24",
+    leaves: 24,
+    isDisabled: false,
+  },
+  {
+    title: "Menstrual Leaves",
+    description: "Available 20",
+    leaves: 20,
+    isDisabled: false,
+  },
+  {
+    title: "Optional Leaves",
+    description: "Available 0",
+    leaves: 0,
+    isDisabled: true,
+  },
+];
+const ColleaguesCards: ColleaguesCardData[] = [
+  {
+    image: require("./assets/image7.png"),
+    title: "Emily Zho",
+    position: "UI/UX Designer",
+  },
+  {
+    image: require("./assets/image4.png"),
+    title: "Marilyn Monroe",
+    position: "SDE II",
+  },
+  {
+    image: require("./assets/image5.png"),
+    title: "James Kant",
+    position: "SDE III",
+  },
+  {
+    image: require("./assets/image6.png"),
+    title: "Richard Faynmen",
+    position: "CEO Marketing",
   },
 ];
 
@@ -190,8 +209,8 @@ const Sidebar = () => {
     >
       {list.map((item, index) => {
         return (
-          <Pressable className="px-4 py-3">
-            <Icon key={index} as={item.iconName} className="m-3" size="xl" />
+          <Pressable className="px-4 py-3" key={index}>
+            <Icon as={item.iconName} className="m-3" size="xl" />
           </Pressable>
         );
       })}
@@ -210,7 +229,7 @@ const DashboardLayout = (props: any) => {
   return (
     <VStack className="h-full w-full bg-background-0">
       <Box className="md:hidden">
-        <MobileHeader title={"News feed"} />
+        <MobileHeader title={props.title} />
       </Box>
       <Box className="hidden md:flex ">
         <WebHeader toggleSidebar={toggleSidebar} title={props.title} />
@@ -296,120 +315,161 @@ function MobileHeader(props: MobileHeaderProps) {
 
 const MainContent = () => {
   return (
-    <VStack
-      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center  "
-      space="2xl"
-    >
-      <Input className="text-center md:hidden">
-        <InputField placeholder="Search" />
-        <InputSlot className="pr-3">
-          <InputIcon as={SearchIcon} />
-        </InputSlot>
-      </Input>
-      <Heading size="2xl" className="font-roboto ">
-        What's new?
-      </Heading>
-      <HStack space="2xl" className=" h-full w-full ">
-        <ScrollView
-          className="max-w-[900px]"
-          showsVerticalScrollIndicator={false}
-        >
-          <VStack className="w-full " space="2xl">
-            {BLOGS_DATA.map((item, index) => {
-              return (
-                <VStack className="rounded-xl border p-5" key={index}>
-                  <Image
-                    source={item.bannerUri}
-                    className="w-full h-64 rounded"
-                  />
-                  <VStack className="mt-4" space="md">
-                    <Text className="text-sm ">{item.publishedDate}</Text>
-                    <Heading size="md">{item.title}</Heading>
-                    <Text className="line-clamp-2">{item.description}</Text>
+    <ScrollView showsVerticalScrollIndicator={false} className="mb-20 md:mb-0">
+      <VStack
+        className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full   "
+        space="2xl"
+      >
+        <Heading size="2xl" className="font-roboto">
+          Welcome Alexander
+        </Heading>
+        <HStack space="2xl" className="w-full flex-wrap">
+          {HeadingCards.map((item, index) => {
+            return (
+              <HStack
+                space="md"
+                key={index}
+                className="border rounded-lg p-4 items-center justify-between w-full  max-w-[400px] "
+              >
+                <HStack space="xl" className="items-center">
+                  <Avatar>
+                    <AvatarImage source={item.bannerUri} />
+                  </Avatar>
+                  <VStack>
+                    <Text className="font-semibold text-typography-900">
+                      {item.title}
+                    </Text>
+                    <Text className="">{item.description}</Text>
                   </VStack>
-                </VStack>
+                </HStack>
+                <Button size="xs">
+                  <ButtonText>Edit</ButtonText>
+                </Button>
+              </HStack>
+            );
+          })}
+        </HStack>
+
+        <HStack space="2xl" className="w-full flex-wrap">
+          <VStack
+            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            space="sm"
+          >
+            <Box className="self-start  w-full px-4 ">
+              <Heading size="lg" className="font-roboto  text-typography-700 ">
+                Upcoming Holidays
+              </Heading>
+            </Box>
+            <Divider />
+            {HolidaysCards.map((item, index) => {
+              return (
+                <HStack
+                  space="lg"
+                  key={index}
+                  className="  w-full px-4 py-2    max-w-[400px] "
+                >
+                  <Avatar className="bg-background-50 h-10 w-10">
+                    <Icon as={item.icon} />
+                  </Avatar>
+                  <VStack>
+                    <Text className=" text-typography-900 font-roboto">
+                      {item.title}
+                    </Text>
+                    <Text className="text-sm font-roboto">
+                      {item.description}
+                    </Text>
+                  </VStack>
+                </HStack>
               );
             })}
           </VStack>
-        </ScrollView>
-        <VStack className=" max-w-[500px]  hidden md:flex" space="2xl">
-          <Input className="text-center">
-            <InputField placeholder="Search" />
-            <InputSlot className="pr-3">
-              <InputIcon as={SearchIcon} />
-            </InputSlot>
-          </Input>
-          <VStack>
-            <ScrollView showsVerticalScrollIndicator={false} className="gap-7">
-              <VStack space="lg">
-                <Heading size="lg">From around the world</Heading>
-                <VStack className=" h-full" space="md">
-                  {WORLD_DATA.map((item, index) => {
-                    return (
-                      <HStack
-                        className="p-3 items-center h-full border rounded-xl"
-                        space="lg"
+          <VStack
+            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            space="sm"
+          >
+            <Box className="self-start  w-full px-4 ">
+              <Heading size="lg" className="font-roboto  text-typography-700 ">
+                Your Leaves
+              </Heading>
+            </Box>
+            <Divider />
+            {LeavesCards.map((item, index) => {
+              return (
+                <HStack
+                  space="lg"
+                  key={index}
+                  className="  w-full px-4 py-2 justify-between items-center    max-w-[400px] "
+                >
+                  <HStack space="xl" className="items-center">
+                    <Box
+                      className={`${
+                        item.leaves !== 0 ? "bg-success-0" : "bg-error-50"
+                      } rounded-full h-10 w-10 items-center justify-center`}
+                    >
+                      <Text
+                        className={`${
+                          item.leaves !== 0
+                            ? "text-success-800"
+                            : "text-error-700"
+                        }`}
                       >
-                        <Image
-                          source={item.bannerUri}
-                          className="w-40 h-full rounded"
-                          key={index}
-                        />
-
-                        <VStack className="justify-between h-full " space="md">
-                          <Text className="text-sm ">{item.publishedDate}</Text>
-                          <Heading size="md">{item.title}</Heading>
-                          <Text className="line-clamp-2">
-                            {item.description}
-                          </Text>
-                        </VStack>
-                      </HStack>
-                    );
-                  })}
-                </VStack>
-              </VStack>
-              <VStack space="lg" className="mt-7">
-                <Heading size="lg">Find creators</Heading>
-                <VStack className=" h-full" space="md">
-                  {CREATORS_DATA.map((item, index) => {
-                    return (
-                      <HStack
-                        className="p-4 items-center h-full border rounded-xl"
-                        space="lg"
-                      >
-                        <Avatar>
-                          <AvatarImage key={index} source={item.bannerUri} />
-                        </Avatar>
-                        <Button
-                          variant="outline"
-                          className="p-2 border-background-300 rounded-md"
-                        >
-                          <ButtonIcon as={DownloadIcon} />
-                        </Button>
-                        <VStack>
-                          <Text className="  font-semibold text-typography-900 ">
-                            {item.name}
-                          </Text>
-                          <Text className="line-clamp-1 text-sm">
-                            {item.description}
-                          </Text>
-                        </VStack>
-                        <Button
-                          className="border-background-300"
-                          variant="outline"
-                        >
-                          <ButtonText>Follow</ButtonText>
-                        </Button>
-                      </HStack>
-                    );
-                  })}
-                </VStack>
-              </VStack>
-            </ScrollView>
+                        {item.leaves}
+                      </Text>
+                    </Box>
+                    <VStack>
+                      <Text className=" text-typography-900 font-roboto">
+                        {item.title}
+                      </Text>
+                      <Text className="text-sm font-roboto">
+                        {item.description}
+                      </Text>
+                    </VStack>
+                  </HStack>
+                  <Button
+                    isDisabled={item.isDisabled}
+                    variant="outline"
+                    action="secondary"
+                    size="xs"
+                  >
+                    <ButtonText>Apply</ButtonText>
+                  </Button>
+                </HStack>
+              );
+            })}
           </VStack>
-        </VStack>
-      </HStack>
-    </VStack>
+          <VStack
+            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            space="sm"
+          >
+            <Box className="self-start  w-full px-4 ">
+              <Heading size="lg" className="font-roboto  text-typography-700 ">
+                New colleagues
+              </Heading>
+            </Box>
+            <Divider />
+            {ColleaguesCards.map((item, index) => {
+              return (
+                <HStack
+                  space="lg"
+                  key={index}
+                  className="w-full px-4 py-2 max-w-[400px] "
+                >
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage source={item.image} />
+                  </Avatar>
+                  <VStack>
+                    <Text className=" text-typography-900 font-roboto">
+                      {item.title}
+                    </Text>
+                    <Text className="text-sm font-roboto">{item.position}</Text>
+                  </VStack>
+                </HStack>
+              );
+            })}
+          </VStack>
+        </HStack>
+      </VStack>
+    </ScrollView>
   );
 };
 

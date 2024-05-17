@@ -190,8 +190,8 @@ const Sidebar = () => {
     >
       {list.map((item, index) => {
         return (
-          <Pressable className="px-4 py-3">
-            <Icon key={index} as={item.iconName} className="m-3" size="xl" />
+          <Pressable className="px-4 py-3" key={index}>
+            <Icon as={item.iconName} className="m-3" size="xl" />
           </Pressable>
         );
       })}
@@ -297,7 +297,7 @@ function MobileHeader(props: MobileHeaderProps) {
 const MainContent = () => {
   return (
     <VStack
-      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center  "
+      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center mb-20 md:mb-2  "
       space="2xl"
     >
       <Input className="text-center md:hidden">
@@ -311,7 +311,7 @@ const MainContent = () => {
       </Heading>
       <HStack space="2xl" className=" h-full w-full ">
         <ScrollView
-          className="max-w-[900px]"
+          className="max-w-[900px] "
           showsVerticalScrollIndicator={false}
         >
           <VStack className="w-full " space="2xl">
@@ -332,7 +332,7 @@ const MainContent = () => {
             })}
           </VStack>
         </ScrollView>
-        <VStack className=" max-w-[500px]  hidden md:flex" space="2xl">
+        <VStack className="max-w-[500px] hidden md:flex" space="2xl">
           <Input className="text-center">
             <InputField placeholder="Search" />
             <InputSlot className="pr-3">
@@ -349,11 +349,11 @@ const MainContent = () => {
                       <HStack
                         className="p-3 items-center h-full border rounded-xl"
                         space="lg"
+                        key={index}
                       >
                         <Image
                           source={item.bannerUri}
                           className="w-40 h-full rounded"
-                          key={index}
                         />
 
                         <VStack className="justify-between h-full " space="md">
@@ -376,9 +376,10 @@ const MainContent = () => {
                       <HStack
                         className="p-4 items-center h-full border rounded-xl"
                         space="lg"
+                        key={index}
                       >
                         <Avatar>
-                          <AvatarImage key={index} source={item.bannerUri} />
+                          <AvatarImage source={item.bannerUri} />
                         </Avatar>
                         <Button
                           variant="outline"

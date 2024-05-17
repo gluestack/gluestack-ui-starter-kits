@@ -52,6 +52,13 @@ const Page = () => {
       >
         <ButtonText>News feed</ButtonText>
       </Button>
+      <Button
+        onPress={() => {
+          router.push("dashboard/dashboard-layout");
+        }}
+      >
+        <ButtonText>Dashboard</ButtonText>
+      </Button>
     </VStack>
   );
 };
