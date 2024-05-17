@@ -323,13 +323,16 @@ const MainContent = () => {
         <Heading size="2xl" className="font-roboto">
           Welcome Alexander
         </Heading>
-        <HStack space="2xl" className="w-full flex-wrap">
+        <HStack
+          space="2xl"
+          className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid"
+        >
           {HeadingCards.map((item, index) => {
             return (
               <HStack
                 space="md"
                 key={index}
-                className="border rounded-lg p-4 items-center justify-between w-full  max-w-[400px] "
+                className="border rounded-lg p-4 items-center justify-between"
               >
                 <HStack space="xl" className="items-center">
                   <Avatar>
@@ -350,9 +353,18 @@ const MainContent = () => {
           })}
         </HStack>
 
-        <HStack space="2xl" className="w-full flex-wrap">
+        <Box className="bg-background-50 p-4 rounded-md">
+          <Text className="text-center font-medium">
+            To view analytics you need client ID. Add it to your settings and
+            you’re good to go.
+          </Text>
+        </Box>
+        <HStack
+          space="2xl"
+          className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid"
+        >
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border rounded-lg px-4 py-6 items-center justify-between"
             space="sm"
           >
             <Box className="self-start  w-full px-4 ">
@@ -363,11 +375,7 @@ const MainContent = () => {
             <Divider />
             {HolidaysCards.map((item, index) => {
               return (
-                <HStack
-                  space="lg"
-                  key={index}
-                  className="  w-full px-4 py-2    max-w-[400px] "
-                >
+                <HStack space="lg" key={index} className="w-full px-4 py-2">
                   <Avatar className="bg-background-50 h-10 w-10">
                     <Icon as={item.icon} />
                   </Avatar>
@@ -384,7 +392,7 @@ const MainContent = () => {
             })}
           </VStack>
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border rounded-lg px-4 py-6 items-center justify-between"
             space="sm"
           >
             <Box className="self-start  w-full px-4 ">
@@ -398,7 +406,7 @@ const MainContent = () => {
                 <HStack
                   space="lg"
                   key={index}
-                  className="  w-full px-4 py-2 justify-between items-center    max-w-[400px] "
+                  className="  w-full px-4 py-2 justify-between items-center"
                 >
                   <HStack space="xl" className="items-center">
                     <Box
@@ -438,11 +446,11 @@ const MainContent = () => {
             })}
           </VStack>
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border rounded-lg px-4 py-6 items-center justify-between"
             space="sm"
           >
             <Box className="self-start  w-full px-4 ">
-              <Heading size="lg" className="font-roboto  text-typography-700 ">
+              <Heading size="lg" className="font-roboto text-typography-700 ">
                 New colleagues
               </Heading>
             </Box>
