@@ -56,13 +56,14 @@ const transform: Transform = (file: FileInfo, api: API, options: Options) => {
     });
 
     root.find(j.ExportDefaultDeclaration).forEach((path) => {
+      //@ts-ignore
       if (path.node.declaration?.name === importName) {
         isDefaultExport = true;
       }
     });
 
     if (isDefaultExport) {
-      return getScreenFile(screenPath, ogScreenPath);
+      return getScreenFile(screenPath, ogScreenPath) ?? root.toSource();
     }
     return root.toSource();
   } catch (err) {
