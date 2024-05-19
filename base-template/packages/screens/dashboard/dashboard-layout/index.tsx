@@ -28,6 +28,7 @@ import { ProfileIcon } from "./assets/icons/profile";
 import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
+import { Platform } from "react-native";
 
 type MobileHeaderProps = {
   title: string;
@@ -230,7 +231,8 @@ const DashboardLayout = (props: any) => {
   function toggleSidebar() {
     setIsSidebarVisible(!isSidebarVisible);
   }
-
+  const paddingBottomFooter =
+    Platform.OS === "ios" || "android" ? "pb-5" : "pb-none";
   return (
     <VStack className="h-full w-full bg-background-0">
       <Box className="md:hidden">
@@ -254,7 +256,13 @@ const DashboardLayout = (props: any) => {
 function MobileFooter({ footerIcons }: { footerIcons: any }) {
   const router = useRouter();
   return (
-    <HStack className="bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-typography-200  md:hidden border-t">
+    <HStack
+      className={cn(
+        "bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-border-300  md:hidden border-t",
+        { "pb-5": Platform.OS === "ios" },
+        { "pb-5": Platform.OS === "android" }
+      )}
+    >
       {footerIcons.map(
         (
           item: { iconText: string; iconName: any },
@@ -266,7 +274,11 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
               key={index}
               onPress={() => router.push("/news-feed/news-and-feed")}
             >
-              <Icon as={item.iconName} size="md" />
+              <Icon
+                as={item.iconName}
+                size="md"
+                className="h-[32px] w-[65px]"
+              />
               <Text className="text-xs text-center text-typography-600">
                 {item.iconText}
               </Text>
@@ -335,7 +347,7 @@ const MainContent = () => {
               <HStack
                 space="md"
                 key={index}
-                className="border rounded-lg p-4 items-center justify-between w-full max-w-[400px]"
+                className="border border-border-300  rounded-lg  p-4 items-center justify-between w-full max-w-[400px]"
               >
                 <HStack space="xl" className="items-center">
                   <Avatar>
@@ -361,7 +373,7 @@ const MainContent = () => {
 
         <HStack space="2xl" className="w-full flex-wrap">
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
             <Box className="self-start  w-full px-4">
@@ -393,7 +405,7 @@ const MainContent = () => {
             })}
           </VStack>
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
             <Box className="self-start  w-full px-4">
@@ -448,7 +460,7 @@ const MainContent = () => {
             })}
           </VStack>
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
             <Box className="self-start  w-full px-4">
@@ -478,7 +490,7 @@ const MainContent = () => {
             })}
           </VStack>
           <VStack
-            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
             <Box className="self-start  w-full px-4">

@@ -38,7 +38,8 @@ import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
-
+import { cn } from "@gluestack-ui/nativewind-utils/cn";
+import { Platform } from "react-native";
 type MobileHeaderProps = {
   title: string;
 };
@@ -234,7 +235,13 @@ const DashboardLayout = (props: any) => {
 function MobileFooter({ footerIcons }: { footerIcons: any }) {
   const router = useRouter();
   return (
-    <HStack className="bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-typography-200  md:hidden border-t">
+    <HStack
+      className={cn(
+        "bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-border-300  md:hidden border-t",
+        { "pb-5": Platform.OS === "ios" },
+        { "pb-5": Platform.OS === "android" }
+      )}
+    >
       {footerIcons.map(
         (
           item: { iconText: string; iconName: any },
@@ -246,7 +253,11 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
               key={index}
               onPress={() => router.push("/news-feed/news-and-feed")}
             >
-              <Icon as={item.iconName} size="md" />
+              <Icon
+                as={item.iconName}
+                size="md"
+                className="h-[32px] w-[65px]"
+              />
               <Text className="text-xs text-center text-typography-600">
                 {item.iconText}
               </Text>
@@ -284,7 +295,7 @@ function MobileHeader(props: MobileHeaderProps) {
   const router = useRouter();
   return (
     <HStack
-      className="py-6 px-4  border-b border-border-50  bg-background-0  items-center"
+      className="py-6 px-4  border-b border-border-300  bg-background-0  items-center"
       space="md"
     >
       <Pressable
@@ -302,7 +313,7 @@ function MobileHeader(props: MobileHeaderProps) {
 const MainContent = () => {
   return (
     <VStack
-      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center mb-20 md:mb-2"
+      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center  mb-20 md:mb-2"
       space="2xl"
     >
       <Input className="text-center md:hidden">
@@ -319,10 +330,13 @@ const MainContent = () => {
           className="max-w-[900px]"
           showsVerticalScrollIndicator={false}
         >
-          <VStack className="w-full" space="2xl">
+          <VStack className="w-full    " space="2xl">
             {BLOGS_DATA.map((item, index) => {
               return (
-                <VStack className="rounded-xl border p-5" key={index}>
+                <VStack
+                  className="rounded-xl border border-border-300 p-5"
+                  key={index}
+                >
                   <Image
                     source={item.bannerUri}
                     className="w-full h-64 rounded"
@@ -353,7 +367,7 @@ const MainContent = () => {
                   {WORLD_DATA.map((item, index) => {
                     return (
                       <HStack
-                        className="p-3 items-center h-full border rounded-xl"
+                        className="p-3 items-center h-full border border-border-300  rounded-xl"
                         space="lg"
                         key={index}
                       >
@@ -381,7 +395,7 @@ const MainContent = () => {
                   {CREATORS_DATA.map((item, index) => {
                     return (
                       <HStack
-                        className="p-4 items-center h-full border rounded-xl"
+                        className="p-4 items-center h-full border border-border-300  rounded-xl"
                         space="lg"
                         key={index}
                       >
@@ -394,7 +408,8 @@ const MainContent = () => {
                         </Avatar>
                         <Button
                           variant="outline"
-                          className="p-2 border-background-300 rounded-md"
+                          action="secondary"
+                          className="p-2"
                         >
                           <ButtonIcon as={DownloadIcon} />
                         </Button>
@@ -406,10 +421,7 @@ const MainContent = () => {
                             {item.description}
                           </Text>
                         </VStack>
-                        <Button
-                          className="border-background-300"
-                          variant="outline"
-                        >
+                        <Button action="secondary" variant="outline">
                           <ButtonText>Follow</ButtonText>
                         </Button>
                       </HStack>
