@@ -387,6 +387,7 @@ const MainContent = () => {
                       >
                         <Avatar>
                           <AvatarImage
+                            //@ts-ignore
                             source={item.bannerUri}
                             alt={item.bannerUri}
                           />

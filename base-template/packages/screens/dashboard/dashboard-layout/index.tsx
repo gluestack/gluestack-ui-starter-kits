@@ -338,7 +338,10 @@ const MainContent = () => {
               >
                 <HStack space="xl" className="items-center">
                   <Avatar>
-                    <AvatarImage source={item.bannerUri} />
+                    <AvatarImage
+                      //@ts-ignore
+                      source={item.bannerUri}
+                    />
                   </Avatar>
                   <VStack>
                     <Text className="font-semibold text-typography-900">
