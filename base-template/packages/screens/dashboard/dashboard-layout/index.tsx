@@ -27,6 +27,7 @@ import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
 import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
+import { cn } from "@gluestack-ui/nativewind-utils/cn";
 
 type MobileHeaderProps = {
   title: string;
@@ -410,16 +411,17 @@ const MainContent = () => {
                 >
                   <HStack space="xl" className="items-center">
                     <Box
-                      className={`${
-                        item.leaves !== 0 ? "bg-success-0" : "bg-error-50"
-                      } rounded-full h-10 w-10 items-center justify-center`}
+                      className={cn(
+                        "rounded-full h-10 w-10 items-center justify-center",
+                        { "bg-success-0": item.leaves !== 0 },
+                        { "bg-error-50": item.leaves === 0 }
+                      )}
                     >
                       <Text
-                        className={`${
-                          item.leaves !== 0
-                            ? "text-success-800"
-                            : "text-error-700"
-                        }`}
+                        className={cn(
+                          { "text-success-800": item.leaves !== 0 },
+                          { "text-error-700": item.leaves === 0 }
+                        )}
                       >
                         {item.leaves}
                       </Text>
