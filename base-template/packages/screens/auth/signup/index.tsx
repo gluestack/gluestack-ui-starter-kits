@@ -137,7 +137,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
                       <Avatar className="hidden lg:flex" key={index} size="md">
                         <AvatarImage
                           source={avatar}
-                          className=" border-2 border-primary-500"
+                          className="border-2 border-primary-500"
                         />
                       </Avatar>
                     );

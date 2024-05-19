@@ -73,7 +73,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
             <Text size="md" className="text-typography-50 leading-7">
               {formDetails.description}
             </Text>
-            <HStack className=" items-center">
+            <HStack className="items-center">
               <HStack className="justify-center items-center">
                 {/* @ts-ignore */}
                 <AvatarGroup>
@@ -92,7 +92,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
                       <Avatar className="hidden lg:flex" key={index} size="md">
                         <AvatarImage
                           source={avatar}
-                          className=" border-2 border-primary-500"
+                          className="border-2 border-primary-500"
                         />
                       </Avatar>
                     );

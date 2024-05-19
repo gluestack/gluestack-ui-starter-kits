@@ -37,6 +37,7 @@ import useRouter from "@unitools/router";
 import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
 
 type MobileHeaderProps = {
   title: string;
@@ -185,12 +186,15 @@ const CREATORS_DATA: CreatorData[] = [
 const Sidebar = () => {
   return (
     <VStack
-      className="w-14 pt-5 h-full  items-center  border-r border-border-300 "
+      className="w-14 pt-5 h-full  items-center  border-r border-border-300"
       space="md"
     >
       {list.map((item, index) => {
         return (
-          <Pressable className="px-4 py-3" key={index}>
+          <Pressable
+            className="px-4 py-3 data-[focus-visible=true]:ring-transparent"
+            key={index}
+          >
             <Icon as={item.iconName} className="m-3" size="xl" />
           </Pressable>
         );
@@ -212,12 +216,12 @@ const DashboardLayout = (props: any) => {
       <Box className="md:hidden">
         <MobileHeader title={"News feed"} />
       </Box>
-      <Box className="hidden md:flex ">
+      <Box className="hidden md:flex">
         <WebHeader toggleSidebar={toggleSidebar} title={props.title} />
       </Box>
       <VStack className="h-full w-full">
         <HStack className="h-full w-full">
-          <Box className="hidden md:flex h-full ">
+          <Box className="hidden md:flex h-full">
             {isSidebarVisible && <Sidebar />}
           </Box>
           <VStack className="w-full">{props.children}</VStack>
@@ -238,7 +242,7 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
         ) => {
           return (
             <Pressable
-              className="  px-0.5 flex-1 flex-col items-center"
+              className="px-0.5 flex-1 flex-col items-center data-[focus-visible=true]:ring-transparent"
               key={index}
               onPress={() => router.push("/news-feed/news-and-feed")}
             >
@@ -262,6 +266,7 @@ function WebHeader(props: HeaderProps) {
           onPress={() => {
             props.toggleSidebar();
           }}
+          className="data-[focus-visible=true]:ring-transparent"
         >
           <Icon as={MenuIcon} size="lg" className="mx-5" />
         </Pressable>
@@ -297,7 +302,7 @@ function MobileHeader(props: MobileHeaderProps) {
 const MainContent = () => {
   return (
     <VStack
-      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center mb-20 md:mb-2  "
+      className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center mb-20 md:mb-2"
       space="2xl"
     >
       <Input className="text-center md:hidden">
@@ -306,24 +311,25 @@ const MainContent = () => {
           <InputIcon as={SearchIcon} />
         </InputSlot>
       </Input>
-      <Heading size="2xl" className="font-roboto ">
+      <Heading size="2xl" className="font-roboto">
         What's new?
       </Heading>
-      <HStack space="2xl" className=" h-full w-full ">
+      <HStack space="2xl" className="h-full w-full">
         <ScrollView
-          className="max-w-[900px] "
+          className="max-w-[900px]"
           showsVerticalScrollIndicator={false}
         >
-          <VStack className="w-full " space="2xl">
+          <VStack className="w-full" space="2xl">
             {BLOGS_DATA.map((item, index) => {
               return (
                 <VStack className="rounded-xl border p-5" key={index}>
                   <Image
                     source={item.bannerUri}
                     className="w-full h-64 rounded"
+                    alt={item.bannerUri}
                   />
                   <VStack className="mt-4" space="md">
-                    <Text className="text-sm ">{item.publishedDate}</Text>
+                    <Text className="text-sm">{item.publishedDate}</Text>
                     <Heading size="md">{item.title}</Heading>
                     <Text className="line-clamp-2">{item.description}</Text>
                   </VStack>
@@ -343,7 +349,7 @@ const MainContent = () => {
             <ScrollView showsVerticalScrollIndicator={false} className="gap-7">
               <VStack space="lg">
                 <Heading size="lg">From around the world</Heading>
-                <VStack className=" h-full" space="md">
+                <VStack className="h-full" space="md">
                   {WORLD_DATA.map((item, index) => {
                     return (
                       <HStack
@@ -354,10 +360,11 @@ const MainContent = () => {
                         <Image
                           source={item.bannerUri}
                           className="w-40 h-full rounded"
+                          alt={item.bannerUri}
                         />
 
-                        <VStack className="justify-between h-full " space="md">
-                          <Text className="text-sm ">{item.publishedDate}</Text>
+                        <VStack className="justify-between h-full" space="md">
+                          <Text className="text-sm">{item.publishedDate}</Text>
                           <Heading size="md">{item.title}</Heading>
                           <Text className="line-clamp-2">
                             {item.description}
@@ -370,7 +377,7 @@ const MainContent = () => {
               </VStack>
               <VStack space="lg" className="mt-7">
                 <Heading size="lg">Find creators</Heading>
-                <VStack className=" h-full" space="md">
+                <VStack className="h-full" space="md">
                   {CREATORS_DATA.map((item, index) => {
                     return (
                       <HStack
@@ -379,7 +386,10 @@ const MainContent = () => {
                         key={index}
                       >
                         <Avatar>
-                          <AvatarImage source={item.bannerUri} />
+                          <AvatarImage
+                            source={item.bannerUri}
+                            alt={item.bannerUri}
+                          />
                         </Avatar>
                         <Button
                           variant="outline"
@@ -388,7 +398,7 @@ const MainContent = () => {
                           <ButtonIcon as={DownloadIcon} />
                         </Button>
                         <VStack>
-                          <Text className="  font-semibold text-typography-900 ">
+                          <Text className="font-semibold text-typography-900">
                             {item.name}
                           </Text>
                           <Text className="line-clamp-1 text-sm">
@@ -416,11 +426,11 @@ const MainContent = () => {
 
 export const NewsAndFeed = () => {
   return (
-    <>
+    <SafeAreaView className="h-full w-full">
       <DashboardLayout title="News Feed" isSidebarVisible={true}>
         <MainContent />
       </DashboardLayout>
       <MobileFooter footerIcons={bottomTabsList} />
-    </>
+    </SafeAreaView>
   );
 };

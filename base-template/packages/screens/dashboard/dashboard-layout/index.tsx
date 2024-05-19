@@ -26,6 +26,7 @@ import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
 import { CalendarIcon } from "./assets/icons/calendar";
+import { SafeAreaView } from "@base-template/components/safe-area-view";
 
 type MobileHeaderProps = {
   title: string;
@@ -204,12 +205,15 @@ const ColleaguesCards: ColleaguesCardData[] = [
 const Sidebar = () => {
   return (
     <VStack
-      className="w-14 pt-5 h-full  items-center  border-r border-border-300 "
+      className="w-14 pt-5 h-full  items-center  border-r border-border-300"
       space="md"
     >
       {list.map((item, index) => {
         return (
-          <Pressable className="px-4 py-3" key={index}>
+          <Pressable
+            className="px-4 py-3 data-[focus-visible=true]:ring-transparent"
+            key={index}
+          >
             <Icon as={item.iconName} className="m-3" size="xl" />
           </Pressable>
         );
@@ -231,12 +235,12 @@ const DashboardLayout = (props: any) => {
       <Box className="md:hidden">
         <MobileHeader title={props.title} />
       </Box>
-      <Box className="hidden md:flex ">
+      <Box className="hidden md:flex">
         <WebHeader toggleSidebar={toggleSidebar} title={props.title} />
       </Box>
       <VStack className="h-full w-full">
         <HStack className="h-full w-full">
-          <Box className="hidden md:flex h-full ">
+          <Box className="hidden md:flex h-full">
             {isSidebarVisible && <Sidebar />}
           </Box>
           <VStack className="w-full">{props.children}</VStack>
@@ -257,7 +261,7 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
         ) => {
           return (
             <Pressable
-              className="  px-0.5 flex-1 flex-col items-center"
+              className="px-0.5 flex-1 flex-col items-center"
               key={index}
               onPress={() => router.push("/news-feed/news-and-feed")}
             >
@@ -281,6 +285,7 @@ function WebHeader(props: HeaderProps) {
           onPress={() => {
             props.toggleSidebar();
           }}
+          className="data-[focus-visible=true]:ring-transparent"
         >
           <Icon as={MenuIcon} size="lg" className="mx-5" />
         </Pressable>
@@ -317,7 +322,7 @@ const MainContent = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} className="mb-20 md:mb-0">
       <VStack
-        className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full   "
+        className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full"
         space="2xl"
       >
         <Heading size="2xl" className="font-roboto">
@@ -329,7 +334,7 @@ const MainContent = () => {
               <HStack
                 space="md"
                 key={index}
-                className="border rounded-lg p-4 items-center justify-between w-full  max-w-[400px] "
+                className="border rounded-lg p-4 items-center justify-between w-full max-w-[400px]"
               >
                 <HStack space="xl" className="items-center">
                   <Avatar>
@@ -355,8 +360,8 @@ const MainContent = () => {
             className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
-            <Box className="self-start  w-full px-4 ">
-              <Heading size="lg" className="font-roboto  text-typography-700 ">
+            <Box className="self-start  w-full px-4">
+              <Heading size="lg" className="font-roboto  text-typography-700">
                 Upcoming Holidays
               </Heading>
             </Box>
@@ -366,13 +371,13 @@ const MainContent = () => {
                 <HStack
                   space="lg"
                   key={index}
-                  className="  w-full px-4 py-2    max-w-[400px] "
+                  className="w-full px-4 py-2 max-w-[400px]"
                 >
                   <Avatar className="bg-background-50 h-10 w-10">
                     <Icon as={item.icon} />
                   </Avatar>
                   <VStack>
-                    <Text className=" text-typography-900 font-roboto">
+                    <Text className="text-typography-900 font-roboto">
                       {item.title}
                     </Text>
                     <Text className="text-sm font-roboto">
@@ -387,8 +392,8 @@ const MainContent = () => {
             className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
-            <Box className="self-start  w-full px-4 ">
-              <Heading size="lg" className="font-roboto  text-typography-700 ">
+            <Box className="self-start  w-full px-4">
+              <Heading size="lg" className="font-roboto  text-typography-700">
                 Your Leaves
               </Heading>
             </Box>
@@ -398,7 +403,7 @@ const MainContent = () => {
                 <HStack
                   space="lg"
                   key={index}
-                  className="  w-full px-4 py-2 justify-between items-center    max-w-[400px] "
+                  className="w-full px-4 py-2 justify-between items-center max-w-[400px]"
                 >
                   <HStack space="xl" className="items-center">
                     <Box
@@ -417,7 +422,7 @@ const MainContent = () => {
                       </Text>
                     </Box>
                     <VStack>
-                      <Text className=" text-typography-900 font-roboto">
+                      <Text className="text-typography-900 font-roboto">
                         {item.title}
                       </Text>
                       <Text className="text-sm font-roboto">
@@ -441,8 +446,8 @@ const MainContent = () => {
             className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
             space="sm"
           >
-            <Box className="self-start  w-full px-4 ">
-              <Heading size="lg" className="font-roboto  text-typography-700 ">
+            <Box className="self-start  w-full px-4">
+              <Heading size="lg" className="font-roboto  text-typography-700">
                 New colleagues
               </Heading>
             </Box>
@@ -452,13 +457,43 @@ const MainContent = () => {
                 <HStack
                   space="lg"
                   key={index}
-                  className="w-full px-4 py-2 max-w-[400px] "
+                  className="w-full px-4 py-2 max-w-[400px]"
                 >
                   <Avatar className="h-10 w-10">
                     <AvatarImage source={item.image} />
                   </Avatar>
                   <VStack>
-                    <Text className=" text-typography-900 font-roboto">
+                    <Text className="text-typography-900 font-roboto">
+                      {item.title}
+                    </Text>
+                    <Text className="text-sm font-roboto">{item.position}</Text>
+                  </VStack>
+                </HStack>
+              );
+            })}
+          </VStack>
+          <VStack
+            className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]"
+            space="sm"
+          >
+            <Box className="self-start  w-full px-4">
+              <Heading size="lg" className="font-roboto  text-typography-700">
+                New colleagues
+              </Heading>
+            </Box>
+            <Divider />
+            {ColleaguesCards.map((item, index) => {
+              return (
+                <HStack
+                  space="lg"
+                  key={index}
+                  className="w-full px-4 py-2 max-w-[400px]"
+                >
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage source={item.image} />
+                  </Avatar>
+                  <VStack>
+                    <Text className="text-typography-900 font-roboto">
                       {item.title}
                     </Text>
                     <Text className="text-sm font-roboto">{item.position}</Text>
@@ -475,11 +510,11 @@ const MainContent = () => {
 
 export const Dashboard = () => {
   return (
-    <>
+    <SafeAreaView className="h-full w-full">
       <DashboardLayout title="Dashboard" isSidebarVisible={true}>
         <MainContent />
       </DashboardLayout>
       <MobileFooter footerIcons={bottomTabsList} />
-    </>
+    </SafeAreaView>
   );
 };
