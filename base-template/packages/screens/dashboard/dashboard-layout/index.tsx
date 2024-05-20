@@ -208,11 +208,11 @@ const ColleaguesCards: ColleaguesCardData[] = [
 const Sidebar = () => {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  console.log(selectedIndex, "selectedIndex");
   const handlePress = (index: number) => {
     setSelectedIndex(index);
     router.push("/dashboard/dashboard-layout");
   };
+
   return (
     <VStack
       className="w-14 pt-5 h-full items-center border-r border-border-300"
