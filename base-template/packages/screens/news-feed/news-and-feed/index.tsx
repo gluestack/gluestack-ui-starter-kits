@@ -188,15 +188,12 @@ const Sidebar = () => {
   return (
     <VStack
       className="w-14 pt-5 h-full items-center border-r border-border-300"
-      space="md"
+      space="xl"
     >
       {list.map((item, index) => {
         return (
-          <Pressable
-            className="px-4 py-3 data-[focus-visible=true]:ring-transparent"
-            key={index}
-          >
-            <Icon as={item.iconName} className="m-3" size="xl" />
+          <Pressable key={index}>
+            <Icon as={item.iconName} size="xl" />
           </Pressable>
         );
       })}
@@ -249,7 +246,7 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
         ) => {
           return (
             <Pressable
-              className="px-0.5 flex-1 flex-col items-center data-[focus-visible=true]:ring-transparent"
+              className="px-0.5 flex-1 flex-col items-center"
               key={index}
               onPress={() => router.push("/news-feed/news-and-feed")}
             >
@@ -277,7 +274,6 @@ function WebHeader(props: HeaderProps) {
           onPress={() => {
             props.toggleSidebar();
           }}
-          className="data-[focus-visible=true]:ring-transparent"
         >
           <Icon as={MenuIcon} size="lg" className="mx-5" />
         </Pressable>

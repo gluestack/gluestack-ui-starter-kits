@@ -206,18 +206,31 @@ const ColleaguesCards: ColleaguesCardData[] = [
 ];
 
 const Sidebar = () => {
+  const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  console.log(selectedIndex, "selectedIndex");
+  const handlePress = (index: number) => {
+    setSelectedIndex(index);
+    router.push("/dashboard/dashboard-layout");
+  };
   return (
     <VStack
       className="w-14 pt-5 h-full items-center border-r border-border-300"
-      space="md"
+      space="xl"
     >
       {list.map((item, index) => {
         return (
           <Pressable
-            className="px-4 py-3 data-[focus-visible=true]:ring-transparent"
             key={index}
+            className="hover:bg-background-50"
+            onPress={() => handlePress(index)}
           >
-            <Icon as={item.iconName} className="m-3" size="xl" />
+            <Icon
+              as={item.iconName}
+              className={`w-[55px] h-9 stroke-background-800 
+              `}
+              // ${index === selectedIndex? "fill-background-800 stroke-background-0": "fill-none"}
+            />
           </Pressable>
         );
       })}
@@ -232,8 +245,6 @@ const DashboardLayout = (props: any) => {
   function toggleSidebar() {
     setIsSidebarVisible(!isSidebarVisible);
   }
-  const paddingBottomFooter =
-    Platform.OS === "ios" || "android" ? "pb-5" : "pb-none";
   return (
     <VStack className="h-full w-full bg-background-0">
       <Box className="md:hidden">
@@ -273,7 +284,7 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
             <Pressable
               className="px-0.5 flex-1 flex-col items-center"
               key={index}
-              onPress={() => router.push("/news-feed/news-and-feed")}
+              onPress={() => router.push("/dashboard/dashboard-layout")}
             >
               <Icon
                 as={item.iconName}
@@ -299,7 +310,6 @@ function WebHeader(props: HeaderProps) {
           onPress={() => {
             props.toggleSidebar();
           }}
-          className="data-[focus-visible=true]:ring-transparent"
         >
           <Icon as={MenuIcon} size="lg" className="mx-5" />
         </Pressable>
@@ -356,10 +366,9 @@ const MainContent = () => {
         <Grid className="gap-5">
           {HeadingCards.map((item, index) => {
             return (
-              <GridItem colSpan={noColumn}>
+              <GridItem colSpan={noColumn} key={index}>
                 <HStack
                   space="md"
-                  key={index}
                   className="border border-border-300 rounded-lg p-4 items-center justify-between"
                 >
                   <HStack space="xl" className="items-center">
