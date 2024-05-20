@@ -187,7 +187,7 @@ const CREATORS_DATA: CreatorData[] = [
 const Sidebar = () => {
   return (
     <VStack
-      className="w-14 pt-5 h-full  items-center  border-r border-border-300"
+      className="w-14 pt-5 h-full items-center border-r border-border-300"
       space="md"
     >
       {list.map((item, index) => {
@@ -271,7 +271,7 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
 
 function WebHeader(props: HeaderProps) {
   return (
-    <HStack className="pt-4  pr-10 pb-3 bg-background-0 items-center justify-between border-b border-border-300">
+    <HStack className="pt-4 pr-10 pb-3 bg-background-0 items-center justify-between border-b border-border-300">
       <HStack className="items-center">
         <Pressable
           onPress={() => {
@@ -295,7 +295,7 @@ function MobileHeader(props: MobileHeaderProps) {
   const router = useRouter();
   return (
     <HStack
-      className="py-6 px-4  border-b border-border-300  bg-background-0  items-center"
+      className="py-6 px-4 border-b border-border-300 bg-background-0 items-center"
       space="md"
     >
       <Pressable
@@ -330,7 +330,7 @@ const MainContent = () => {
           className="max-w-[900px]"
           showsVerticalScrollIndicator={false}
         >
-          <VStack className="w-full    " space="2xl">
+          <VStack className="w-full" space="2xl">
             {BLOGS_DATA.map((item, index) => {
               return (
                 <VStack
@@ -367,7 +367,7 @@ const MainContent = () => {
                   {WORLD_DATA.map((item, index) => {
                     return (
                       <HStack
-                        className="p-3 items-center h-full border border-border-300  rounded-xl"
+                        className="p-3 items-center h-full border border-border-300 rounded-xl"
                         space="lg"
                         key={index}
                       >
@@ -395,7 +395,7 @@ const MainContent = () => {
                   {CREATORS_DATA.map((item, index) => {
                     return (
                       <HStack
-                        className="p-4 items-center h-full border border-border-300  rounded-xl"
+                        className="p-4 items-center h-full border border-border-300 rounded-xl"
                         space="lg"
                         key={index}
                       >

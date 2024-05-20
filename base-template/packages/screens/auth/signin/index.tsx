@@ -223,7 +223,7 @@ const LoginWithLeftBackground = () => {
         >
           <Icon
             as={ArrowLeftIcon}
-            className="md:hidden text-background-800 "
+            className="md:hidden text-background-800"
             size="xl"
           />
         </Pressable>

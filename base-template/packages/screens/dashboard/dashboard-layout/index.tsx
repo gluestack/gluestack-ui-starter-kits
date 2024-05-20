@@ -30,7 +30,7 @@ import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Platform } from "react-native";
-import { useBreakpointValue } from "../../../hooks/useBreakpointValue";
+import { useBreakpointValue } from "@base-template/hooks/useBreakpointValue";
 type MobileHeaderProps = {
   title: string;
 };
@@ -208,7 +208,7 @@ const ColleaguesCards: ColleaguesCardData[] = [
 const Sidebar = () => {
   return (
     <VStack
-      className="w-14 pt-5 h-full  items-center  border-r border-border-300"
+      className="w-14 pt-5 h-full items-center border-r border-border-300"
       space="md"
     >
       {list.map((item, index) => {
@@ -317,7 +317,7 @@ function MobileHeader(props: MobileHeaderProps) {
   const router = useRouter();
   return (
     <HStack
-      className="py-6 px-4  border-b border-border-50  bg-background-0  items-center"
+      className="py-6 px-4 border-b border-border-50 bg-background-0 items-center"
       space="md"
     >
       <Pressable
@@ -348,10 +348,7 @@ const MainContent = () => {
   console.log(noColumn, "noColumn");
   return (
     <ScrollView showsVerticalScrollIndicator={false} className="mb-20 md:mb-0">
-      <VStack
-        className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full"
-        space="2xl"
-      >
+      <VStack className="p-4 pb-0 md:px-10 md:pt-6 h-full w-full" space="2xl">
         <Heading size="2xl" className="font-roboto">
           Welcome Alexander
         </Heading>

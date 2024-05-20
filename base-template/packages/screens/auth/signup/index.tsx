@@ -105,7 +105,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
     <SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
         <VStack
-          className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7"
+          className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%] justify-between p-7"
           space="md"
         >
           <VStack space="md" className="justify-center flex-1">
@@ -420,7 +420,7 @@ const SignUpWithLeftBackground = () => {
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
             <LinkText
-              className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
+              className="font-medium text-primary-700 ml-1 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
               size="md"
             >
               Login
