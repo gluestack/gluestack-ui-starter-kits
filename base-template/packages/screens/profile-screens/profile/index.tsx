@@ -1,7 +1,10 @@
 import { Box } from "@base-template/components/box";
 import { HStack } from "@base-template/components/hstack";
 import {
+  AlertCircleIcon,
+  ChevronDownIcon,
   ChevronLeftIcon,
+  CloseIcon,
   EditIcon,
   Icon,
   MenuIcon,
@@ -10,22 +13,26 @@ import {
 import { Text } from "@base-template/components/text";
 import { VStack } from "@base-template/components/vstack";
 import { Pressable } from "@base-template/components/pressable";
-import type { LucideIcon } from "lucide-react-native";
+import { AlertCircle, type LucideIcon } from "lucide-react-native";
 import {
   Button,
   ButtonIcon,
   ButtonText,
 } from "@base-template/components/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Heading } from "@base-template/components/heading";
 import { Image } from "@base-template/components/image";
 import { ScrollView } from "@base-template/components/scroll-view";
 import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-} from "@base-template/components/input";
+  Modal,
+  ModalBackdrop,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from "@base-template/components/modal";
+import { Input, InputField } from "@base-template/components/input";
 import {
   Avatar,
   AvatarBadge,
@@ -37,7 +44,7 @@ import { ProfileIcon } from "./assets/icons/profile";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
 import { Center } from "@base-template/components/center";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
-import { Platform } from "react-native";
+import { Keyboard, Platform } from "react-native";
 import { SubscriptionIcon } from "./assets/icons/subscription";
 import { DownloadIcon } from "./assets/icons/download";
 import { FaqIcon } from "./assets/icons/faq";
@@ -47,6 +54,32 @@ import { GlobeIcon } from "./assets/icons/globe";
 import { InboxIcon } from "./assets/icons/inbox";
 import { HeartIcon } from "./assets/icons/heart";
 import { Divider } from "@base-template/components/divider";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlLabel,
+  FormControlLabelText,
+} from "@base-template/components/form-control";
+import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
+import {
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+} from "@base-template/components/select";
+import { CameraSparklesIcon } from "./assets/icons/camera-sparkles";
+import { EditPhotoIcon } from "./assets/icons/edit-photo";
 
 type MobileHeaderProps = {
   title: string;
@@ -350,101 +383,618 @@ function MobileHeader(props: MobileHeaderProps) {
     </HStack>
   );
 }
+type userSchemaDetails = z.infer<typeof userSchema>;
+
+// Define the Zod schema
+const userSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, "First name is required")
+    .max(50, "First name must be less than 50 characters"),
+  lastName: z
+    .string()
+    .min(1, "Last name is required")
+    .max(50, "Last name must be less than 50 characters"),
+  gender: z.enum(["male", "female", "other"]),
+  phoneNumber: z
+    .string()
+    .regex(
+      /^\+?[1-9]\d{1,14}$/,
+      "Phone number must be a valid international phone number"
+    ),
+  city: z
+    .string()
+    .min(1, "City is required")
+    .max(100, "City must be less than 100 characters"),
+  state: z
+    .string()
+    .min(1, "State is required")
+    .max(100, "State must be less than 100 characters"),
+  country: z
+    .string()
+    .min(1, "Country is required")
+    .max(100, "Country must be less than 100 characters"),
+  zipcode: z
+    .string()
+    .min(1, "Zipcode is required")
+    .max(20, "Zipcode must be less than 20 characters"),
+});
 
 const MainContent = () => {
-  return (
-    <VStack className="h-full w-full self-center mb-20 md:mb-2" space="2xl">
-      <Image
-        source={require("./assets/image2.png")}
-        className="w-full h-[478px]"
-      />
-      <HStack className="absolute pt-6 px-10">
-        <Text className="text-typography-900 font-roboto">home &gt; {` `}</Text>
-        <Text className="font-semibold text-typography-900 ">profile</Text>
-      </HStack>
-      <Center className="absolute mt-14 w-full px-10 pt-6 pb-4">
-        <VStack space="lg" className="items-center">
-          <Avatar size="2xl" className="bg-primary-600">
-            <AvatarImage source={require("./assets/image.png")} />
-            <AvatarBadge />
-          </Avatar>
-          <VStack className="gap-1 w-full items-center">
-            <Text size="2xl" className="font-roboto text-typography-900">
-              Alexander Leslie
-            </Text>
-            <Text className="font-roboto text-sm text-typography-900">
-              United States
-            </Text>
-          </VStack>
+  const [showModal, setShowModal] = useState(false);
 
-          {userData.map((item, index) => {
-            return (
-              <HStack className="items-center gap-1" key={index}>
-                <VStack className="py-3 px-4 items-center" space="xs">
-                  <Text className="text-typography-900 font-roboto font-semibold justify-center items-center">
-                    {item.friends}
-                  </Text>
-                  <Text className="text-typography-900 text-xs font-roboto">
-                    {item.friendsText}
-                  </Text>
-                </VStack>
-                <Divider orientation="vertical" className="h-10" />
-                <VStack className="py-3 px-4 items-center" space="xs">
-                  <Text className="text-typography-900 font-roboto font-semibold">
-                    {item.followers}
-                  </Text>
-                  <Text className="text-typography-900 text-xs font-roboto">
-                    {item.followersText}
-                  </Text>
-                </VStack>
-                <Divider orientation="vertical" className="h-10" />
-                <VStack className="py-3 px-4 items-center" space="xs">
-                  <Text className="text-typography-900 font-roboto font-semibold">
-                    {item.rewards}
-                  </Text>
-                  <Text className="text-typography-900 text-xs font-roboto">
-                    {item.rewardsText}
-                  </Text>
-                </VStack>
-                <Divider orientation="vertical" className="h-10" />
-                <VStack className="py-3 px-4 items-center" space="xs">
-                  <Text className="text-typography-900 font-roboto font-semibold">
-                    {item.posts}
-                  </Text>
-                  <Text className="text-typography-900 text-xs font-roboto">
-                    {item.postsText}
-                  </Text>
-                </VStack>
-              </HStack>
-            );
-          })}
-          <Button variant="outline" action="secondary" className="gap-3">
-            <ButtonText>Edit Profile</ButtonText>
-            <ButtonIcon as={EditIcon} />
-          </Button>
-        </VStack>
-      </Center>
-      <HStack
-        className="ml-6 mr-20 py-5 px-6 border rounded-xl border-border-300 justify-between items-center"
-        space="2xl"
-      >
-        <HStack space="2xl" className="items-center">
-          <Image source={require("./assets/image1.png")} size="md" />
-          <VStack>
-            <Text className="text-typography-900 text-lg" size="lg">
-              Invite & get rewards
+  return (
+    <VStack className="h-full w-full mb-16 md:mb-0">
+      <ModalComponent showModal={showModal} setShowModal={setShowModal} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <VStack className="h-full w-full hidden md:flex" space="2xl">
+          <Image
+            source={require("./assets/image2.png")}
+            className="w-full h-[478px]"
+          />
+          <HStack className="absolute pt-6 px-10">
+            <Text className="text-typography-900 font-roboto">
+              home &gt; {` `}
             </Text>
-            <Text className="font-roboto">Your code r45dAsdeK8</Text>
-          </VStack>
-        </HStack>
-        <Button>
-          <ButtonText>Invite</ButtonText>
-        </Button>
-      </HStack>
+            <Text className="font-semibold text-typography-900 ">profile</Text>
+          </HStack>
+          <Center className="absolute mt-14 w-full px-10 pt-6 pb-4">
+            <VStack space="lg" className="items-center">
+              <Avatar size="2xl" className="bg-primary-600">
+                <AvatarImage source={require("./assets/image.png")} />
+                <AvatarBadge />
+              </Avatar>
+              <VStack className="gap-1 w-full items-center">
+                <Text size="2xl" className="font-roboto text-typography-900">
+                  Alexander Leslie
+                </Text>
+                <Text className="font-roboto text-sm text-typography-900">
+                  United States
+                </Text>
+              </VStack>
+
+              {userData.map((item, index) => {
+                return (
+                  <HStack className="items-center gap-1" key={index}>
+                    <VStack className="py-3 px-4 items-center" space="xs">
+                      <Text className="text-typography-900 font-roboto font-semibold justify-center items-center">
+                        {item.friends}
+                      </Text>
+                      <Text className="text-typography-900 text-xs font-roboto">
+                        {item.friendsText}
+                      </Text>
+                    </VStack>
+                    <Divider orientation="vertical" className="h-10" />
+                    <VStack className="py-3 px-4 items-center" space="xs">
+                      <Text className="text-typography-900 font-roboto font-semibold">
+                        {item.followers}
+                      </Text>
+                      <Text className="text-typography-900 text-xs font-roboto">
+                        {item.followersText}
+                      </Text>
+                    </VStack>
+                    <Divider orientation="vertical" className="h-10" />
+                    <VStack className="py-3 px-4 items-center" space="xs">
+                      <Text className="text-typography-900 font-roboto font-semibold">
+                        {item.rewards}
+                      </Text>
+                      <Text className="text-typography-900 text-xs font-roboto">
+                        {item.rewardsText}
+                      </Text>
+                    </VStack>
+                    <Divider orientation="vertical" className="h-10" />
+                    <VStack className="py-3 px-4 items-center" space="xs">
+                      <Text className="text-typography-900 font-roboto font-semibold">
+                        {item.posts}
+                      </Text>
+                      <Text className="text-typography-900 text-xs font-roboto">
+                        {item.postsText}
+                      </Text>
+                    </VStack>
+                  </HStack>
+                );
+              })}
+              <Button
+                variant="outline"
+                action="secondary"
+                onPress={() => setShowModal(true)}
+                className="gap-3"
+              >
+                <ButtonText>Edit Profile</ButtonText>
+                <ButtonIcon as={EditIcon} />
+              </Button>
+            </VStack>
+          </Center>
+          <HStack
+            className="ml-6 mr-20 py-5 px-6 border rounded-xl border-border-300 justify-between items-center"
+            space="2xl"
+          >
+            <HStack space="2xl" className="items-center">
+              <Image source={require("./assets/image1.png")} size="md" />
+              <VStack>
+                <Text className="text-typography-900 text-lg" size="lg">
+                  Invite & get rewards
+                </Text>
+                <Text className="font-roboto">Your code r45dAsdeK8</Text>
+              </VStack>
+            </HStack>
+            <Button>
+              <ButtonText>Invite</ButtonText>
+            </Button>
+          </HStack>
+        </VStack>
+      </ScrollView>
     </VStack>
   );
 };
+const ModalComponent = ({
+  showModal,
+  setShowModal,
+}: {
+  showModal: boolean;
+  setShowModal: any;
+}) => {
+  const ref = useRef(null);
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<userSchemaDetails>({
+    resolver: zodResolver(userSchema),
+  });
 
+  const handleKeyPress = () => {
+    Keyboard.dismiss();
+  };
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isNameFocused, setIsNameFocused] = useState(false);
+  const onSubmit = (_data: userSchemaDetails) => {
+    setShowModal(false);
+    reset();
+  };
+
+  return (
+    <Modal
+      isOpen={showModal}
+      onClose={() => {
+        setShowModal(false);
+      }}
+      finalFocusRef={ref}
+      size="lg"
+    >
+      <ModalBackdrop />
+      <ModalContent>
+        <Image
+          source={require("./assets/image2.png")}
+          className={"w-full h-[215px] absolute"}
+        />
+        <Pressable className="absolute bg-background-500 rounded-full items-center justify-center h-10 w-10 right-6 top-40">
+          <Icon as={CameraSparklesIcon} />
+        </Pressable>
+        <ModalHeader>
+          <Heading size="2xl" className="text-typography-0">
+            Edit Profile
+          </Heading>
+
+          <ModalCloseButton>
+            <Icon
+              as={CloseIcon}
+              size="md"
+              className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
+            />
+          </ModalCloseButton>
+        </ModalHeader>
+        <ModalBody className="px-10 pt-3">
+          <Center className="w-full">
+            <Avatar size="2xl">
+              <AvatarImage source={require("./assets/image.png")} />
+              <AvatarBadge className="justify-center items-center bg-background-500">
+                <Icon as={EditPhotoIcon} />
+              </AvatarBadge>
+            </Avatar>
+          </Center>
+          <VStack className="mt-10" space="2xl">
+            <HStack className="items-center justify-between">
+              <FormControl
+                isInvalid={!!errors.firstName || isNameFocused}
+                className="w-[47%]"
+              >
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>First Name</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({
+                          firstName: value,
+                        });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input>
+                      <InputField
+                        placeholder="First Name"
+                        type="text"
+                        value={value}
+                        onChangeText={onChange}
+                        onBlur={onBlur}
+                        onSubmitEditing={handleKeyPress}
+                        returnKeyType="done"
+                      />
+                    </Input>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircleIcon} size="md" />
+                  <FormControlErrorText>
+                    {errors?.firstName?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+              <FormControl
+                isInvalid={!!errors.lastName || isNameFocused}
+                className="w-[47%]"
+              >
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>Last Name</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="lastName"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({
+                          lastName: value,
+                        });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input>
+                      <InputField
+                        placeholder="Last Name"
+                        type="text"
+                        value={value}
+                        onChangeText={onChange}
+                        onBlur={onBlur}
+                        onSubmitEditing={handleKeyPress}
+                        returnKeyType="done"
+                      />
+                    </Input>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircleIcon} size="md" />
+                  <FormControlErrorText>
+                    {errors?.lastName?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+            </HStack>
+            <HStack className="items-center justify-between">
+              <FormControl className="w-[47%]" isInvalid={!!errors.gender}>
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>Gender</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="gender"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({ city: value });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, value } }) => (
+                    <Select onValueChange={onChange} selectedValue={value}>
+                      <SelectTrigger variant="outline" size="md">
+                        <SelectInput placeholder="Select" />
+                        <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                      </SelectTrigger>
+                      <SelectPortal>
+                        <SelectBackdrop />
+                        <SelectContent>
+                          <SelectDragIndicatorWrapper>
+                            <SelectDragIndicator />
+                          </SelectDragIndicatorWrapper>
+                          <SelectItem label="male" value="male" />
+                          <SelectItem label="female" value="female" />
+                          <SelectItem label="others" value="others" />
+                        </SelectContent>
+                      </SelectPortal>
+                    </Select>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircle} size="md" />
+                  <FormControlErrorText>
+                    {errors?.gender?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+
+              <FormControl className="w-[47%]" isInvalid={!!errors.phoneNumber}>
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>Phone number</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="phoneNumber"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({ phoneNumber: value });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <HStack className="gap-1">
+                      <Select className="w-[28%]">
+                        <SelectTrigger variant="outline" size="md">
+                          <SelectInput placeholder="+91" />
+                          <SelectIcon className="mr-1" as={ChevronDownIcon} />
+                        </SelectTrigger>
+                        <SelectPortal>
+                          <SelectBackdrop />
+                          <SelectContent>
+                            <SelectDragIndicatorWrapper>
+                              <SelectDragIndicator />
+                            </SelectDragIndicatorWrapper>
+                            <SelectItem label="93" value="93" />
+                            <SelectItem label="155" value="155" />
+                            <SelectItem label="1-684" value="-1684" />
+                          </SelectContent>
+                        </SelectPortal>
+                      </Select>
+                      <Input className="flex-1">
+                        <InputField
+                          placeholder="89867292632"
+                          type="text"
+                          value={value}
+                          onChangeText={onChange}
+                          keyboardType="number-pad"
+                          onBlur={onBlur}
+                          onSubmitEditing={handleKeyPress}
+                          returnKeyType="done"
+                        />
+                      </Input>
+                    </HStack>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircle} size="md" />
+                  <FormControlErrorText>
+                    {errors?.phoneNumber?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+            </HStack>
+            <HStack className="items-center justify-between">
+              <FormControl
+                className="w-[47%]"
+                isInvalid={(!!errors.city || isEmailFocused) && !!errors.city}
+              >
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>City</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="city"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({ city: value });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Select onValueChange={onChange} selectedValue={value}>
+                      <SelectTrigger variant="outline" size="md">
+                        <SelectInput placeholder="Select" />
+                        <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                      </SelectTrigger>
+                      <SelectPortal>
+                        <SelectBackdrop />
+                        <SelectContent>
+                          <SelectDragIndicatorWrapper>
+                            <SelectDragIndicator />
+                          </SelectDragIndicatorWrapper>
+                          <SelectItem label="Bengaluru" value="Bengaluru" />
+                          <SelectItem label="Udupi" value="Udupi" />
+                          <SelectItem label="Others" value="Others" />
+                        </SelectContent>
+                      </SelectPortal>
+                    </Select>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircle} size="md" />
+                  <FormControlErrorText>
+                    {errors?.city?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+
+              <FormControl
+                className="w-[47%]"
+                isInvalid={(!!errors.state || isEmailFocused) && !!errors.state}
+              >
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>State</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="state"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({ state: value });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Select onValueChange={onChange} selectedValue={value}>
+                      <SelectTrigger variant="outline" size="md">
+                        <SelectInput placeholder="Select" />
+                        <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                      </SelectTrigger>
+                      <SelectPortal>
+                        <SelectBackdrop />
+                        <SelectContent>
+                          <SelectDragIndicatorWrapper>
+                            <SelectDragIndicator />
+                          </SelectDragIndicatorWrapper>
+                          <SelectItem label="Karnataka" value="Karnataka" />
+                          <SelectItem label="Haryana" value="Haryana" />
+                          <SelectItem label="Others" value="Others" />
+                        </SelectContent>
+                      </SelectPortal>
+                    </Select>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircle} size="md" />
+                  <FormControlErrorText>
+                    {errors?.state?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+            </HStack>
+            <HStack className="items-center justify-between">
+              <FormControl
+                className="w-[47%]"
+                isInvalid={
+                  (!!errors.country || isEmailFocused) && !!errors.country
+                }
+              >
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>Country</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="country"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({ country: value });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Select onValueChange={onChange} selectedValue={value}>
+                      <SelectTrigger variant="outline" size="md">
+                        <SelectInput placeholder="Select" />
+                        <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                      </SelectTrigger>
+                      <SelectPortal>
+                        <SelectBackdrop />
+                        <SelectContent>
+                          <SelectDragIndicatorWrapper>
+                            <SelectDragIndicator />
+                          </SelectDragIndicatorWrapper>
+                          <SelectItem label="India" value="India" />
+                          <SelectItem label="Sri Lanka" value="Sri Lanka" />
+                          <SelectItem label="Others" value="Others" />
+                        </SelectContent>
+                      </SelectPortal>
+                    </Select>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircle} size="md" />
+                  <FormControlErrorText>
+                    {errors?.country?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+              <FormControl
+                className="w-[47%]"
+                isInvalid={!!errors.zipcode || isEmailFocused}
+              >
+                <FormControlLabel className="mb-2">
+                  <FormControlLabelText>Zipcode</FormControlLabelText>
+                </FormControlLabel>
+                <Controller
+                  name="zipcode"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await userSchema.parseAsync({
+                          zipCode: value,
+                        });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input>
+                      <InputField
+                        placeholder="Enter 6 - digit zip code"
+                        type="text"
+                        value={value}
+                        onChangeText={onChange}
+                        onBlur={onBlur}
+                        onSubmitEditing={handleKeyPress}
+                        returnKeyType="done"
+                      />
+                    </Input>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircle} size="md" />
+                  <FormControlErrorText>
+                    {errors?.zipcode?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+            </HStack>
+          </VStack>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            onPress={() => {
+              handleSubmit(onSubmit)();
+            }}
+            className="flex-1"
+          >
+            <ButtonText>Save Changes</ButtonText>
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
 export const Profile = () => {
   return (
     <SafeAreaView className="h-full w-full">
