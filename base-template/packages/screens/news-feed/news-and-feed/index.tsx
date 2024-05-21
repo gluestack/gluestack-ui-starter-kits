@@ -7,6 +7,7 @@ import {
   MenuIcon,
   SearchIcon,
 } from "@base-template/components/icon";
+import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 import { Text } from "@base-template/components/text";
 import { VStack } from "@base-template/components/vstack";
 import { Pressable } from "@base-template/components/pressable";
@@ -323,7 +324,10 @@ const MainContent = () => {
       </Heading>
       <HStack space="2xl" className="h-full w-full">
         <ScrollView
-          className="max-w-[900px]"
+          className="max-w-[900px] flex-1 mb-20 md:mb-2"
+          contentContainerStyle={{
+            paddingBottom: isWeb ? 0 : 160,
+          }}
           showsVerticalScrollIndicator={false}
         >
           <VStack className="w-full" space="2xl">
