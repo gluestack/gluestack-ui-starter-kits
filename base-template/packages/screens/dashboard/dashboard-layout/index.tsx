@@ -1,5 +1,6 @@
 import { Box } from "@base-template/components/box";
 import { HStack } from "@base-template/components/hstack";
+import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 import {
   ChevronLeftIcon,
   Icon,
@@ -344,129 +345,91 @@ function MobileHeader(props: MobileHeaderProps) {
 }
 
 const MainContent = () => {
-  const [numOfColumns, setNumOfColumns] = useState(3);
-  const noColumn = useBreakpointValue({
-    base: 12,
-    sm: 6,
-    lg: 4,
-  });
-
-  useEffect(() => {
-    if (noColumn !== numOfColumns) {
-      setNumOfColumns(noColumn);
-    }
-  }, [noColumn]);
-  console.log(noColumn, "noColumn");
   return (
-    <ScrollView showsVerticalScrollIndicator={false} className="mb-20 md:mb-0">
-      <VStack className="p-4 pb-0 md:px-10 md:pt-6 h-full w-full" space="2xl">
-        <Heading size="2xl" className="font-roboto">
-          Welcome Alexander
-        </Heading>
+    <Box className="flex-1 ">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: isWeb ? 0 : 50,
+        }}
+        className="flex-1 mb-20 md:mb-2"
+      >
+        <VStack className="p-4 pb-0 md:px-10 md:pt-6  w-full" space="2xl">
+          <Heading size="2xl" className="font-roboto">
+            Welcome Alexander
+          </Heading>
 
-        <Grid className="gap-5">
-          {HeadingCards.map((item, index) => {
-            return (
-              <GridItem colSpan={noColumn} key={index}>
-                <HStack
-                  space="md"
-                  className="border border-border-300 rounded-lg p-4 items-center justify-between"
+          <Grid className="gap-5">
+            {HeadingCards.map((item, index) => {
+              return (
+                <GridItem
+                  colSpan={{
+                    base: 12,
+                    sm: 6,
+                    lg: 4,
+                  }}
+                  key={index}
                 >
-                  <HStack space="xl" className="items-center">
-                    <Avatar>
-                      <AvatarImage
-                        //@ts-ignore
-                        source={item.bannerUri}
-                      />
-                    </Avatar>
-                    <VStack>
-                      <Text className="font-semibold text-typography-900 line-clamp-1">
-                        {item.title}
-                      </Text>
-                      <Text className="line-clamp-1">{item.description}</Text>
-                    </VStack>
-                  </HStack>
-                  <Button size="xs">
-                    <ButtonText>Edit</ButtonText>
-                  </Button>
-                </HStack>
-              </GridItem>
-            );
-          })}
-        </Grid>
-
-        <Box className="bg-background-50 p-4 rounded-md">
-          <Text className="text-center font-medium">
-            To view analytics you need client ID. Add it to your settings and
-            you’re good to go.
-          </Text>
-        </Box>
-        <Grid className="gap-5">
-          <GridItem colSpan={noColumn}>
-            <VStack
-              className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
-              space="sm"
-            >
-              <Box className="self-start  w-full px-4">
-                <Heading size="lg" className="font-roboto  text-typography-700">
-                  Upcoming Holidays
-                </Heading>
-              </Box>
-              <Divider />
-              {HolidaysCards.map((item, index) => {
-                return (
-                  <HStack space="lg" key={index} className="w-full px-4 py-2">
-                    <Avatar className="bg-background-50 h-10 w-10">
-                      <Icon as={item.icon} />
-                    </Avatar>
-                    <VStack>
-                      <Text className="text-typography-900 font-roboto line-clamp-1">
-                        {item.title}
-                      </Text>
-                      <Text className="text-sm font-roboto line-clamp-1">
-                        {item.description}
-                      </Text>
-                    </VStack>
-                  </HStack>
-                );
-              })}
-            </VStack>
-          </GridItem>
-          <GridItem colSpan={noColumn}>
-            <VStack
-              className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
-              space="sm"
-            >
-              <Box className="self-start  w-full px-4">
-                <Heading size="lg" className="font-roboto  text-typography-700">
-                  Your Leaves
-                </Heading>
-              </Box>
-              <Divider />
-              {LeavesCards.map((item, index) => {
-                return (
                   <HStack
-                    space="lg"
-                    key={index}
-                    className="w-full px-4 py-2 justify-between items-center"
+                    space="md"
+                    className="border border-border-300 rounded-lg p-4 items-center justify-between"
                   >
                     <HStack space="xl" className="items-center">
-                      <Box
-                        className={cn(
-                          "rounded-full h-10 w-10 items-center justify-center",
-                          { "bg-success-0": item.leaves !== 0 },
-                          { "bg-error-50": item.leaves === 0 }
-                        )}
-                      >
-                        <Text
-                          className={cn(
-                            { "text-success-800": item.leaves !== 0 },
-                            { "text-error-700": item.leaves === 0 }
-                          )}
-                        >
-                          {item.leaves}
+                      <Avatar>
+                        <AvatarImage
+                          //@ts-ignore
+                          source={item.bannerUri}
+                        />
+                      </Avatar>
+                      <VStack>
+                        <Text className="font-semibold text-typography-900 line-clamp-1">
+                          {item.title}
                         </Text>
-                      </Box>
+                        <Text className="line-clamp-1">{item.description}</Text>
+                      </VStack>
+                    </HStack>
+                    <Button size="xs">
+                      <ButtonText>Edit</ButtonText>
+                    </Button>
+                  </HStack>
+                </GridItem>
+              );
+            })}
+          </Grid>
+
+          <Box className="bg-background-50 p-4 rounded-md">
+            <Text className="text-center font-medium">
+              To view analytics you need client ID. Add it to your settings and
+              you’re good to go.
+            </Text>
+          </Box>
+          <Grid className="gap-5">
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
+            >
+              <VStack
+                className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
+                space="sm"
+              >
+                <Box className="self-start  w-full px-4">
+                  <Heading
+                    size="lg"
+                    className="font-roboto  text-typography-700"
+                  >
+                    Upcoming Holidays
+                  </Heading>
+                </Box>
+                <Divider />
+                {HolidaysCards.map((item, index) => {
+                  return (
+                    <HStack space="lg" key={index} className="w-full px-4 py-2">
+                      <Avatar className="bg-background-50 h-10 w-10">
+                        <Icon as={item.icon} />
+                      </Avatar>
                       <VStack>
                         <Text className="text-typography-900 font-roboto line-clamp-1">
                           {item.title}
@@ -476,82 +439,158 @@ const MainContent = () => {
                         </Text>
                       </VStack>
                     </HStack>
-                    <Button
-                      isDisabled={item.isDisabled}
-                      variant="outline"
-                      action="secondary"
-                      size="xs"
+                  );
+                })}
+              </VStack>
+            </GridItem>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
+            >
+              <VStack
+                className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
+                space="sm"
+              >
+                <Box className="self-start  w-full px-4">
+                  <Heading
+                    size="lg"
+                    className="font-roboto  text-typography-700"
+                  >
+                    Your Leaves
+                  </Heading>
+                </Box>
+                <Divider />
+                {LeavesCards.map((item, index) => {
+                  return (
+                    <HStack
+                      space="lg"
+                      key={index}
+                      className="w-full px-4 py-2 justify-between items-center"
                     >
-                      <ButtonText>Apply</ButtonText>
-                    </Button>
-                  </HStack>
-                );
-              })}
-            </VStack>
-          </GridItem>
-          <GridItem colSpan={noColumn}>
-            <VStack
-              className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between"
-              space="sm"
+                      <HStack space="xl" className="items-center">
+                        <Box
+                          className={cn(
+                            "rounded-full h-10 w-10 items-center justify-center",
+                            { "bg-success-0": item.leaves !== 0 },
+                            { "bg-error-50": item.leaves === 0 }
+                          )}
+                        >
+                          <Text
+                            className={cn(
+                              { "text-success-800": item.leaves !== 0 },
+                              { "text-error-700": item.leaves === 0 }
+                            )}
+                          >
+                            {item.leaves}
+                          </Text>
+                        </Box>
+                        <VStack>
+                          <Text className="text-typography-900 font-roboto line-clamp-1">
+                            {item.title}
+                          </Text>
+                          <Text className="text-sm font-roboto line-clamp-1">
+                            {item.description}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                      <Button
+                        isDisabled={item.isDisabled}
+                        variant="outline"
+                        action="secondary"
+                        size="xs"
+                      >
+                        <ButtonText>Apply</ButtonText>
+                      </Button>
+                    </HStack>
+                  );
+                })}
+              </VStack>
+            </GridItem>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
             >
-              <Box className="self-start  w-full px-4">
-                <Heading size="lg" className="font-roboto  text-typography-700">
-                  New colleagues
-                </Heading>
-              </Box>
-              <Divider />
-              {ColleaguesCards.map((item, index) => {
-                return (
-                  <HStack space="lg" key={index} className="w-full px-4 py-2">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage source={item.image} />
-                    </Avatar>
-                    <VStack>
-                      <Text className="text-typography-900 font-roboto line-clamp-1">
-                        {item.title}
-                      </Text>
-                      <Text className="text-sm font-roboto line-clamp-1">
-                        {item.position}
-                      </Text>
-                    </VStack>
-                  </HStack>
-                );
-              })}
-            </VStack>
-          </GridItem>
-          <GridItem colSpan={noColumn}>
-            <VStack
-              className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
-              space="sm"
+              <VStack
+                className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between"
+                space="sm"
+              >
+                <Box className="self-start  w-full px-4">
+                  <Heading
+                    size="lg"
+                    className="font-roboto  text-typography-700"
+                  >
+                    New colleagues
+                  </Heading>
+                </Box>
+                <Divider />
+                {ColleaguesCards.map((item, index) => {
+                  return (
+                    <HStack space="lg" key={index} className="w-full px-4 py-2">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage source={item.image} />
+                      </Avatar>
+                      <VStack>
+                        <Text className="text-typography-900 font-roboto line-clamp-1">
+                          {item.title}
+                        </Text>
+                        <Text className="text-sm font-roboto line-clamp-1">
+                          {item.position}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  );
+                })}
+              </VStack>
+            </GridItem>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
             >
-              <Box className="self-start w-full px-4">
-                <Heading size="lg" className="font-roboto  text-typography-700">
-                  New colleagues
-                </Heading>
-              </Box>
-              <Divider />
-              {ColleaguesCards.map((item, index) => {
-                return (
-                  <HStack space="lg" key={index} className="px-4 py-2 w-full">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage source={item.image} />
-                    </Avatar>
-                    <VStack>
-                      <Text className="text-typography-900 font-roboto line-clamp-1">
-                        {item.title}
-                      </Text>
-                      <Text className="text-sm font-roboto line-clamp-1">
-                        {item.position}
-                      </Text>
-                    </VStack>
-                  </HStack>
-                );
-              })}
-            </VStack>
-          </GridItem>
-        </Grid>
-      </VStack>
-    </ScrollView>
+              <VStack
+                className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
+                space="sm"
+              >
+                <Box className="self-start w-full px-4">
+                  <Heading
+                    size="lg"
+                    className="font-roboto  text-typography-700"
+                  >
+                    New colleagues
+                  </Heading>
+                </Box>
+                <Divider />
+                {ColleaguesCards.map((item, index) => {
+                  return (
+                    <HStack space="lg" key={index} className="px-4 py-2 w-full">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage source={item.image} />
+                      </Avatar>
+                      <VStack>
+                        <Text className="text-typography-900 font-roboto line-clamp-1">
+                          {item.title}
+                        </Text>
+                        <Text className="text-sm font-roboto line-clamp-1">
+                          {item.position}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  );
+                })}
+              </VStack>
+            </GridItem>
+          </Grid>
+        </VStack>
+      </ScrollView>
+    </Box>
   );
 };
 

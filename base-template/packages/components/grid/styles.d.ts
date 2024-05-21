@@ -67,7 +67,7 @@ export declare const gridStyle: import("@gluestack-ui/nativewind-utils/types").T
             base?: import("tailwind-merge").ClassNameValue;
         };
     };
-}), undefined, "flex-row w-full flex-wrap justify-start box-border " | "flex-row w-full flex-wrap justify-start box-border grid grid-cols-12", import("tailwind-variants/dist/config").TVConfig<{
+}), undefined, "w-full box-border flex-row flex-wrap justify-start grid", import("tailwind-variants/dist/config").TVConfig<{
     numColumns: {
         1: string;
         2: string;
@@ -127,7 +127,7 @@ export declare const gridStyle: import("@gluestack-ui/nativewind-utils/types").T
         11: string;
         12: string;
     };
-}, undefined, "flex-row w-full flex-wrap justify-start box-border " | "flex-row w-full flex-wrap justify-start box-border grid grid-cols-12", import("tailwind-variants/dist/config").TVConfig<{
+}, undefined, "w-full box-border flex-row flex-wrap justify-start grid", import("tailwind-variants/dist/config").TVConfig<{
     numColumns: {
         1: string;
         2: string;
@@ -227,7 +227,7 @@ export declare const gridItemStyle: import("@gluestack-ui/nativewind-utils/types
             base?: import("tailwind-merge").ClassNameValue;
         };
     };
-}), undefined, "w-full " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
+}), undefined, "w-full col-span-1 " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
     colSpan: {
         1: string;
         2: string;
@@ -287,7 +287,7 @@ export declare const gridItemStyle: import("@gluestack-ui/nativewind-utils/types
         11: string;
         12: string;
     };
-}, undefined, "w-full " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
+}, undefined, "w-full col-span-1 " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
     colSpan: {
         1: string;
         2: string;
