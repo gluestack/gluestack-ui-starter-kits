@@ -147,16 +147,18 @@ const LoginWithLeftBackground = () => {
     };
     const router = useRouter();
     return (<>
-      <VStack className="md:items-center" space="xs">
+      <VStack className="md:items-center" space="md">
         <Pressable onPress={() => {
             router.back();
         }}>
-          <Icon as={ArrowLeftIcon} className="md:hidden text-background-800 " size="xl"/>
+          <Icon as={ArrowLeftIcon} className="md:hidden text-background-800" size="xl"/>
         </Pressable>
-        <Heading className="md:text-center" size="3xl">
-          Log in
-        </Heading>
-        <Text>Start making your dreams come true</Text>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Log in
+          </Heading>
+          <Text>Start making your dreams come true</Text>
+        </VStack>
       </VStack>
       <VStack className="w-full">
         <VStack space="xl" className="w-full">

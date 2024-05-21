@@ -18,6 +18,8 @@ import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
+import { cn } from "@gluestack-ui/nativewind-utils/cn";
+import { Platform } from "react-native";
 const list = [
     {
         iconName: HomeIcon,
@@ -124,10 +126,10 @@ const CREATORS_DATA = [
     },
 ];
 const Sidebar = () => {
-    return (<VStack className="w-14 pt-5 h-full  items-center  border-r border-border-300" space="md">
+    return (<VStack className="w-14 pt-5 h-full items-center border-r border-border-300" space="xl">
       {list.map((item, index) => {
-            return (<Pressable className="px-4 py-3 data-[focus-visible=true]:ring-transparent" key={index}>
-            <Icon as={item.iconName} className="m-3" size="xl"/>
+            return (<Pressable key={index}>
+            <Icon as={item.iconName} size="xl"/>
           </Pressable>);
         })}
     </VStack>);
@@ -156,10 +158,10 @@ const DashboardLayout = (props) => {
 };
 function MobileFooter({ footerIcons }) {
     const router = useRouter();
-    return (<HStack className="bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-typography-200  md:hidden border-t">
+    return (<HStack className={cn("bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-border-300  md:hidden border-t", { "pb-5": Platform.OS === "ios" }, { "pb-5": Platform.OS === "android" })}>
       {footerIcons.map((item, index) => {
-            return (<Pressable className="px-0.5 flex-1 flex-col items-center data-[focus-visible=true]:ring-transparent" key={index} onPress={() => router.push("/news-feed/news-and-feed")}>
-              <Icon as={item.iconName} size="md"/>
+            return (<Pressable className="px-0.5 flex-1 flex-col items-center" key={index} onPress={() => router.push("/news-feed/news-and-feed")}>
+              <Icon as={item.iconName} size="md" className="h-[32px] w-[65px]"/>
               <Text className="text-xs text-center text-typography-600">
                 {item.iconText}
               </Text>
@@ -168,11 +170,11 @@ function MobileFooter({ footerIcons }) {
     </HStack>);
 }
 function WebHeader(props) {
-    return (<HStack className="pt-4  pr-10 pb-3 bg-background-0 items-center justify-between border-b border-border-300">
+    return (<HStack className="pt-4 pr-10 pb-3 bg-background-0 items-center justify-between border-b border-border-300">
       <HStack className="items-center">
         <Pressable onPress={() => {
             props.toggleSidebar();
-        }} className="data-[focus-visible=true]:ring-transparent">
+        }}>
           <Icon as={MenuIcon} size="lg" className="mx-5"/>
         </Pressable>
         <Text className="text-2xl">{props.title}</Text>
@@ -185,7 +187,7 @@ function WebHeader(props) {
 }
 function MobileHeader(props) {
     const router = useRouter();
-    return (<HStack className="py-6 px-4  border-b border-border-50  bg-background-0  items-center" space="md">
+    return (<HStack className="py-6 px-4 border-b border-border-300 bg-background-0 items-center" space="md">
       <Pressable onPress={() => {
             router.back();
         }}>
@@ -195,7 +197,7 @@ function MobileHeader(props) {
     </HStack>);
 }
 const MainContent = () => {
-    return (<VStack className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center mb-20 md:mb-2" space="2xl">
+    return (<VStack className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center  mb-20 md:mb-2" space="2xl">
       <Input className="text-center md:hidden">
         <InputField placeholder="Search"/>
         <InputSlot className="pr-3">
@@ -209,7 +211,7 @@ const MainContent = () => {
         <ScrollView className="max-w-[900px]" showsVerticalScrollIndicator={false}>
           <VStack className="w-full" space="2xl">
             {BLOGS_DATA.map((item, index) => {
-            return (<VStack className="rounded-xl border p-5" key={index}>
+            return (<VStack className="rounded-xl border border-border-300 p-5" key={index}>
                   <Image source={item.bannerUri} className="w-full h-64 rounded" alt={item.bannerUri}/>
                   <VStack className="mt-4" space="md">
                     <Text className="text-sm">{item.publishedDate}</Text>
@@ -233,7 +235,7 @@ const MainContent = () => {
                 <Heading size="lg">From around the world</Heading>
                 <VStack className="h-full" space="md">
                   {WORLD_DATA.map((item, index) => {
-            return (<HStack className="p-3 items-center h-full border rounded-xl" space="lg" key={index}>
+            return (<HStack className="p-3 items-center h-full border border-border-300 rounded-xl" space="lg" key={index}>
                         <Image source={item.bannerUri} className="w-40 h-full rounded" alt={item.bannerUri}/>
 
                         <VStack className="justify-between h-full" space="md">
@@ -251,13 +253,13 @@ const MainContent = () => {
                 <Heading size="lg">Find creators</Heading>
                 <VStack className="h-full" space="md">
                   {CREATORS_DATA.map((item, index) => {
-            return (<HStack className="p-4 items-center h-full border rounded-xl" space="lg" key={index}>
+            return (<HStack className="p-4 items-center h-full border border-border-300 rounded-xl" space="lg" key={index}>
                         <Avatar>
                           <AvatarImage 
             //@ts-ignore
             source={item.bannerUri} alt={item.bannerUri}/>
                         </Avatar>
-                        <Button variant="outline" className="p-2 border-background-300 rounded-md">
+                        <Button variant="outline" action="secondary" className="p-2">
                           <ButtonIcon as={DownloadIcon}/>
                         </Button>
                         <VStack>
@@ -268,7 +270,7 @@ const MainContent = () => {
                             {item.description}
                           </Text>
                         </VStack>
-                        <Button className="border-background-300" variant="outline">
+                        <Button action="secondary" variant="outline">
                           <ButtonText>Follow</ButtonText>
                         </Button>
                       </HStack>);

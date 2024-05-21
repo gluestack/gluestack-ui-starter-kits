@@ -7,10 +7,11 @@ import { Pressable } from "@base-template/components/pressable";
 import { InboxIcon } from "./assets/icons/inbox";
 import { GlobeIcon } from "./assets/icons/globe";
 import { Button, ButtonText } from "@base-template/components/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Heading } from "@base-template/components/heading";
 import { ScrollView } from "@base-template/components/scroll-view";
 import { Divider } from "@base-template/components/divider";
+import { Grid, GridItem } from "@base-template/components/grid";
 import { Avatar, AvatarFallbackText, AvatarImage, } from "@base-template/components/avatar";
 import useRouter from "@unitools/router";
 import { HomeIcon } from "./assets/icons/home";
@@ -18,6 +19,9 @@ import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
 import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@base-template/components/safe-area-view";
+import { cn } from "@gluestack-ui/nativewind-utils/cn";
+import { Platform } from "react-native";
+import { useBreakpointValue } from "@base-template/hooks/useBreakpointValue";
 const list = [
     {
         iconName: HomeIcon,
@@ -152,10 +156,19 @@ const ColleaguesCards = [
     },
 ];
 const Sidebar = () => {
-    return (<VStack className="w-14 pt-5 h-full  items-center  border-r border-border-300" space="md">
+    const router = useRouter();
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const handlePress = (index) => {
+        setSelectedIndex(index);
+        // router.push("/dashboard/dashboard-layout");
+    };
+    return (<VStack className="w-14 pt-5 h-full items-center border-r border-border-300" space="xl">
       {list.map((item, index) => {
-            return (<Pressable className="px-4 py-3 data-[focus-visible=true]:ring-transparent" key={index}>
-            <Icon as={item.iconName} className="m-3" size="xl"/>
+            return (<Pressable key={index} className="hover:bg-background-50" onPress={() => handlePress(index)}>
+            <Icon as={item.iconName} className={`w-[55px] h-9 stroke-background-800 
+              ${index === selectedIndex ? "fill-background-800" : "fill-none"}
+
+              `}/>
           </Pressable>);
         })}
     </VStack>);
@@ -184,10 +197,10 @@ const DashboardLayout = (props) => {
 };
 function MobileFooter({ footerIcons }) {
     const router = useRouter();
-    return (<HStack className="bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-typography-200  md:hidden border-t">
+    return (<HStack className={cn("bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center  border-t-border-300  md:hidden border-t", { "pb-5": Platform.OS === "ios" }, { "pb-5": Platform.OS === "android" })}>
       {footerIcons.map((item, index) => {
-            return (<Pressable className="px-0.5 flex-1 flex-col items-center" key={index} onPress={() => router.push("/news-feed/news-and-feed")}>
-              <Icon as={item.iconName} size="md"/>
+            return (<Pressable className="px-0.5 flex-1 flex-col items-center" key={index} onPress={() => router.push("/dashboard/dashboard-layout")}>
+              <Icon as={item.iconName} size="md" className="h-[32px] w-[65px]"/>
               <Text className="text-xs text-center text-typography-600">
                 {item.iconText}
               </Text>
@@ -200,7 +213,7 @@ function WebHeader(props) {
       <HStack className="items-center">
         <Pressable onPress={() => {
             props.toggleSidebar();
-        }} className="data-[focus-visible=true]:ring-transparent">
+        }}>
           <Icon as={MenuIcon} size="lg" className="mx-5"/>
         </Pressable>
         <Text className="text-2xl">{props.title}</Text>
@@ -213,7 +226,7 @@ function WebHeader(props) {
 }
 function MobileHeader(props) {
     const router = useRouter();
-    return (<HStack className="py-6 px-4  border-b border-border-50  bg-background-0  items-center" space="md">
+    return (<HStack className="py-6 px-4 border-b border-border-50 bg-background-0 items-center" space="md">
       <Pressable onPress={() => {
             router.back();
         }}>
@@ -223,133 +236,164 @@ function MobileHeader(props) {
     </HStack>);
 }
 const MainContent = () => {
+    const [numOfColumns, setNumOfColumns] = useState(3);
+    const noColumn = useBreakpointValue({
+        base: 12,
+        sm: 6,
+        lg: 4,
+    });
+    useEffect(() => {
+        if (noColumn !== numOfColumns) {
+            setNumOfColumns(noColumn);
+        }
+    }, [noColumn]);
+    console.log(noColumn, "noColumn");
     return (<ScrollView showsVerticalScrollIndicator={false} className="mb-20 md:mb-0">
-      <VStack className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full" space="2xl">
+      <VStack className="p-4 pb-0 md:px-10 md:pt-6 h-full w-full" space="2xl">
         <Heading size="2xl" className="font-roboto">
           Welcome Alexander
         </Heading>
-        <HStack space="2xl" className="w-full flex-wrap">
+
+        <Grid className="gap-5">
           {HeadingCards.map((item, index) => {
-            return (<HStack space="md" key={index} className="border rounded-lg p-4 items-center justify-between w-full max-w-[400px]">
-                <HStack space="xl" className="items-center">
-                  <Avatar>
-                    <AvatarImage 
+            return (<GridItem colSpan={noColumn} key={index}>
+                <HStack space="md" className="border border-border-300 rounded-lg p-4 items-center justify-between">
+                  <HStack space="xl" className="items-center">
+                    <Avatar>
+                      <AvatarImage 
             //@ts-ignore
             source={item.bannerUri}/>
-                  </Avatar>
-                  <VStack>
-                    <Text className="font-semibold text-typography-900">
-                      {item.title}
-                    </Text>
-                    <Text className="">{item.description}</Text>
-                  </VStack>
-                </HStack>
-                <Button size="xs">
-                  <ButtonText>Edit</ButtonText>
-                </Button>
-              </HStack>);
-        })}
-        </HStack>
-
-        <HStack space="2xl" className="w-full flex-wrap">
-          <VStack className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]" space="sm">
-            <Box className="self-start  w-full px-4">
-              <Heading size="lg" className="font-roboto  text-typography-700">
-                Upcoming Holidays
-              </Heading>
-            </Box>
-            <Divider />
-            {HolidaysCards.map((item, index) => {
-            return (<HStack space="lg" key={index} className="w-full px-4 py-2 max-w-[400px]">
-                  <Avatar className="bg-background-50 h-10 w-10">
-                    <Icon as={item.icon}/>
-                  </Avatar>
-                  <VStack>
-                    <Text className="text-typography-900 font-roboto">
-                      {item.title}
-                    </Text>
-                    <Text className="text-sm font-roboto">
-                      {item.description}
-                    </Text>
-                  </VStack>
-                </HStack>);
-        })}
-          </VStack>
-          <VStack className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]" space="sm">
-            <Box className="self-start  w-full px-4">
-              <Heading size="lg" className="font-roboto  text-typography-700">
-                Your Leaves
-              </Heading>
-            </Box>
-            <Divider />
-            {LeavesCards.map((item, index) => {
-            return (<HStack space="lg" key={index} className="w-full px-4 py-2 justify-between items-center max-w-[400px]">
-                  <HStack space="xl" className="items-center">
-                    <Box className={`${item.leaves !== 0 ? "bg-success-0" : "bg-error-50"} rounded-full h-10 w-10 items-center justify-center`}>
-                      <Text className={`${item.leaves !== 0
-                    ? "text-success-800"
-                    : "text-error-700"}`}>
-                        {item.leaves}
-                      </Text>
-                    </Box>
+                    </Avatar>
                     <VStack>
-                      <Text className="text-typography-900 font-roboto">
+                      <Text className="font-semibold text-typography-900 line-clamp-1">
                         {item.title}
                       </Text>
-                      <Text className="text-sm font-roboto">
+                      <Text className="line-clamp-1">{item.description}</Text>
+                    </VStack>
+                  </HStack>
+                  <Button size="xs">
+                    <ButtonText>Edit</ButtonText>
+                  </Button>
+                </HStack>
+              </GridItem>);
+        })}
+        </Grid>
+
+        <Box className="bg-background-50 p-4 rounded-md">
+          <Text className="text-center font-medium">
+            To view analytics you need client ID. Add it to your settings and
+            you’re good to go.
+          </Text>
+        </Box>
+        <Grid className="gap-5">
+          <GridItem colSpan={noColumn}>
+            <VStack className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between" space="sm">
+              <Box className="self-start  w-full px-4">
+                <Heading size="lg" className="font-roboto  text-typography-700">
+                  Upcoming Holidays
+                </Heading>
+              </Box>
+              <Divider />
+              {HolidaysCards.map((item, index) => {
+            return (<HStack space="lg" key={index} className="w-full px-4 py-2">
+                    <Avatar className="bg-background-50 h-10 w-10">
+                      <Icon as={item.icon}/>
+                    </Avatar>
+                    <VStack>
+                      <Text className="text-typography-900 font-roboto line-clamp-1">
+                        {item.title}
+                      </Text>
+                      <Text className="text-sm font-roboto line-clamp-1">
                         {item.description}
                       </Text>
                     </VStack>
-                  </HStack>
-                  <Button isDisabled={item.isDisabled} variant="outline" action="secondary" size="xs">
-                    <ButtonText>Apply</ButtonText>
-                  </Button>
-                </HStack>);
+                  </HStack>);
         })}
-          </VStack>
-          <VStack className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]" space="sm">
-            <Box className="self-start  w-full px-4">
-              <Heading size="lg" className="font-roboto  text-typography-700">
-                New colleagues
-              </Heading>
-            </Box>
-            <Divider />
-            {ColleaguesCards.map((item, index) => {
-            return (<HStack space="lg" key={index} className="w-full px-4 py-2 max-w-[400px]">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage source={item.image}/>
-                  </Avatar>
-                  <VStack>
-                    <Text className="text-typography-900 font-roboto">
-                      {item.title}
-                    </Text>
-                    <Text className="text-sm font-roboto">{item.position}</Text>
-                  </VStack>
-                </HStack>);
+            </VStack>
+          </GridItem>
+          <GridItem colSpan={noColumn}>
+            <VStack className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between" space="sm">
+              <Box className="self-start  w-full px-4">
+                <Heading size="lg" className="font-roboto  text-typography-700">
+                  Your Leaves
+                </Heading>
+              </Box>
+              <Divider />
+              {LeavesCards.map((item, index) => {
+            return (<HStack space="lg" key={index} className="w-full px-4 py-2 justify-between items-center">
+                    <HStack space="xl" className="items-center">
+                      <Box className={cn("rounded-full h-10 w-10 items-center justify-center", { "bg-success-0": item.leaves !== 0 }, { "bg-error-50": item.leaves === 0 })}>
+                        <Text className={cn({ "text-success-800": item.leaves !== 0 }, { "text-error-700": item.leaves === 0 })}>
+                          {item.leaves}
+                        </Text>
+                      </Box>
+                      <VStack>
+                        <Text className="text-typography-900 font-roboto line-clamp-1">
+                          {item.title}
+                        </Text>
+                        <Text className="text-sm font-roboto line-clamp-1">
+                          {item.description}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                    <Button isDisabled={item.isDisabled} variant="outline" action="secondary" size="xs">
+                      <ButtonText>Apply</ButtonText>
+                    </Button>
+                  </HStack>);
         })}
-          </VStack>
-          <VStack className="border rounded-lg px-4 py-6 items-center justify-between w-full max-w-[400px]" space="sm">
-            <Box className="self-start  w-full px-4">
-              <Heading size="lg" className="font-roboto  text-typography-700">
-                New colleagues
-              </Heading>
-            </Box>
-            <Divider />
-            {ColleaguesCards.map((item, index) => {
-            return (<HStack space="lg" key={index} className="w-full px-4 py-2 max-w-[400px]">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage source={item.image}/>
-                  </Avatar>
-                  <VStack>
-                    <Text className="text-typography-900 font-roboto">
-                      {item.title}
-                    </Text>
-                    <Text className="text-sm font-roboto">{item.position}</Text>
-                  </VStack>
-                </HStack>);
+            </VStack>
+          </GridItem>
+          <GridItem colSpan={noColumn}>
+            <VStack className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between" space="sm">
+              <Box className="self-start  w-full px-4">
+                <Heading size="lg" className="font-roboto  text-typography-700">
+                  New colleagues
+                </Heading>
+              </Box>
+              <Divider />
+              {ColleaguesCards.map((item, index) => {
+            return (<HStack space="lg" key={index} className="w-full px-4 py-2">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage source={item.image}/>
+                    </Avatar>
+                    <VStack>
+                      <Text className="text-typography-900 font-roboto line-clamp-1">
+                        {item.title}
+                      </Text>
+                      <Text className="text-sm font-roboto line-clamp-1">
+                        {item.position}
+                      </Text>
+                    </VStack>
+                  </HStack>);
         })}
-          </VStack>
-        </HStack>
+            </VStack>
+          </GridItem>
+          <GridItem colSpan={noColumn}>
+            <VStack className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between" space="sm">
+              <Box className="self-start w-full px-4">
+                <Heading size="lg" className="font-roboto  text-typography-700">
+                  New colleagues
+                </Heading>
+              </Box>
+              <Divider />
+              {ColleaguesCards.map((item, index) => {
+            return (<HStack space="lg" key={index} className="px-4 py-2 w-full">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage source={item.image}/>
+                    </Avatar>
+                    <VStack>
+                      <Text className="text-typography-900 font-roboto line-clamp-1">
+                        {item.title}
+                      </Text>
+                      <Text className="text-sm font-roboto line-clamp-1">
+                        {item.position}
+                      </Text>
+                    </VStack>
+                  </HStack>);
+        })}
+            </VStack>
+          </GridItem>
+        </Grid>
       </VStack>
     </ScrollView>);
 };

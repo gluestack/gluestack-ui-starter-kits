@@ -104,18 +104,20 @@ const ForgotPasswordScreen = () => {
     };
     const router = useRouter();
     return (<>
-      <VStack className="md:items-center" space="xs">
+      <VStack className="md:items-center" space="md">
         <Pressable onPress={() => {
             router.back();
         }}>
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
         </Pressable>
-        <Heading className="md:text-center" size="3xl">
-          Forgot Password?
-        </Heading>
-        <Text className="text-sm">
-          Enter email ID associated with your account.
-        </Text>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Forgot Password?
+          </Heading>
+          <Text className="text-sm">
+            Enter email ID associated with your account.
+          </Text>
+        </VStack>
       </VStack>
 
       <VStack space="xl" className="w-full ">

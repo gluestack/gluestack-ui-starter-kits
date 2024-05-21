@@ -51,7 +51,7 @@ const formDetails = {
 const AuthLayout = (props) => {
     return (<SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
-        <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7" space="md">
+        <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%] justify-between p-7" space="md">
           <VStack space="md" className="justify-center flex-1">
             <Heading className="md:w-[98%] text-typography-50 font-bold" size="4xl">
               {formDetails.subHeading}
@@ -142,18 +142,20 @@ const CreatePasswordWithLeftBackground = () => {
     };
     const router = useRouter();
     return (<>
-      <VStack className="md:items-center" space="xs">
+      <VStack className="md:items-center" space="md">
         <Pressable onPress={() => {
             router.back();
         }}>
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
         </Pressable>
-        <Heading className="md:text-center" size="3xl">
-          Create new password
-        </Heading>
-        <Text className="md:text-center">
-          Your new password must be different from previously used passwords{" "}
-        </Text>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Create new password
+          </Heading>
+          <Text className="md:text-center">
+            Your new password must be different from previously used passwords{" "}
+          </Text>
+        </VStack>
       </VStack>
       <VStack className="w-full">
         <VStack space="xl" className="w-full">
