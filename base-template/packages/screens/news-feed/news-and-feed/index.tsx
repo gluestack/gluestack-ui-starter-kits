@@ -322,11 +322,11 @@ const MainContent = () => {
       <Heading size="2xl" className="font-roboto">
         What's new?
       </Heading>
-      <HStack space="2xl" className="h-full w-full">
+      <HStack space="2xl" className="h-full w-full flex-1">
         <ScrollView
-          className="max-w-[900px] flex-1 mb-20 md:mb-2"
+          className="max-w-[900px] flex-1 md:mb-2"
           contentContainerStyle={{
-            paddingBottom: isWeb ? 0 : 160,
+            paddingBottom: isWeb ? 0 : 140,
           }}
           showsVerticalScrollIndicator={false}
         >
