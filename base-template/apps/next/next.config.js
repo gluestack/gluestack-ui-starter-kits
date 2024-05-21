@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { DefinePlugin } = require("webpack");
+
 module.exports = {
   reactStrictMode: true,
   transpilePackages: [
@@ -22,6 +24,12 @@ module.exports = {
       ".web.tsx",
       ...config.resolve.extensions,
     ];
+
+    config.plugins.push(
+      new DefinePlugin({
+        __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
+      })
+    );
 
     return config;
   },

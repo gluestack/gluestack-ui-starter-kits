@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Box } from "@base-template/components/box";
 import { HStack } from "@base-template/components/hstack";
 import {
@@ -21,7 +22,6 @@ import {
   ButtonIcon,
   ButtonText,
 } from "@base-template/components/button";
-import { useRef, useState } from "react";
 import { Heading } from "@base-template/components/heading";
 import { Image } from "@base-template/components/image";
 import { ScrollView } from "@base-template/components/scroll-view";
@@ -31,7 +31,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
 } from "@base-template/components/modal";
 import { Input, InputField } from "@base-template/components/input";
@@ -67,7 +66,6 @@ import {
   FormControlLabel,
   FormControlLabelText,
 } from "@base-template/components/form-control";
-import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
 import {
   Select,
   SelectBackdrop,
@@ -121,7 +119,7 @@ const ResourcesList: Icons[] = [
   },
   {
     iconName: NewsBlogIcon,
-    iconText: "Subscription",
+    iconText: "News & Blogs",
   },
 ];
 type BottomTabs = {
@@ -181,25 +179,25 @@ const Sidebar = () => {
     useState<number>(0);
   const handlePress = (index: number) => {
     setSelectedIndex(index);
-    router.push("/profile/profile");
+    // router.push("/profile/profile");
   };
   const handlePressResources = (index: number) => {
     setSelectedIndexResources(index);
-    router.push("/profile/profile");
+    // router.push("/profile/profile");
   };
   return (
     <VStack
       className="h-full w-[280px] flex-1 py-4 pr-4 pl-8 items-center border-r border-border-300"
       space="xl"
     >
-      <VStack className="w-full px-2 pt-3 pb-4">
+      <VStack className="w-full px-2 pt-3 pb-4" space="xs">
         <Text className="text-typography-600 px-4 py-2">SETTINGS</Text>
         {SettingsList.map((item, index) => {
           return (
             <Pressable
               onPress={() => handlePress(index)}
               key={index}
-              className={`flex-row px-4 py-3 bg-green-500 items-center gap-2 rounded
+              className={`flex-row px-4 py-3 items-center gap-2 rounded
               ${
                 index === selectedIndex
                   ? "bg-background-950 "
@@ -212,8 +210,8 @@ const Sidebar = () => {
                 className={`
               ${
                 index === selectedIndex
-                  ? "stroke-background-0"
-                  : "stroke-background-800"
+                  ? "stroke-background-0 fill-background-800"
+                  : "stroke-background-800 fill-none"
               }
               `}
               />
@@ -233,14 +231,14 @@ const Sidebar = () => {
           );
         })}
       </VStack>
-      <VStack className="w-full px-2 pt-3 pb-4">
+      <VStack className="w-full px-2 pt-3 pb-4" space="xs">
         <Text className="text-typography-600 px-4 py-2">RESOURCES</Text>
         {ResourcesList.map((item, index) => {
           return (
             <Pressable
               onPress={() => handlePressResources(index)}
               key={index}
-              className={`flex-row px-4 py-3 bg-green-500 items-center gap-2 rounded
+              className={`flex-row px-4 py-3 items-center gap-2 rounded
               ${
                 index === selectedIndexResources
                   ? "bg-background-950 "
@@ -256,6 +254,8 @@ const Sidebar = () => {
                   ? "stroke-background-0"
                   : "stroke-background-800"
               }
+              
+              h-10 w-10
               `}
               />
               <Text
@@ -1093,7 +1093,10 @@ const ModalComponent = ({
         <ModalBody className="px-10 py-6">
           <VStack space="2xl">
             <HStack className="items-center justify-between">
-              <FormControl isInvalid={!!errors.firstName || isNameFocused}>
+              <FormControl
+                isInvalid={!!errors.firstName || isNameFocused}
+                className="w-[47%]"
+              >
                 <FormControlLabel className="mb-2">
                   <FormControlLabelText>First Name</FormControlLabelText>
                 </FormControlLabel>

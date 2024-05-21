@@ -210,7 +210,7 @@ const Sidebar = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const handlePress = (index: number) => {
     setSelectedIndex(index);
-    router.push("/dashboard/dashboard-layout");
+    // router.push("/dashboard/dashboard-layout");
   };
 
   return (
@@ -228,8 +228,9 @@ const Sidebar = () => {
             <Icon
               as={item.iconName}
               className={`w-[55px] h-9 stroke-background-800 
+              ${index === selectedIndex ? "fill-background-800" : "fill-none"}
+
               `}
-              // ${index === selectedIndex? "fill-background-800 stroke-background-0": "fill-none"}
             />
           </Pressable>
         );
