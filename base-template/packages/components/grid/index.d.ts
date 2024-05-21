@@ -1,5 +1,5 @@
-import React from 'react';
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import React from "react";
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 declare const Grid: React.ForwardRefExoticComponent<import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{
     numColumns: {
         1: string;
@@ -69,7 +69,7 @@ declare const Grid: React.ForwardRefExoticComponent<import("react-native").ViewP
             base?: import("tailwind-merge").ClassNameValue;
         };
     };
-}), undefined, "flex-row w-full flex-wrap justify-start box-border " | "flex-row w-full flex-wrap justify-start box-border grid grid-cols-12", import("tailwind-variants/dist/config").TVConfig<{
+}), undefined, "w-full box-border flex-row flex-wrap justify-start grid", import("tailwind-variants/dist/config").TVConfig<{
     numColumns: {
         1: string;
         2: string;
@@ -129,7 +129,7 @@ declare const Grid: React.ForwardRefExoticComponent<import("react-native").ViewP
         11: string;
         12: string;
     };
-}, undefined, "flex-row w-full flex-wrap justify-start box-border " | "flex-row w-full flex-wrap justify-start box-border grid grid-cols-12", import("tailwind-variants/dist/config").TVConfig<{
+}, undefined, "w-full box-border flex-row flex-wrap justify-start grid", import("tailwind-variants/dist/config").TVConfig<{
     numColumns: {
         1: string;
         2: string;
@@ -239,7 +239,7 @@ declare const GridItem: React.ForwardRefExoticComponent<import("react-native").V
             base?: import("tailwind-merge").ClassNameValue;
         };
     };
-}), undefined, "w-full " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
+}), undefined, "w-full col-span-1 " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
     colSpan: {
         1: string;
         2: string;
@@ -299,7 +299,7 @@ declare const GridItem: React.ForwardRefExoticComponent<import("react-native").V
         11: string;
         12: string;
     };
-}, undefined, "w-full " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
+}, undefined, "w-full col-span-1 " | "w-full col-span-1 w-auto", import("tailwind-variants/dist/config").TVConfig<{
     colSpan: {
         1: string;
         2: string;
