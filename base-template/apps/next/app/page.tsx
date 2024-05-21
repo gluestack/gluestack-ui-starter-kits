@@ -59,6 +59,13 @@ const Page = () => {
       >
         <ButtonText>Dashboard</ButtonText>
       </Button>
+      <Button
+        onPress={() => {
+          router.push("profile/profile");
+        }}
+      >
+        <ButtonText>Profile</ButtonText>
+      </Button>
     </VStack>
   );
 };

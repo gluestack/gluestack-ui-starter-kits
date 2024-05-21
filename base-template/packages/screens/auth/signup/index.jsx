@@ -57,7 +57,7 @@ const formDetails = {
 const AuthLayout = (props) => {
     return (<SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
-        <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7" space="md">
+        <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%] justify-between p-7" space="md">
           <VStack space="md" className="justify-center flex-1">
             <Heading className="md:w-[98%] text-typography-50 font-bold" size="4xl">
               {formDetails.subHeading}
@@ -148,16 +148,18 @@ const SignUpWithLeftBackground = () => {
     };
     const router = useRouter();
     return (<>
-      <VStack className="md:items-center" space="xs">
+      <VStack className="md:items-center" space="md">
         <Pressable onPress={() => {
             router.back();
         }}>
           <Icon as={ArrowLeftIcon} className="md:hidden stroke-background-800" size="xl"/>
         </Pressable>
-        <Heading className="md:text-center" size="3xl">
-          Sign up
-        </Heading>
-        <Text>Start making your dreams come true</Text>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Sign up
+          </Heading>
+          <Text>Start making your dreams come true</Text>
+        </VStack>
       </VStack>
       <VStack className="w-full">
         <VStack space="xl" className="w-full">
@@ -269,7 +271,7 @@ const SignUpWithLeftBackground = () => {
         <HStack className="self-center">
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
-            <LinkText className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
+            <LinkText className="font-medium text-primary-700 ml-1 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700" size="md">
               Login
             </LinkText>
           </Link>

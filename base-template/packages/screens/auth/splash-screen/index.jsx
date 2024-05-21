@@ -27,7 +27,7 @@ const formDetails = {
 const AuthLayout = (props) => {
     return (<SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
-        <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7" space="md">
+        <VStack className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%] justify-between p-7" space="md">
           <VStack space="md" className="justify-center flex-1">
             <Heading className="md:w-[98%] text-typography-50 font-bold" size="4xl">
               {formDetails.subHeading}
