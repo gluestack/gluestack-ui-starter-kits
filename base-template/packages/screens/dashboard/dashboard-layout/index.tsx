@@ -345,18 +345,6 @@ function MobileHeader(props: MobileHeaderProps) {
 }
 
 const MainContent = () => {
-  const [numOfColumns, setNumOfColumns] = useState(3);
-  const noColumn = useBreakpointValue({
-    base: 12,
-    sm: 6,
-    lg: 4,
-  });
-
-  useEffect(() => {
-    if (noColumn !== numOfColumns) {
-      setNumOfColumns(noColumn);
-    }
-  }, [noColumn]);
   return (
     <Box className="flex-1 ">
       <ScrollView
@@ -374,7 +362,14 @@ const MainContent = () => {
           <Grid className="gap-5">
             {HeadingCards.map((item, index) => {
               return (
-                <GridItem colSpan={noColumn} key={index}>
+                <GridItem
+                  colSpan={{
+                    base: 12,
+                    sm: 6,
+                    lg: 4,
+                  }}
+                  key={index}
+                >
                   <HStack
                     space="md"
                     className="border border-border-300 rounded-lg p-4 items-center justify-between"
@@ -409,7 +404,13 @@ const MainContent = () => {
             </Text>
           </Box>
           <Grid className="gap-5">
-            <GridItem colSpan={noColumn}>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
+            >
               <VStack
                 className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
                 space="sm"
@@ -442,7 +443,13 @@ const MainContent = () => {
                 })}
               </VStack>
             </GridItem>
-            <GridItem colSpan={noColumn}>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
+            >
               <VStack
                 className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
                 space="sm"
@@ -502,7 +509,13 @@ const MainContent = () => {
                 })}
               </VStack>
             </GridItem>
-            <GridItem colSpan={noColumn}>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
+            >
               <VStack
                 className="border border-border-300  rounded-lg px-4 py-6 items-center justify-between"
                 space="sm"
@@ -535,7 +548,13 @@ const MainContent = () => {
                 })}
               </VStack>
             </GridItem>
-            <GridItem colSpan={noColumn}>
+            <GridItem
+              colSpan={{
+                base: 12,
+                sm: 6,
+                lg: 4,
+              }}
+            >
               <VStack
                 className="border border-border-300 rounded-lg px-4 py-6 items-center justify-between"
                 space="sm"
