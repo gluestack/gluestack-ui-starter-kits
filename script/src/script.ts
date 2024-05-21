@@ -73,15 +73,6 @@ export class EjectScript {
       if (existsSync(pagesFiles)) {
         await readAllFiles(pagesFiles, join(currDir, this.config.screens));
       }
-
-      // await copyDirectoryFromSourceToTarget({
-      //   sourceDirectory: join(currDir, this.config.screens),
-      //   copyDestination: join(currDir, this.config.screens),
-      //   options: {
-      //     paths: this.config.paths,
-      //   },
-      //   shouldTransform: true,
-      // });
     } catch (err) {
       console.error("Error while copying screens", err);
     }
@@ -93,11 +84,20 @@ export class EjectScript {
       const tsConfigPath = `${currDir}/tsconfig.json`;
       const tsConfig = require(tsConfigPath);
 
-      const paths = generatePathsForTsConfig(this.config.paths);
+      if (!tsConfig.compilerOptions) {
+        tsConfig.compilerOptions = {};
+      }
+
+      if (!tsConfig.compilerOptions.paths) {
+        tsConfig.compilerOptions.paths = {};
+      }
+
+      if (!tsConfig.compilerOptions.paths["@/*"]) {
+        tsConfig.compilerOptions.paths["@/*"] = ["./*"];
+      }
 
       tsConfig.compilerOptions.paths = {
         ...tsConfig.compilerOptions.paths,
-        ...paths,
       };
 
       await writeFile(tsConfigPath, JSON.stringify(tsConfig, null, 2));

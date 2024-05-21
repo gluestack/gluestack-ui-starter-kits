@@ -82,14 +82,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                     if ((0, fs_extra_1.existsSync)(pagesFiles)) {
                         yield readAllFiles(pagesFiles, (0, path_1.join)(currDir, this.config.screens));
                     }
-                    // await copyDirectoryFromSourceToTarget({
-                    //   sourceDirectory: join(currDir, this.config.screens),
-                    //   copyDestination: join(currDir, this.config.screens),
-                    //   options: {
-                    //     paths: this.config.paths,
-                    //   },
-                    //   shouldTransform: true,
-                    // });
                 }
                 catch (err) {
                     console.error("Error while copying screens", err);
@@ -102,8 +94,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                     // Update tsconfig.json
                     const tsConfigPath = `${currDir}/tsconfig.json`;
                     const tsConfig = require(tsConfigPath);
-                    const paths = generatePathsForTsConfig(this.config.paths);
-                    tsConfig.compilerOptions.paths = Object.assign(Object.assign({}, tsConfig.compilerOptions.paths), paths);
+                    if (!tsConfig.compilerOptions) {
+                        tsConfig.compilerOptions = {};
+                    }
+                    if (!tsConfig.compilerOptions.paths) {
+                        tsConfig.compilerOptions.paths = {};
+                    }
+                    if (!tsConfig.compilerOptions.paths["@/*"]) {
+                        tsConfig.compilerOptions.paths["@/*"] = ["./*"];
+                    }
+                    tsConfig.compilerOptions.paths = Object.assign({}, tsConfig.compilerOptions.paths);
                     yield (0, fs_extra_1.writeFile)(tsConfigPath, JSON.stringify(tsConfig, null, 2));
                 }
                 catch (err) {

@@ -27,6 +27,8 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
+import useRouter from "@unitools/router";
+import { Pressable } from "@base-template/components/pressable";
 
 const forgotPasswordSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
@@ -43,18 +45,17 @@ const ProfileAvatars = [
 type AuthLayoutProps = {
   children: React.ReactNode;
 };
+const formDetails = {
+  heading: " gluestack-ui",
+  badge: "Pro",
+  subHeading: "Start making your dreams come true",
+  description:
+    "Create an account and discover the worlds best UI component framework.",
+  avatarNumber: "+ 2",
+  subDescription: "Join 10,000+ users",
+  license: " © 2023 gluestack UI. All rights reserved.",
+};
 const AuthLayout = (props: AuthLayoutProps) => {
-  const formDetails = {
-    heading: " gluestack-ui",
-    badge: "Pro",
-    subHeading: "Start making your dreams come true",
-    description:
-      "Create an account and discover the worlds best UI component framework.",
-    avatarNumber: "+ 2",
-    subDescription: "Join 10,000+ users",
-    license: " © 2023 gluestack UI. All rights reserved.",
-  };
-
   return (
     <SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
@@ -72,26 +73,26 @@ const AuthLayout = (props: AuthLayoutProps) => {
             <Text size="md" className="text-typography-50 leading-7">
               {formDetails.description}
             </Text>
-            <HStack className="-2 items-center">
+            <HStack className="items-center">
               <HStack className="justify-center items-center">
                 {/* @ts-ignore */}
                 <AvatarGroup>
-                  {ProfileAvatars.slice(0, 2).map((avatar) => {
+                  {ProfileAvatars.slice(0, 2).map((avatar, index) => {
                     return (
-                      <Avatar className="flex lg:hidden" size="md">
+                      <Avatar className="flex lg:hidden" key={index} size="md">
                         <AvatarImage
                           source={avatar}
-                          className="border-[2px] border-primary-500"
+                          className="border-2 border-primary-500"
                         />
                       </Avatar>
                     );
                   })}
-                  {ProfileAvatars.map((avatar) => {
+                  {ProfileAvatars.map((avatar, index) => {
                     return (
-                      <Avatar className="hidden lg:flex" size="md">
+                      <Avatar className="hidden lg:flex" key={index} size="md">
                         <AvatarImage
                           source={avatar}
-                          className=" border-[2px] border-primary-500"
+                          className="border-2 border-primary-500"
                         />
                       </Avatar>
                     );
@@ -150,21 +151,29 @@ const ForgotPasswordScreen = () => {
     Keyboard.dismiss();
     handleSubmit(onSubmit)();
   };
-
+  const router = useRouter();
   return (
     <>
-      <VStack className="md:items-center" space="xs">
-        <Icon
-          as={ArrowLeftIcon}
-          className="md:hidden stroke-background-800"
-          size="xl"
-        />
-        <Heading className="md:text-center" size="3xl">
-          Forgot Password?
-        </Heading>
-        <Text className="text-sm">
-          Enter email ID associated with your account.
-        </Text>
+      <VStack className="md:items-center" space="md">
+        <Pressable
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <Icon
+            as={ArrowLeftIcon}
+            className="md:hidden stroke-background-800"
+            size="xl"
+          />
+        </Pressable>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Forgot Password?
+          </Heading>
+          <Text className="text-sm">
+            Enter email ID associated with your account.
+          </Text>
+        </VStack>
       </VStack>
 
       <VStack space="xl" className="w-full ">

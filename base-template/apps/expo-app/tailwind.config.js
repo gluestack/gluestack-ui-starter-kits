@@ -21,6 +21,14 @@ module.exports = {
   ],
   presets: [require("nativewind/preset")],
   theme: {
+    screens: {
+      base: "0",
+      xs: "400px",
+      sm: "480px",
+      md: "768px",
+      lg: "992px",
+      xl: "1280px",
+    },
     extend: {
       colors: {
         primary: {
@@ -172,6 +180,27 @@ module.exports = {
           light: "#FBFBFB",
           dark: "#181719",
         },
+        border: {
+          0: "var(--color-border-0)",
+          50: "var(--color-border-50)",
+          100: "var(--color-border-100)",
+          200: "var(--color-border-200)",
+          300: "var(--color-border-300)",
+          400: "var(--color-border-400)",
+          500: "var(--color-border-500)",
+          600: "var(--color-border-600)",
+          700: "var(--color-border-700)",
+          800: "var(--color-border-800)",
+          900: "var(--color-border-900)",
+          950: "var(--color-border-950)",
+          error: "var(--color-border-error)",
+          warning: "var(--color-border-warning)",
+          muted: "var(--color-border-muted)",
+          success: "var(--color-border-success)",
+          info: "var(--color-border-info)",
+          light: "#FBFBFB",
+          dark: "#181719",
+        },
       },
       fontFamily: {
         heading: undefined,
@@ -185,6 +214,9 @@ module.exports = {
       },
       fontSize: {
         "2xs": "10px",
+      },
+      border: {
+        2: "2px",
       },
     },
     plugins: [],

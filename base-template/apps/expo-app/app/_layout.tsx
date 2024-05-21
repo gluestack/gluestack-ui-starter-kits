@@ -61,6 +61,9 @@ function RootLayoutNav() {
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           <Stack.Screen name="forgot-password" />
           <Stack.Screen name="create-password" />
+          <Stack.Screen name="news-feed" />
+          <Stack.Screen name="dashboard" />
+          <Stack.Screen name="profile" />
         </Stack>
       </ThemeProvider>
     </GluestackUIProvider>

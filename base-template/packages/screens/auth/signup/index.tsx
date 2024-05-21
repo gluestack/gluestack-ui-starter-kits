@@ -51,6 +51,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
+import { Pressable } from "@base-template/components/pressable";
+import useRouter from "@unitools/router";
 
 const signUpSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
@@ -88,23 +90,22 @@ const ProfileAvatars = [
 type AuthLayoutProps = {
   children: React.ReactNode;
 };
+const formDetails = {
+  heading: " gluestack-ui",
+  badge: "Pro",
+  subHeading: "Start making your dreams come true",
+  description:
+    "Create an account and discover the worlds best UI component framework.",
+  avatarNumber: "+ 2",
+  subDescription: "Join 10,000+ users",
+  license: " © 2023 gluestack UI. All rights reserved.",
+};
 const AuthLayout = (props: AuthLayoutProps) => {
-  const formDetails = {
-    heading: " gluestack-ui",
-    badge: "Pro",
-    subHeading: "Start making your dreams come true",
-    description:
-      "Create an account and discover the worlds best UI component framework.",
-    avatarNumber: "+ 2",
-    subDescription: "Join 10,000+ users",
-    license: " © 2023 gluestack UI. All rights reserved.",
-  };
-
   return (
     <SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
         <VStack
-          className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%]  justify-between p-7"
+          className="w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%] justify-between p-7"
           space="md"
         >
           <VStack space="md" className="justify-center flex-1">
@@ -117,26 +118,26 @@ const AuthLayout = (props: AuthLayoutProps) => {
             <Text size="md" className="text-typography-50 leading-7">
               {formDetails.description}
             </Text>
-            <HStack className="-2 items-center">
+            <HStack className="items-center">
               <HStack className="justify-center items-center">
                 {/* @ts-ignore */}
                 <AvatarGroup>
-                  {ProfileAvatars.slice(0, 2).map((avatar) => {
+                  {ProfileAvatars.slice(0, 2).map((avatar, index) => {
                     return (
-                      <Avatar className="flex lg:hidden" size="md">
+                      <Avatar className="flex lg:hidden" key={index} size="md">
                         <AvatarImage
                           source={avatar}
-                          className="border-[2px] border-primary-500"
+                          className="border-2 border-primary-500"
                         />
                       </Avatar>
                     );
                   })}
-                  {ProfileAvatars.map((avatar) => {
+                  {ProfileAvatars.map((avatar, index) => {
                     return (
-                      <Avatar className="hidden lg:flex" size="md">
+                      <Avatar className="hidden lg:flex" key={index} size="md">
                         <AvatarImage
                           source={avatar}
-                          className=" border-[2px] border-primary-500"
+                          className="border-2 border-primary-500"
                         />
                       </Avatar>
                     );
@@ -220,19 +221,27 @@ const SignUpWithLeftBackground = () => {
     Keyboard.dismiss();
     handleSubmit(onSubmit)();
   };
-
+  const router = useRouter();
   return (
     <>
-      <VStack className="md:items-center" space="xs">
-        <Icon
-          as={ArrowLeftIcon}
-          className="md:hidden stroke-background-800"
-          size="xl"
-        />
-        <Heading className="md:text-center" size="3xl">
-          Sign up
-        </Heading>
-        <Text>Start making your dreams come true</Text>
+      <VStack className="md:items-center" space="md">
+        <Pressable
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <Icon
+            as={ArrowLeftIcon}
+            className="md:hidden stroke-background-800"
+            size="xl"
+          />
+        </Pressable>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Sign up
+          </Heading>
+          <Text>Start making your dreams come true</Text>
+        </VStack>
       </VStack>
       <VStack className="w-full">
         <VStack space="xl" className="w-full">
@@ -413,7 +422,7 @@ const SignUpWithLeftBackground = () => {
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
             <LinkText
-              className="font-medium text-primary-700 ml-1  group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
+              className="font-medium text-primary-700 ml-1 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
               size="md"
             >
               Login
