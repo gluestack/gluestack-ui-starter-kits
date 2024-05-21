@@ -209,7 +209,7 @@ const CreatePasswordWithLeftBackground = () => {
   const router = useRouter();
   return (
     <>
-      <VStack className="md:items-center" space="xs">
+      <VStack className="md:items-center" space="md">
         <Pressable
           onPress={() => {
             router.back();
@@ -221,12 +221,14 @@ const CreatePasswordWithLeftBackground = () => {
             size="xl"
           />
         </Pressable>
-        <Heading className="md:text-center" size="3xl">
-          Create new password
-        </Heading>
-        <Text className="md:text-center">
-          Your new password must be different from previously used passwords{" "}
-        </Text>
+        <VStack>
+          <Heading className="md:text-center" size="3xl">
+            Create new password
+          </Heading>
+          <Text className="md:text-center">
+            Your new password must be different from previously used passwords{" "}
+          </Text>
+        </VStack>
       </VStack>
       <VStack className="w-full">
         <VStack space="xl" className="w-full">
