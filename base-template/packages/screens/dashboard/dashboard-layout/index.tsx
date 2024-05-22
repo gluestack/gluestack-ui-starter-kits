@@ -363,10 +363,8 @@ const MainContent = () => {
             {HeadingCards.map((item, index) => {
               return (
                 <GridItem
-                  colSpan={{
-                    base: 12,
-                    sm: 6,
-                    lg: 4,
+                  _extra={{
+                    className: "col-span-12 sm:col-span-6 lg:col-span-4",
                   }}
                   key={index}
                 >
@@ -405,10 +403,8 @@ const MainContent = () => {
           </Box>
           <Grid className="gap-5">
             <GridItem
-              colSpan={{
-                base: 12,
-                sm: 6,
-                lg: 4,
+              _extra={{
+                className: "col-span-12 sm:col-span-6 lg:col-span-4",
               }}
             >
               <VStack
@@ -444,10 +440,8 @@ const MainContent = () => {
               </VStack>
             </GridItem>
             <GridItem
-              colSpan={{
-                base: 12,
-                sm: 6,
-                lg: 4,
+              _extra={{
+                className: "col-span-12 sm:col-span-6 lg:col-span-4",
               }}
             >
               <VStack
@@ -510,10 +504,8 @@ const MainContent = () => {
               </VStack>
             </GridItem>
             <GridItem
-              colSpan={{
-                base: 12,
-                sm: 6,
-                lg: 4,
+              _extra={{
+                className: "col-span-12 sm:col-span-6 lg:col-span-4",
               }}
             >
               <VStack
@@ -549,10 +541,8 @@ const MainContent = () => {
               </VStack>
             </GridItem>
             <GridItem
-              colSpan={{
-                base: 12,
-                sm: 6,
-                lg: 4,
+              _extra={{
+                className: "col-span-12 sm:col-span-6 lg:col-span-4",
               }}
             >
               <VStack

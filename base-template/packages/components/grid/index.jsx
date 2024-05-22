@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext, useMemo, forwardRef, } from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, Platform } from "react-native";
 import { gridStyle, gridItemStyle } from "./styles";
 import { cssInterop } from "nativewind";
 import { useBreakpointValue, getBreakPointValue, } from "@base-template/hooks/useMediaQuery";
@@ -27,46 +27,71 @@ function arrangeChildrenIntoRows({ childrenArray, colSpanArr, numColumns, }) {
     }
     return rowItemsCount;
 }
-const Grid = forwardRef(({ className, numColumns = 12, children, ...props }, ref) => {
-    let updatedNumColumns = numColumns;
-    if (typeof updatedNumColumns === "object") {
-        updatedNumColumns = {
-            default: 12,
-            //@ts-ignore
-            ...updatedNumColumns,
-        };
+const Grid = forwardRef(({ className, _extra, children, ...props }, ref) => {
+    const gridClassNamePattern = /\b(?:\w+:)?grid-cols-?\d+\b/g;
+    const gridClass = _extra?.className;
+    /*
+    if (Array.isArray(interpolatedStyles)) {
+      interpolatedClassName = interpolatedStyles.reduce(
+        (acc: any, style: any) => {
+          if (style["$$css"]) {
+            // delete style["$$css"];
+            acc += ` ${Object.keys(style)[1]}`;
+          }
+          return acc;
+        },
+        interpolatedClassName
+      );
+    } else {
+      if (interpolatedStyles && interpolatedStyles["$$css"]) {
+        // delete interpolatedStyles["$$css"];
+        interpolatedClassName = Object.keys(interpolatedStyles["$$css"])[1];
+      }
     }
-    const numColumns1 = useBreakpointValue(updatedNumColumns);
-    const generateClassNamesBasedOnNumColumns = () => {
-        let generatedClassNames = " ";
-        if (typeof numColumns === "object" && numColumns) {
-            Object.keys(numColumns).forEach((key) => {
-                if (key === "default") {
-                    generatedClassNames += `grid-cols-${numColumns[key]} `;
-                }
-                else {
-                    generatedClassNames += `${key}:grid-cols-${numColumns[key]} `;
-                }
-            });
+    */
+    const generateResponsiveNumColumns = () => {
+        const numColumns = gridClass?.match(gridClassNamePattern);
+        if (!numColumns) {
+            return 12;
         }
-        else {
-            generatedClassNames += `grid-cols-${numColumns} `;
-        }
-        return generatedClassNames;
+        const regex = /^(?:(\w+):)?grid-cols-?(\d+)$/;
+        const result = {};
+        numColumns.forEach((className) => {
+            const match = className.match(regex);
+            if (match) {
+                const prefix = match[1] || "default";
+                const value = parseInt(match[2], 10);
+                result[prefix] = value;
+            }
+        });
+        return result;
     };
-    const generatedClassNames = generateClassNamesBasedOnNumColumns();
+    const obj = generateResponsiveNumColumns();
+    const numColumns1 = useBreakpointValue(obj);
     const [calculatedWidth, setCalculatedWidth] = useState(null);
     const itemsPerRow = useMemo(() => {
         // get the colSpan of each child
         const colSpanArr = React.Children.map(children, (child) => {
-            let updatedColSpan = child?.props?.colSpan;
-            // if (typeof updatedColSpan === "object") {
-            //   updatedColSpan = {
-            //     default: 1,
-            //     ...updatedColSpan,
-            //   };
-            // }
-            const colSpan2 = getBreakPointValue(updatedColSpan, width);
+            let gridItemClassName = child?.props?._extra?.className;
+            const gridClassNamePattern = /\b(?:\w+:)?col-span-?\d+\b/g;
+            const generateResponsiveNumColumns = () => {
+                const numColumns = gridItemClassName?.match(gridClassNamePattern);
+                if (!numColumns) {
+                    return 12;
+                }
+                const regex = /^(?:(\w+):)?grid-cols-?(\d+)$/;
+                const result = {};
+                numColumns.forEach((className) => {
+                    const match = className.match(regex);
+                    if (match) {
+                        const prefix = match[1] || "default";
+                        const value = parseInt(match[2], 10);
+                        result[prefix] = value;
+                    }
+                });
+                return result;
+            };
+            const colSpan2 = getBreakPointValue(generateResponsiveNumColumns(), width);
             const colSpan = colSpan2 ? colSpan2 : 1;
             if (colSpan > numColumns1) {
                 return numColumns1;
@@ -79,7 +104,6 @@ const Grid = forwardRef(({ className, numColumns = 12, children, ...props }, ref
             colSpanArr,
             numColumns: numColumns1,
         });
-        console.log(rowItemsCount, "rowItemsCount");
         return rowItemsCount;
     }, [numColumns1, children]);
     const contextValue = useMemo(() => {
@@ -98,10 +122,12 @@ const Grid = forwardRef(({ className, numColumns = 12, children, ...props }, ref
         }
         return child;
     });
+    const gridClassMerged = `${Platform.select({
+        web: gridClass ?? "grid-cols-12",
+    })}`;
     return (<GridContext.Provider value={contextValue}>
         <View ref={ref} className={gridStyle({
-            // numColumns1,
-            class: className + generatedClassNames,
+            class: className + " " + gridClassMerged,
         })} onLayout={(event) => {
             const paddingLeftToSubtract = props?.paddingStart || props?.paddingLeft || props?.padding || 0;
             const paddingRightToSubtract = props?.paddingEnd || props?.paddingRight || props?.padding || 0;
@@ -131,35 +157,28 @@ cssInterop(Grid, {
         },
     },
 });
-const GridItem = forwardRef(({ className, colSpan = 1, ...props }, ref) => {
-    let updatedColSpan = colSpan;
-    if (typeof updatedColSpan === "object") {
-        updatedColSpan = {
-            default: 1,
-            //@ts-ignore
-            ...updatedColSpan,
-        };
-    }
-    const colSpan1 = useBreakpointValue(updatedColSpan);
-    const generateClassNamesBasedOnColSpan = () => {
-        let generatedClassNames = " ";
-        if (typeof colSpan === "object") {
-            Object.keys(colSpan).forEach((key) => {
-                if (key === "default") {
-                    generatedClassNames += `col-span-${colSpan[key]} `;
-                }
-                else {
-                    generatedClassNames += `${key}:col-span-${colSpan[key]} `;
-                }
-            });
+const GridItem = forwardRef(({ className, _extra, ...props }, ref) => {
+    const gridClassNamePattern = /\b(?:\w+:)?col-span-?\d+\b/g;
+    const gridItemClass = _extra?.className;
+    const generateResponsiveNumColumns = () => {
+        console.log("generateResponsiveNumColumns", gridItemClass);
+        const numColumns = gridItemClass?.match(gridClassNamePattern);
+        if (!numColumns) {
+            return 1;
         }
-        else {
-            generatedClassNames += `col-span-${colSpan} `;
-        }
-        console.log(generatedClassNames, "gc");
-        return generatedClassNames;
+        const regex = /^(?:(\w+):)?col-span-?(\d+)$/;
+        const result = {};
+        numColumns.forEach((className) => {
+            const match = className.match(regex);
+            if (match) {
+                const prefix = match[1] || "default";
+                const value = parseInt(match[2], 10);
+                result[prefix] = value;
+            }
+        });
+        return result;
     };
-    const generatedClassNames = generateClassNamesBasedOnColSpan();
+    const colSpan1 = useBreakpointValue(generateResponsiveNumColumns());
     const [flexBasisValue, setFlexBasisValue] = useState("auto");
     const { calculatedWidth, numColumns, itemsPerRow, flexDirection, gap, columnGap, } = useContext(GridContext);
     useEffect(() => {
@@ -172,24 +191,20 @@ const GridItem = forwardRef(({ className, colSpan = 1, ...props }, ref) => {
                 return itemsPerRow[key].includes(props?.index);
             });
             const rowColsCount = itemsPerRow[row].length;
-            console.log(columnGap, "gap");
             const space = columnGap || gap || 0;
-            console.log(colSpan1, "cs1");
             const gutterOffset = space *
                 (rowColsCount === 1 && colSpan1 < numColumns ? 2 : rowColsCount - 1);
-            console.log(rowColsCount === 1 && colSpan1 < numColumns ? 2 : rowColsCount - 1, "space");
-            console.log(gutterOffset, "go");
             const flexBasisValue = Math.min((((calculatedWidth - gutterOffset) * colSpan1) /
                 numColumns /
                 calculatedWidth) *
                 100, 100) + "%";
-            console.log(flexBasisValue, "flexBasis");
             setFlexBasisValue(flexBasisValue);
         }
     }, [calculatedWidth, colSpan1, numColumns, columnGap, gap, flexDirection]); // eslint-disable-line react-hooks/exhaustive-deps
-    return (<View ref={ref} className={gridItemStyle({
-            // colSpan,
-            class: className + generatedClassNames,
+    return (<View ref={ref} gridItemClass={gridItemClass} className={gridItemStyle({
+            class: className +
+                " " +
+                Platform.select({ web: gridItemClass ?? "col-span-1" }) ?? "",
         })} 
     //@ts-ignore
     style={{
