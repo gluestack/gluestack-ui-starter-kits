@@ -1,2 +1,2 @@
-import { SignUp } from "@base-template/screens/auth/signup/index";
+import { SignUp } from "@/screens/auth/signup/index";
 export default SignUp;

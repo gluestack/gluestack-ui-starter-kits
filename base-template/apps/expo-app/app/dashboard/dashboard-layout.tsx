@@ -1,2 +1,2 @@
-import { Dashboard } from "@base-template/screens/dashboard/dashboard-layout";
+import { Dashboard } from "@/screens/dashboard/dashboard-layout";
 export default Dashboard;

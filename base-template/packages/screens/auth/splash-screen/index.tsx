@@ -3,18 +3,14 @@ import {
   AvatarFallbackText,
   AvatarGroup,
   AvatarImage,
-} from "@base-template/components/avatar";
-import { HStack } from "@base-template/components/hstack";
-import { VStack } from "@base-template/components/vstack";
-import { Heading } from "@base-template/components/heading";
-import { Text } from "@base-template/components/text";
-import { SafeAreaView } from "@base-template/components/safe-area-view";
-import {
-  Button,
-  ButtonIcon,
-  ButtonText,
-} from "@base-template/components/button";
-import { Icon } from "@base-template/components/icon";
+} from "@/components/avatar";
+import { HStack } from "@/components/hstack";
+import { VStack } from "@/components/vstack";
+import { Heading } from "@/components/heading";
+import { Text } from "@/components/text";
+import { SafeAreaView } from "@/components/safe-area-view";
+import { Button, ButtonIcon, ButtonText } from "@/components/button";
+import { Icon } from "@/components/icon";
 import { GluestackIcon } from "./assets/icons/gluestack-icon";
 import useRouter from "@unitools/router";
 import { GoogleIcon } from "../signin/assets/icons/google";

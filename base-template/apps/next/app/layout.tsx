@@ -2,7 +2,7 @@
 
 import { Inter } from "next/font/google";
 import StyledJsxRegistry from "./registry";
-import { GluestackUIProvider } from "@base-template/components/gluestack-ui-provider";
+import { GluestackUIProvider } from "@/components/gluestack-ui-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({

@@ -3,7 +3,7 @@ import { gridStyle, gridItemStyle } from "./styles";
 
 const Grid = ({ className, _extra, ...props }: any) => {
   const gridClass = _extra?.className;
-  const finalGridClass = gridClass ?? "grid-cols-12";
+  const finalGridClass = gridClass ?? "";
   return (
     <div
       className={gridStyle({
@@ -17,7 +17,7 @@ const Grid = ({ className, _extra, ...props }: any) => {
 const GridItem = ({ className, _extra, ...props }: any) => {
   const gridItemClass = _extra?.className;
 
-  const finalGridItemClass = gridItemClass ?? "col-span-1";
+  const finalGridItemClass = gridItemClass ?? "";
   return (
     <div
       className={gridItemStyle({

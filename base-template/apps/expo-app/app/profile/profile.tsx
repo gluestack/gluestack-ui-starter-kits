@@ -1,2 +1,2 @@
-import { Profile } from "@base-template/screens/profile-screens/profile";
+import { Profile } from "@/screens/profile-screens/profile";
 export default Profile;

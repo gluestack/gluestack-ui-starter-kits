@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { Box } from "@base-template/components/box";
-import { HStack } from "@base-template/components/hstack";
+import { Box } from "@/components/box";
+import { HStack } from "@/components/hstack";
 import {
   AlertCircleIcon,
   ChevronDownIcon,
@@ -12,19 +12,15 @@ import {
   MenuIcon,
   PhoneIcon,
   SettingsIcon,
-} from "@base-template/components/icon";
-import { Text } from "@base-template/components/text";
-import { VStack } from "@base-template/components/vstack";
-import { Pressable } from "@base-template/components/pressable";
+} from "@/components/icon";
+import { Text } from "@/components/text";
+import { VStack } from "@/components/vstack";
+import { Pressable } from "@/components/pressable";
 import { AlertCircle, type LucideIcon } from "lucide-react-native";
-import {
-  Button,
-  ButtonIcon,
-  ButtonText,
-} from "@base-template/components/button";
-import { Heading } from "@base-template/components/heading";
-import { Image } from "@base-template/components/image";
-import { ScrollView } from "@base-template/components/scroll-view";
+import { Button, ButtonIcon, ButtonText } from "@/components/button";
+import { Heading } from "@/components/heading";
+import { Image } from "@/components/image";
+import { ScrollView } from "@/components/scroll-view";
 import {
   Modal,
   ModalBackdrop,
@@ -32,18 +28,18 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalHeader,
-} from "@base-template/components/modal";
-import { Input, InputField } from "@base-template/components/input";
+} from "@/components/modal";
+import { Input, InputField } from "@/components/input";
 import {
   Avatar,
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from "@base-template/components/avatar";
+} from "@/components/avatar";
 import useRouter from "@unitools/router";
 import { ProfileIcon } from "./assets/icons/profile";
-import { SafeAreaView } from "@base-template/components/safe-area-view";
-import { Center } from "@base-template/components/center";
+import { SafeAreaView } from "@/components/safe-area-view";
+import { Center } from "@/components/center";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Keyboard, Platform } from "react-native";
 import { SubscriptionIcon } from "./assets/icons/subscription";
@@ -54,7 +50,7 @@ import { HomeIcon } from "./assets/icons/home";
 import { GlobeIcon } from "./assets/icons/globe";
 import { InboxIcon } from "./assets/icons/inbox";
 import { HeartIcon } from "./assets/icons/heart";
-import { Divider } from "@base-template/components/divider";
+import { Divider } from "@/components/divider";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -65,7 +61,7 @@ import {
   FormControlErrorText,
   FormControlLabel,
   FormControlLabelText,
-} from "@base-template/components/form-control";
+} from "@/components/form-control";
 import {
   Select,
   SelectBackdrop,
@@ -77,7 +73,7 @@ import {
   SelectItem,
   SelectPortal,
   SelectTrigger,
-} from "@base-template/components/select";
+} from "@/components/select";
 import { CameraSparklesIcon } from "./assets/icons/camera-sparkles";
 import { EditPhotoIcon } from "./assets/icons/edit-photo";
 

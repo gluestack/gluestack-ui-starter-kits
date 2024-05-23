@@ -1,5 +1,5 @@
 "use client";
 
-import { SignUp } from "@base-template/screens/auth/signup";
+import { SignUp } from "@/screens/auth/signup";
 
 export default SignUp;

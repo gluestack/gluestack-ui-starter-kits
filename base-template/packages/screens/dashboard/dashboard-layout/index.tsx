@@ -1,37 +1,29 @@
-import { Box } from "@base-template/components/box";
-import { HStack } from "@base-template/components/hstack";
+import { Box } from "@/components/box";
+import { HStack } from "@/components/hstack";
 import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
-import {
-  ChevronLeftIcon,
-  Icon,
-  MenuIcon,
-} from "@base-template/components/icon";
-import { Text } from "@base-template/components/text";
-import { VStack } from "@base-template/components/vstack";
-import { Pressable } from "@base-template/components/pressable";
+import { ChevronLeftIcon, Icon, MenuIcon } from "@/components/icon";
+import { Text } from "@/components/text";
+import { VStack } from "@/components/vstack";
+import { Pressable } from "@/components/pressable";
 import type { LucideIcon } from "lucide-react-native";
 import { InboxIcon } from "./assets/icons/inbox";
 import { GlobeIcon } from "./assets/icons/globe";
-import { Button, ButtonText } from "@base-template/components/button";
+import { Button, ButtonText } from "@/components/button";
 import { useEffect, useState } from "react";
-import { Heading } from "@base-template/components/heading";
-import { ScrollView } from "@base-template/components/scroll-view";
-import { Divider } from "@base-template/components/divider";
-import { Grid, GridItem } from "@base-template/components/grid";
-import {
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-} from "@base-template/components/avatar";
+import { Heading } from "@/components/heading";
+import { ScrollView } from "@/components/scroll-view";
+import { Divider } from "@/components/divider";
+import { Grid, GridItem } from "@/components/grid";
+import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/avatar";
 import useRouter from "@unitools/router";
 import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
 import { CalendarIcon } from "./assets/icons/calendar";
-import { SafeAreaView } from "@base-template/components/safe-area-view";
+import { SafeAreaView } from "@/components/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Platform } from "react-native";
-import { useBreakpointValue } from "@base-template/hooks/useBreakpointValue";
+import { useBreakpointValue } from "@/hooks/useBreakpointValue";
 type MobileHeaderProps = {
   title: string;
 };

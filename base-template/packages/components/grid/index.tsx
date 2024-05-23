@@ -10,10 +10,7 @@ import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import { View, Dimensions, Platform } from "react-native";
 import { gridStyle, gridItemStyle } from "./styles";
 import { cssInterop } from "nativewind";
-import {
-  useBreakpointValue,
-  getBreakPointValue,
-} from "@base-template/hooks/useMediaQuery";
+import { useBreakpointValue, getBreakPointValue } from "@/hooks/useMediaQuery";
 
 const { width } = Dimensions.get("window");
 
@@ -85,26 +82,6 @@ const Grid = forwardRef(
 
     const gridClass = _extra?.className;
 
-    /*
-    if (Array.isArray(interpolatedStyles)) {
-      interpolatedClassName = interpolatedStyles.reduce(
-        (acc: any, style: any) => {
-          if (style["$$css"]) {
-            // delete style["$$css"];
-            acc += ` ${Object.keys(style)[1]}`;
-          }
-          return acc;
-        },
-        interpolatedClassName
-      );
-    } else {
-      if (interpolatedStyles && interpolatedStyles["$$css"]) {
-        // delete interpolatedStyles["$$css"];
-        interpolatedClassName = Object.keys(interpolatedStyles["$$css"])[1];
-      }
-    }
-    */
-
     const generateResponsiveNumColumns = () => {
       const numColumns = gridClass?.match(gridClassNamePattern);
 
@@ -128,7 +105,7 @@ const Grid = forwardRef(
     };
 
     const obj = generateResponsiveNumColumns();
-    const numColumns1 = useBreakpointValue(obj);
+    const numColumns1: any = useBreakpointValue(obj);
 
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
 
@@ -206,7 +183,7 @@ const Grid = forwardRef(
     });
 
     const gridClassMerged = `${Platform.select({
-      web: gridClass ?? "grid-cols-12",
+      web: gridClass ?? "",
     })}`;
 
     return (
@@ -340,9 +317,8 @@ const GridItem = forwardRef(
         gridItemClass={gridItemClass}
         className={gridItemStyle({
           class:
-            className +
-              " " +
-              Platform.select({ web: gridItemClass ?? "col-span-1" }) ?? "",
+            className + " " + Platform.select({ web: gridItemClass ?? "" }) ??
+            "",
         })}
         //@ts-ignore
         style={{

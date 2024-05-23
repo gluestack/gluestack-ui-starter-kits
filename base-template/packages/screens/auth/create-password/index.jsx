@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { Avatar, AvatarFallbackText, AvatarGroup, AvatarImage, } from "@base-template/components/avatar";
-import { SafeAreaView } from "@base-template/components/safe-area-view";
-import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
-import { HStack } from "@base-template/components/hstack";
-import { VStack } from "@base-template/components/vstack";
-import { Heading } from "@base-template/components/heading";
-import { Text } from "@base-template/components/text";
-import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlLabel, FormControlLabelText, } from "@base-template/components/form-control";
-import { Input, InputField, InputIcon, InputSlot, } from "@base-template/components/input";
-import { ArrowLeftIcon, EyeIcon, EyeOffIcon, Icon, } from "@base-template/components/icon";
-import { Button, ButtonText } from "@base-template/components/button";
+import { Avatar, AvatarFallbackText, AvatarGroup, AvatarImage, } from "@/components/avatar";
+import { SafeAreaView } from "@/components/safe-area-view";
+import { Toast, ToastTitle, useToast } from "@/components/toast";
+import { HStack } from "@/components/hstack";
+import { VStack } from "@/components/vstack";
+import { Heading } from "@/components/heading";
+import { Text } from "@/components/text";
+import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlLabel, FormControlLabelText, } from "@/components/form-control";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/input";
+import { ArrowLeftIcon, EyeIcon, EyeOffIcon, Icon } from "@/components/icon";
+import { Button, ButtonText } from "@/components/button";
 import { Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
-import { Pressable } from "@base-template/components/pressable";
+import { Pressable } from "@/components/pressable";
 import useRouter from "@unitools/router";
 const createPasswordSchema = z.object({
     password: z

@@ -1,2 +1,2 @@
-import { CreatePassword } from "@base-template/screens/auth/create-password";
+import { CreatePassword } from "@/screens/auth/create-password";
 export default CreatePassword;

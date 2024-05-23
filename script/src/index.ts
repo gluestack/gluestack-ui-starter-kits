@@ -46,11 +46,11 @@ async function main() {
     console.log("config", config);
     // const fromKeys = Object.keys(config?.paths);
     // const index = fromKeys.findIndex((from) =>
-    //   "@base-template/components".includes(from)
+    //   "@/components".includes(from)
     // );
 
     // const from = fromKeys.find((from) =>
-    //   "@base-template/components".includes(from)
+    //   "@/components".includes(from)
     // );
 
     // console.log("index", index, from, config?.paths[from as string]);

@@ -1,23 +1,24 @@
-import { Box } from "@base-template/components/box";
-import { HStack } from "@base-template/components/hstack";
-import { ChevronLeftIcon, DownloadIcon, Icon, MenuIcon, SearchIcon, } from "@base-template/components/icon";
-import { Text } from "@base-template/components/text";
-import { VStack } from "@base-template/components/vstack";
-import { Pressable } from "@base-template/components/pressable";
+import { Box } from "@/components/box";
+import { HStack } from "@/components/hstack";
+import { ChevronLeftIcon, DownloadIcon, Icon, MenuIcon, SearchIcon, } from "@/components/icon";
+import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
+import { Text } from "@/components/text";
+import { VStack } from "@/components/vstack";
+import { Pressable } from "@/components/pressable";
 import { FeedIcon } from "./assets/icons/feed";
 import { GlobeIcon } from "./assets/icons/globe";
-import { Button, ButtonIcon, ButtonText, } from "@base-template/components/button";
+import { Button, ButtonIcon, ButtonText } from "@/components/button";
 import { useState } from "react";
-import { Heading } from "@base-template/components/heading";
-import { Image } from "@base-template/components/image";
-import { ScrollView } from "@base-template/components/scroll-view";
-import { Input, InputField, InputIcon, InputSlot, } from "@base-template/components/input";
-import { Avatar, AvatarFallbackText, AvatarImage, } from "@base-template/components/avatar";
+import { Heading } from "@/components/heading";
+import { Image } from "@/components/image";
+import { ScrollView } from "@/components/scroll-view";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/input";
+import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/avatar";
 import useRouter from "@unitools/router";
 import { HomeIcon } from "./assets/icons/home";
 import { HeartIcon } from "./assets/icons/heart";
 import { ProfileIcon } from "./assets/icons/profile";
-import { SafeAreaView } from "@base-template/components/safe-area-view";
+import { SafeAreaView } from "@/components/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Platform } from "react-native";
 const list = [
@@ -207,8 +208,10 @@ const MainContent = () => {
       <Heading size="2xl" className="font-roboto">
         What's new?
       </Heading>
-      <HStack space="2xl" className="h-full w-full">
-        <ScrollView className="max-w-[900px]" showsVerticalScrollIndicator={false}>
+      <HStack space="2xl" className="h-full w-full flex-1">
+        <ScrollView className="max-w-[900px] flex-1 md:mb-2" contentContainerStyle={{
+            paddingBottom: isWeb ? 0 : 140,
+        }} showsVerticalScrollIndicator={false}>
           <VStack className="w-full" space="2xl">
             {BLOGS_DATA.map((item, index) => {
             return (<VStack className="rounded-xl border border-border-300 p-5" key={index}>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext, useContext, useMemo, forward
 import { View, Dimensions, Platform } from "react-native";
 import { gridStyle, gridItemStyle } from "./styles";
 import { cssInterop } from "nativewind";
-import { useBreakpointValue, getBreakPointValue, } from "@base-template/hooks/useMediaQuery";
+import { useBreakpointValue, getBreakPointValue } from "@/hooks/useMediaQuery";
 const { width } = Dimensions.get("window");
 const GridContext = createContext({});
 function arrangeChildrenIntoRows({ childrenArray, colSpanArr, numColumns, }) {
@@ -30,25 +30,6 @@ function arrangeChildrenIntoRows({ childrenArray, colSpanArr, numColumns, }) {
 const Grid = forwardRef(({ className, _extra, children, ...props }, ref) => {
     const gridClassNamePattern = /\b(?:\w+:)?grid-cols-?\d+\b/g;
     const gridClass = _extra?.className;
-    /*
-    if (Array.isArray(interpolatedStyles)) {
-      interpolatedClassName = interpolatedStyles.reduce(
-        (acc: any, style: any) => {
-          if (style["$$css"]) {
-            // delete style["$$css"];
-            acc += ` ${Object.keys(style)[1]}`;
-          }
-          return acc;
-        },
-        interpolatedClassName
-      );
-    } else {
-      if (interpolatedStyles && interpolatedStyles["$$css"]) {
-        // delete interpolatedStyles["$$css"];
-        interpolatedClassName = Object.keys(interpolatedStyles["$$css"])[1];
-      }
-    }
-    */
     const generateResponsiveNumColumns = () => {
         const numColumns = gridClass?.match(gridClassNamePattern);
         if (!numColumns) {
@@ -123,7 +104,7 @@ const Grid = forwardRef(({ className, _extra, children, ...props }, ref) => {
         return child;
     });
     const gridClassMerged = `${Platform.select({
-        web: gridClass ?? "grid-cols-12",
+        web: gridClass ?? "",
     })}`;
     return (<GridContext.Provider value={contextValue}>
         <View ref={ref} className={gridStyle({
@@ -202,9 +183,8 @@ const GridItem = forwardRef(({ className, _extra, ...props }, ref) => {
         }
     }, [calculatedWidth, colSpan1, numColumns, columnGap, gap, flexDirection]); // eslint-disable-line react-hooks/exhaustive-deps
     return (<View ref={ref} gridItemClass={gridItemClass} className={gridItemStyle({
-            class: className +
-                " " +
-                Platform.select({ web: gridItemClass ?? "col-span-1" }) ?? "",
+            class: className + " " + Platform.select({ web: gridItemClass ?? "" }) ??
+                "",
         })} 
     //@ts-ignore
     style={{

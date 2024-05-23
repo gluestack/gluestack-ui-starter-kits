@@ -4,13 +4,13 @@ import {
   AvatarFallbackText,
   AvatarGroup,
   AvatarImage,
-} from "@base-template/components/avatar";
-import { Toast, ToastTitle, useToast } from "@base-template/components/toast";
-import { HStack } from "@base-template/components/hstack";
-import { VStack } from "@base-template/components/vstack";
-import { Heading } from "@base-template/components/heading";
-import { Text } from "@base-template/components/text";
-import { LinkText } from "@base-template/components/link";
+} from "@/components/avatar";
+import { Toast, ToastTitle, useToast } from "@/components/toast";
+import { HStack } from "@/components/hstack";
+import { VStack } from "@/components/vstack";
+import { Heading } from "@/components/heading";
+import { Text } from "@/components/text";
+import { LinkText } from "@/components/link";
 import Link from "@unitools/link";
 import {
   FormControl,
@@ -19,39 +19,30 @@ import {
   FormControlErrorText,
   FormControlLabel,
   FormControlLabelText,
-} from "@base-template/components/form-control";
-import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-} from "@base-template/components/input";
+} from "@/components/form-control";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/input";
 import {
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
   CheckboxLabel,
-} from "@base-template/components/checkbox";
+} from "@/components/checkbox";
 import {
   ArrowLeftIcon,
   CheckIcon,
   EyeIcon,
   EyeOffIcon,
   Icon,
-} from "@base-template/components/icon";
-import {
-  Button,
-  ButtonText,
-  ButtonIcon,
-} from "@base-template/components/button";
+} from "@/components/icon";
+import { Button, ButtonText, ButtonIcon } from "@/components/button";
 import { Keyboard } from "react-native";
-import { SafeAreaView } from "@base-template/components/safe-area-view";
+import { SafeAreaView } from "@/components/safe-area-view";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
-import { Pressable } from "@base-template/components/pressable";
+import { Pressable } from "@/components/pressable";
 import useRouter from "@unitools/router";
 // import Image from "@unitools/image";
 

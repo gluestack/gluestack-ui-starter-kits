@@ -1,5 +1,5 @@
 {
-  "name": "@base-template/screens",
+  "name": "@/screens",
   "version": "0.0.0",
   "main": "index.js",
   "module": "index.js",
@@ -15,7 +15,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@base-template/components": "*",
+    "@/components": "*",
     "@unitools/link": "^0.0.3",
     "@unitools/navigation": "^0.0.1-alpha.0",
     "@unitools/router": "^0.0.4"
