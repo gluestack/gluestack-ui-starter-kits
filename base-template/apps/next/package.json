@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@/components": "*",
+    "@/components/ui": "*",
     "@gluestack-ui/nativewind-utils": "latest",
     "@gluestack-ui/overlay": "latest",
     "@gluestack-ui/toast": "latest",

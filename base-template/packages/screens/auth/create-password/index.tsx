@@ -4,14 +4,14 @@ import {
   AvatarFallbackText,
   AvatarGroup,
   AvatarImage,
-} from "@/components/avatar";
-import { SafeAreaView } from "@/components/safe-area-view";
+} from "@/components/ui/avatar";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 
-import { Toast, ToastTitle, useToast } from "@/components/toast";
-import { HStack } from "@/components/hstack";
-import { VStack } from "@/components/vstack";
-import { Heading } from "@/components/heading";
-import { Text } from "@/components/text";
+import { Toast, ToastTitle, useToast } from "@/components/ui/toast";
+import { HStack } from "@/components/ui/hstack";
+import { VStack } from "@/components/ui/vstack";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
 import {
   FormControl,
   FormControlError,
@@ -19,16 +19,16 @@ import {
   FormControlErrorText,
   FormControlLabel,
   FormControlLabelText,
-} from "@/components/form-control";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/input";
-import { ArrowLeftIcon, EyeIcon, EyeOffIcon, Icon } from "@/components/icon";
-import { Button, ButtonText } from "@/components/button";
+} from "@/components/ui/form-control";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { ArrowLeftIcon, EyeIcon, EyeOffIcon, Icon } from "@/components/ui/icon";
+import { Button, ButtonText } from "@/components/ui/button";
 import { Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
-import { Pressable } from "@/components/pressable";
+import { Pressable } from "@/components/ui/pressable";
 import useRouter from "@unitools/router";
 
 const createPasswordSchema = z.object({

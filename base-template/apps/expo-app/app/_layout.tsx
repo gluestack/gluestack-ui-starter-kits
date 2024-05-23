@@ -8,7 +8,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { GluestackUIProvider } from "@/components/gluestack-ui-provider";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useColorScheme } from "@/components/useColorScheme";
 import "../global.css";
 
@@ -58,7 +58,6 @@ function RootLayoutNav() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="signin" />
           <Stack.Screen name="signup" />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           <Stack.Screen name="forgot-password" />
           <Stack.Screen name="create-password" />
           <Stack.Screen name="news-feed" />

@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, ButtonText } from "@/components/button";
+import { Button, ButtonText } from "@/components/ui/button";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native";
-import { VStack } from "@/components/vstack";
-import { Heading } from "@/components/heading";
+import { VStack } from "@/components/ui/vstack";
+import { Heading } from "@/components/ui/heading";
 const index = () => {
   return (
     <SafeAreaView>
