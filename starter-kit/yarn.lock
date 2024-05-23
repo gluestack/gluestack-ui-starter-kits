@@ -1716,9 +1716,9 @@
     "@react-native-aria/overlays" "^0.3.12"
 
 "@gluestack-ui/nativewind-utils@latest":
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/nativewind-utils/-/nativewind-utils-1.0.19.tgz#a7594d95d6668ab43f1b4a9a357d66cdc61bd186"
-  integrity sha512-ma1snl/M8R8KJXcqM7xWj/pJx02+hZeAJvR9Rc65V8SDM2+jRUqVoP3sEhKpdajFRIx6sMbXskQnxqRC+OyiPA==
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/nativewind-utils/-/nativewind-utils-1.0.20.tgz#24c6a9fa1c81d69a22b36ea42ccac849d69f776e"
+  integrity sha512-WnZc0u0jP6i0/KrYIy0iXRSnqrxoLUeEA1k/YN2eNbnCPBP4b55GMfBlGSln1/chWEUuDJHFEI7XlojcQDaIHw==
   dependencies:
     find-yarn-workspace-root "^2.0.0"
     patch-package "8.0.0"

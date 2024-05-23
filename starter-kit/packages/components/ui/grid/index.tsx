@@ -10,7 +10,10 @@ import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 import { View, Dimensions, Platform } from "react-native";
 import { gridStyle, gridItemStyle } from "./styles";
 import { cssInterop } from "nativewind";
-import { useBreakpointValue, getBreakPointValue } from "@/hooks/useMediaQuery";
+import {
+  useBreakpointValue,
+  getBreakPointValue,
+} from "@gluestack-ui/nativewind-utils/useBreakpointValue";
 
 const { width } = Dimensions.get("window");
 
