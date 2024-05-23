@@ -29,17 +29,14 @@ const transform: Transform = (file: FileInfo, api: API, options: Options) => {
       .filter(
         (path) =>
           typeof path.node.source.value === "string" &&
-          path.node.source.value.includes("@base-template/screens/")
+          path.node.source.value.includes("@/screens/")
       )
       .forEach((path) => {
         if (
           typeof path.node.source.value === "string" &&
-          path.node.source.value.includes("@base-template/screens/")
+          path.node.source.value.includes("@/screens/")
         ) {
-          screenPath = path.node.source.value.replace(
-            "@base-template/screens/",
-            ""
-          );
+          screenPath = path.node.source.value.replace("@/screens/", "");
         }
       });
 
