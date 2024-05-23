@@ -18,14 +18,6 @@ module.exports = {
       pattern:
         /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark|white|gray|black)/,
     },
-    {
-      pattern: /grid-cols-(\d+)/,
-      variants: ["base", "sm", "md", "lg", "xl"],
-    },
-    {
-      pattern: /col-span-(\d+)/,
-      variants: ["base", "sm", "md", "lg", "xl"],
-    },
   ],
   presets: [require("nativewind/preset")],
   theme: {

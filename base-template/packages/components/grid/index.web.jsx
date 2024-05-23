@@ -1,50 +1,17 @@
 import "react";
 import { gridStyle, gridItemStyle } from "./styles";
-const Grid = ({ className, numColumns = 12, ...props }) => {
-    const generateClassNamesBasedOnNumColumns = () => {
-        let generatedClassNames = " ";
-        if (typeof numColumns === "object") {
-            Object.keys(numColumns).forEach((key) => {
-                if (key === "default") {
-                    generatedClassNames += `grid-cols-${numColumns[key]} `;
-                }
-                else {
-                    generatedClassNames += `${key}:grid-cols-${numColumns[key]} `;
-                }
-            });
-        }
-        else {
-            generatedClassNames += `grid-cols-${numColumns} `;
-        }
-        return generatedClassNames;
-    };
-    const generatedClassNames = generateClassNamesBasedOnNumColumns();
+const Grid = ({ className, _extra, ...props }) => {
+    const gridClass = _extra?.className;
+    const finalGridClass = gridClass ?? "grid-cols-12";
     return (<div className={gridStyle({
-            class: className + generatedClassNames,
+            class: className + " " + finalGridClass,
         })} {...props}/>);
 };
-const GridItem = ({ className, colSpan = 1, ...props }) => {
-    const generateClassNamesBasedOnColSpan = () => {
-        let generatedClassNames = " ";
-        if (typeof colSpan === "object") {
-            Object.keys(colSpan).forEach((key) => {
-                if (key === "default") {
-                    generatedClassNames += `col-span-${colSpan[key]} `;
-                }
-                else {
-                    generatedClassNames += `${key}:col-span-${colSpan[key]} `;
-                }
-            });
-        }
-        else {
-            generatedClassNames += `col-span-${colSpan} `;
-        }
-        return generatedClassNames;
-    };
-    const generatedClassNames = generateClassNamesBasedOnColSpan();
+const GridItem = ({ className, _extra, ...props }) => {
+    const gridItemClass = _extra?.className;
+    const finalGridItemClass = gridItemClass ?? "col-span-1";
     return (<div className={gridItemStyle({
-            colSpan,
-            class: className + generatedClassNames,
+            class: className + " " + finalGridItemClass,
         })} {...props}/>);
 };
 Grid.displayName = "Grid";

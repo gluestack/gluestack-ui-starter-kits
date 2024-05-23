@@ -1,11 +1,11 @@
-import React from 'react';
-import { createIcon } from '@gluestack-ui/icon';
+import React from "react";
+import { createIcon } from "@gluestack-ui/icon";
 export declare const UIIcon: import("@gluestack-ui/icon/lib/typescript/createIcon").IIconComponentType<(Omit<any, "ref"> & React.RefAttributes<unknown>) | {
     fill?: import("react-native").ColorValue | undefined;
     stroke?: import("react-native").ColorValue | undefined;
 }>;
 export declare const Icon: React.ForwardRefExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;
-type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
+type ParameterTypes = Omit<Parameters<typeof createIcon>[0], "Root">;
 declare const createIconUI: ({ ...props }: ParameterTypes) => React.ForwardRefExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;
 export { createIconUI as createIcon };
 declare const AddIcon: import("@gluestack-ui/icon/lib/typescript/createIcon").IIconComponentType<import("react-native-svg").SvgProps | {
@@ -34,7 +34,7 @@ declare const ArrowLeftIcon: import("@gluestack-ui/icon/lib/typescript/createIco
     fill?: import("react-native").ColorValue | undefined;
     stroke?: import("react-native").ColorValue | undefined;
 }>;
-export { ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, };
+export { ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon };
 declare const AtSignIcon: import("@gluestack-ui/icon/lib/typescript/createIcon").IIconComponentType<import("react-native-svg").SvgProps | {
     fill?: import("react-native").ColorValue | undefined;
     stroke?: import("react-native").ColorValue | undefined;
