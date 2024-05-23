@@ -1,6 +1,6 @@
 import React from "react";
 import type { VariantProps } from "@gluestack-ui/nativewind-utils";
-declare const Grid: React.ForwardRefExoticComponent<import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "w-full box-border flex-row flex-wrap justify-start grid", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "w-full box-border flex-row flex-wrap justify-start grid", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>> & {
+declare const Grid: React.ForwardRefExoticComponent<import("react-native").ViewProps & VariantProps<import("@gluestack-ui/nativewind-utils/types").TVReturnType<{} | {} | {}, undefined, "w-full box-border flex-row flex-wrap justify-start grid grid-cols-12", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, {} | {}, undefined, import("@gluestack-ui/nativewind-utils/types").TVReturnType<unknown, undefined, "w-full box-border flex-row flex-wrap justify-start grid grid-cols-12", import("tailwind-variants/dist/config").TVConfig<unknown, {} | {}>, unknown, unknown, undefined>>> & {
     gap?: number | undefined;
     rowGap?: number | undefined;
     columnGap?: number | undefined;
