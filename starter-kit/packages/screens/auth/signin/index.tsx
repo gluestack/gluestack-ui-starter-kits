@@ -122,7 +122,11 @@ const AuthLayout = (props: AuthLayoutProps) => {
                   })}
                   {ProfileAvatars.map((avatar, index) => {
                     return (
-                      <Avatar className="hidden lg:flex" key={index} size="md">
+                      <Avatar
+                        className="hidden lg:flex"
+                        key={index + 2}
+                        size="md"
+                      >
                         <AvatarImage
                           source={avatar}
                           className="border-2 border-primary-500"
