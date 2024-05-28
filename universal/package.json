@@ -12,7 +12,7 @@
     "run:next": "cd apps/next && yarn dev",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "postinstall": "patch-package",
-    "eject": "npx temp"
+    "eject": "npx @gluestack-ui/eject-universal"
   },
   "devDependencies": {
     "prettier": "^3.1.1",
