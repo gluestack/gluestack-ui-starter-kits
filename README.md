@@ -1,19 +1,19 @@
-# Gluestack Starterkit
+# gluestack-ui Starter Kit
 
 ## Installation
 
 ```bash
-cd base-template && yarn
+cd starter-kit && yarn
 ```
 
 ## Run Expo
 
 ```bash
-cd base-template && yarn run:expo
+cd starter-kit && yarn run:expo
 ```
 
 ## Run Next.js app
 
 ```bash
-cd base-template && yarn run:next
+cd starter-kit && yarn run:next
 ```
