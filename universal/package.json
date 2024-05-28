@@ -11,7 +11,8 @@
     "run:expo": "cd apps/expo-app && yarn start",
     "run:next": "cd apps/next && yarn dev",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "eject": "npx temp"
   },
   "devDependencies": {
     "prettier": "^3.1.1",

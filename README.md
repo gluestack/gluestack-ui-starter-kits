@@ -1,19 +1,82 @@
-# Gluestack Starterkit
+# gluestack-ui Starter Kit
 
-## Installation
+Welcome to the gluestack-ui Starter Kit! This project is designed to help you kickstart your application development with React and React Native. It supports both Next.js and Expo, providing a flexible and modular architecture.
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-cd base-template && yarn
+https://github.com/gluestack/gluestack-ui-starter-kits.git
 ```
 
-## Run Expo
+2. Install dependencies:
+
+Go to `expo-app`, `next` and `universal` folders and run the following command:
 
 ```bash
-cd base-template && yarn run:expo
+yarn
 ```
 
-## Run Next.js app
+### Running the Application
+
+#### Next.js
+
+To run the Next.js application, run the following command:
 
 ```bash
-cd base-template && yarn run:next
+cd next && yarn dev
+```
+
+#### Expo
+
+To run the Expo application, run the following command:
+
+```bash
+cd expo-app && yarn start
+```
+
+#### Universal
+
+To run expo app, run the following command:
+
+```bash
+cd universal && yarn run:expo
+```
+
+To run next app, run the following command:
+
+```bash
+cd universal && yarn run:next
+```
+
+## Project Structure
+
+### Next.js
+
+- `next`: Contains the Next.js application along with components and screens.
+
+### Expo
+
+- `expo`: Contains the Expo application along with components and screens.
+
+### Universal
+
+- `app/next`: Contains the Next.js application.
+- `app/expo`: Contains the Expo application.
+- `packages/components`: Shared components used across platforms.
+- `packages/screens`: Shared screens that can be used in both Next.js and Expo projects.
+
+# Usage
+
+You can copy project of your choice and start building your application.
+
+# Ejection
+
+If you have copied the universal project and want to eject the project, you can run the following command:
+
+```bash
+cd universal && yarn eject
 ```
