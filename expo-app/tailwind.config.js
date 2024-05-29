@@ -4,8 +4,8 @@ module.exports = {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/*.{js,jsx,ts,tsx,mdx}",
-    "../../packages/components/**/*.{js,jsx,ts,tsx}",
-    "../../packages/screens/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./screens/**/*.{js,jsx,ts,tsx}",
   ],
   safelist: [
     "gap-x-2",
@@ -15,11 +15,10 @@ module.exports = {
     "mb-12",
     "basis-[10%]",
     {
-      pattern:
-        /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark|white|gray|black)/,
+      pattern: {},
     },
   ],
-  presets: [require("nativewind/preset")],
+  presets: [null],
   theme: {
     screens: {
       base: "0",
@@ -203,9 +202,6 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: undefined,
-        body: undefined,
-        mono: undefined,
         roboto: ["Roboto", "sans-serif"],
       },
       fontWeight: {
