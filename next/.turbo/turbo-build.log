@@ -1,0 +1,32 @@
+[2K[1G[2m$ next build[22m
+  [1m[38;2;173;127;168m ▲ Next.js 14.1.0[39m[22m
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [33m[1m⚠[22m[39m Compiled with warnings
+
+./app/page.tsx
+Attempted import error: 'Button' is not exported from '@repo/ui' (imported as 'Button').
+
+Import trace for requested module:
+./app/page.tsx
+
+./app/page.tsx
+Attempted import error: 'Button' is not exported from '@repo/ui' (imported as 'Button').
+
+Import trace for requested module:
+./app/page.tsx
+
+[?25l [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[31mFailed to compile.
+[39m
+[36m./app/page.tsx[39m:[33m3[39m:[33m10[39m
+[31m[1mType error[22m[39m: Module '"@repo/ui"' has no exported member 'Button'.
+
+[0m [90m 1 |[39m [32m"use client"[39m[33m;[39m[0m
+[0m [90m 2 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@repo/ui"[39m[33m;[39m[0m
+[0m [90m   |[39m          [31m[1m^[22m[39m[0m
+[0m [90m 4 |[39m[0m
+[0m [90m 5 |[39m [36mimport[39m styles [36mfrom[39m [32m"../styles/index.module.css"[39m[33m;[39m[0m
+[0m [90m 6 |[39m[0m
+[?25h[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
