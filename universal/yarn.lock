@@ -4210,20 +4210,20 @@
     "@react-navigation/native" "^6.1.16"
     expo-image "^1.10.6"
 
-"@unitools/image-expo@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@unitools/image-expo/-/image-expo-0.0.2.tgz#a60de774366d8e455bc4586ef72d09c0fa6433b6"
-  integrity sha512-yELYL41N9k5P57DJH37ETY6wDkDDip78q3gbLDz3InOIEGQ68bdHst8ojZdlwPOX/vi0jBwc3KgPpgg46Q2/5g==
+"@unitools/image-expo@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@unitools/image-expo/-/image-expo-0.0.5.tgz#3bde7ac271471d23c9f53f7fa0b2161e818b8a02"
+  integrity sha512-IWR3Gxqfqdzw80+LOr0k0HQfv3ajYSYaEPXGeZWMvjdK1uRptUQqKiFSPtL/jTzEOYtmOvO7BDPJ1NhWAm4Pog==
 
-"@unitools/image-next@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@unitools/image-next/-/image-next-0.0.1.tgz#e0e53933a1739139234dfe11af72e74620d3c3cc"
-  integrity sha512-SIjELJdQXQCE7z/JGT0pes5lCrf/DUv5SxqGuTHZz90oyAedPPJontFO6eMXs9dkXHyrUKz/A9ed0P+yOJCsFw==
+"@unitools/image-next@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@unitools/image-next/-/image-next-0.0.5.tgz#0a906197abf664a8d6d78fa444a5f878c7c97a25"
+  integrity sha512-97kXzueEw/4LRQgYBsA8WQ0EL/m2HWW3bsGr5VXVSGhi0MnCK58StPgrbc8wJ2A41g4tajqmUlOXLTnRvvKi9Q==
 
-"@unitools/image@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@unitools/image/-/image-0.0.2.tgz#41d62fb05208750b300ffc3f87a0972da94a82fd"
-  integrity sha512-CiCIt3yRAfjNa/n6lNIMBn4bRgcW3RWA8UluEb5EUxJyOyvAzpHR/uviL0/AGeB5Ca2dgNHRwrsNk5MYB9W8Jw==
+"@unitools/image@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@unitools/image/-/image-0.0.4.tgz#d99c7e1d92d49b898dafebc3631e6f020d6ebed9"
+  integrity sha512-crkEld2/J7AhLwMyscB4NmfCPHJhRG4i8sgXEQWhNUSOaofPOjnNj8JEN5hYaTO44nYpwQHATOKu5Fjes725tQ==
 
 "@unitools/link-expo@^0.0.1":
   version "0.0.1"

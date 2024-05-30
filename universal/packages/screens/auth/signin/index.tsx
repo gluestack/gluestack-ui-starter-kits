@@ -44,7 +44,6 @@ import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
 import { Pressable } from "@/components/ui/pressable";
 import useRouter from "@unitools/router";
-// import Image from "@unitools/image";
 
 const USERS = [
   {
@@ -70,10 +69,10 @@ const loginSchema = z.object({
 type LoginSchemaType = z.infer<typeof loginSchema>;
 
 const ProfileAvatars = [
-  require("./assets/image.png"),
-  require("./assets/image1.png"),
-  require("./assets/image2.png"),
-  require("./assets/image3.png"),
+  require("@/assets/auth/signin/image.png"),
+  require("@/assets/auth/signin/image1.png"),
+  require("@/assets/auth/signin/image2.png"),
+  require("@/assets/auth/signin/image3.png"),
 ];
 type AuthLayoutProps = {
   children: React.ReactNode;

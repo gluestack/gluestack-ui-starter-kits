@@ -15,7 +15,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.0.2",
-    "@unitools/image-expo": "^0.0.2",
+    "@unitools/image-expo": "^0.0.5",
     "@unitools/link-expo": "^0.0.1",
     "@unitools/router-expo": "^0.0.1",
     "expo": "~51.0.6",

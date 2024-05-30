@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { createAvatar } from "@gluestack-ui/avatar";
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
+import Image from "@unitools/image";
 import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import { withStyleContext, useStyleContext, } from "@gluestack-ui/nativewind-utils/withStyleContext";
 import { cssInterop } from "@gluestack-ui/nativewind-utils/cssInterop";

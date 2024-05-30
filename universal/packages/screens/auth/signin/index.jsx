@@ -21,7 +21,6 @@ import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
 import { Pressable } from "@/components/ui/pressable";
 import useRouter from "@unitools/router";
-// import Image from "@unitools/image";
 const USERS = [
     {
         email: "gabrial@gmail.com",
@@ -42,10 +41,10 @@ const loginSchema = z.object({
     rememberme: z.boolean().optional(),
 });
 const ProfileAvatars = [
-    require("./assets/image.png"),
-    require("./assets/image1.png"),
-    require("./assets/image2.png"),
-    require("./assets/image3.png"),
+    require("@/assets/auth/signin/image.png"),
+    require("@/assets/auth/signin/image1.png"),
+    require("@/assets/auth/signin/image2.png"),
+    require("@/assets/auth/signin/image3.png"),
 ];
 const formDetails = {
     heading: " gluestack-ui",
@@ -73,12 +72,22 @@ const AuthLayout = (props) => {
                 <AvatarGroup>
                   {ProfileAvatars.slice(0, 2).map((avatar, index) => {
             return (<Avatar className="flex lg:hidden" key={index} size="md">
-                        <AvatarImage source={avatar} className="border-2 border-primary-500"/>
+                        <AvatarImage source={avatar} 
+            // style={{
+            //   height: 48,
+            //   width: 48,
+            // }}
+            className="border-2 border-primary-500"/>
                       </Avatar>);
         })}
                   {ProfileAvatars.map((avatar, index) => {
-            return (<Avatar className="hidden lg:flex" key={index} size="md">
-                        <AvatarImage source={avatar} className="border-2 border-primary-500"/>
+            return (<Avatar className="hidden lg:flex" key={index + 2} size="md">
+                        <AvatarImage source={avatar} 
+            // style={{
+            //   height: 48,
+            //   width: 48,
+            // }}
+            className="border-2 border-primary-500"/>
                       </Avatar>);
         })}
                   <Avatar className="flex lg:hidden" size="md">
