@@ -17,9 +17,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/assets/*": ["./public/assets/*"]
+      "@/assets/*": ["../../packages/shared/assets/*", "./public/assets/*"],
+      "@/*": ["./*"]
     },
     "jsxImportSource": "nativewind"
   },

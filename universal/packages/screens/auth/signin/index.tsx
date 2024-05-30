@@ -69,10 +69,10 @@ const loginSchema = z.object({
 type LoginSchemaType = z.infer<typeof loginSchema>;
 
 const ProfileAvatars = [
-  require("@/assets/auth/signin/image.png"),
-  require("@/assets/auth/signin/image1.png"),
-  require("@/assets/auth/signin/image2.png"),
-  require("@/assets/auth/signin/image3.png"),
+  require("@/assets/auth/image.png"),
+  require("@/assets/auth/image1.png"),
+  require("@/assets/auth/image2.png"),
+  require("@/assets/auth/image3.png"),
 ];
 type AuthLayoutProps = {
   children: React.ReactNode;
