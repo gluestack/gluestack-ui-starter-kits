@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
+    "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
     "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
     "test": "jest --watchAll"
   },
