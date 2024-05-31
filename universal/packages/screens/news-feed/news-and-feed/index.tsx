@@ -100,35 +100,35 @@ interface CreatorData {
 
 const WORLD_DATA: BlogData[] = [
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image3.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image4.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image4.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image5.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image5.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image3.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image4.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image4.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
@@ -137,21 +137,21 @@ const WORLD_DATA: BlogData[] = [
 ];
 const BLOGS_DATA: BlogData[] = [
   {
-    bannerUri: require("./assets/image.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image2.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image2.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image2.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image2.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
@@ -160,17 +160,17 @@ const BLOGS_DATA: BlogData[] = [
 ];
 const CREATORS_DATA: CreatorData[] = [
   {
-    bannerUri: require("./assets/image6.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image6.png"),
     name: "Emily Zho",
     description: "Designer by heart, writer by profession, talks about design",
   },
   {
-    bannerUri: require("./assets/image7.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image7.png"),
     name: "Ram Narayan",
     description: "Founder of Fortune 500 company Alo, talks about",
   },
   {
-    bannerUri: require("./assets/image8.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image8.png"),
     name: "David John",
     description: "Creator of all things metal, talks about music and art. ",
   },
