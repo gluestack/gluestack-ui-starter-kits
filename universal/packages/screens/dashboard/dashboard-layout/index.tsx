@@ -27,7 +27,6 @@ import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Platform } from "react-native";
-import { useBreakpointValue } from "@/hooks/useBreakpointValue";
 type MobileHeaderProps = {
   title: string;
 };
@@ -371,6 +370,8 @@ const MainContent = () => {
                     <HStack space="xl" className="items-center">
                       <Avatar>
                         <AvatarImage
+                          height={"100%"}
+                          width={"100%"}
                           //@ts-ignore
                           source={item.bannerUri}
                         />
@@ -521,7 +522,11 @@ const MainContent = () => {
                   return (
                     <HStack space="lg" key={index} className="w-full px-4 py-2">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage source={item.image} />
+                        <AvatarImage
+                          height={"100%"}
+                          width={"100%"}
+                          source={item.image}
+                        />
                       </Avatar>
                       <VStack>
                         <Text className="text-typography-900 font-roboto line-clamp-1">
@@ -558,7 +563,11 @@ const MainContent = () => {
                   return (
                     <HStack space="lg" key={index} className="px-4 py-2 w-full">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage source={item.image} />
+                        <AvatarImage
+                          height={"100%"}
+                          width={"100%"}
+                          source={item.image}
+                        />
                       </Avatar>
                       <VStack>
                         <Text className="text-typography-900 font-roboto line-clamp-1">
