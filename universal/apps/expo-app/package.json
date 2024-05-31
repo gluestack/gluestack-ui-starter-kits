@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
+    "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
     "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
     "test": "jest --watchAll"
   },
@@ -15,7 +15,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.0.2",
-    "@unitools/image-expo": "^0.0.2",
+    "@unitools/image-expo": "^0.0.5",
     "@unitools/link-expo": "^0.0.1",
     "@unitools/router-expo": "^0.0.1",
     "expo": "~51.0.6",

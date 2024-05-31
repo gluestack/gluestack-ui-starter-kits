@@ -57,10 +57,10 @@ const createPasswordSchema = z.object({
 type CreatePasswordSchemaType = z.infer<typeof createPasswordSchema>;
 
 const ProfileAvatars = [
-  require("./assets/image.png"),
-  require("./assets/image1.png"),
-  require("./assets/image2.png"),
-  require("./assets/image3.png"),
+  require("@/assets/auth/image.png"),
+  require("@/assets/auth/image1.png"),
+  require("@/assets/auth/image2.png"),
+  require("@/assets/auth/image3.png"),
 ];
 type AuthLayoutProps = {
   children: React.ReactNode;

@@ -21,7 +21,6 @@ import { AlertTriangle } from "lucide-react-native";
 import { GoogleIcon } from "./assets/icons/google";
 import { Pressable } from "@/components/ui/pressable";
 import useRouter from "@unitools/router";
-// import Image from "@unitools/image";
 const USERS = [
     {
         email: "gabrial@gmail.com",
@@ -42,10 +41,10 @@ const loginSchema = z.object({
     rememberme: z.boolean().optional(),
 });
 const ProfileAvatars = [
-    require("./assets/image.png"),
-    require("./assets/image1.png"),
-    require("./assets/image2.png"),
-    require("./assets/image3.png"),
+    require("@/assets/auth/image.png"),
+    require("@/assets/auth/image1.png"),
+    require("@/assets/auth/image2.png"),
+    require("@/assets/auth/image3.png"),
 ];
 const formDetails = {
     heading: " gluestack-ui",
@@ -77,7 +76,7 @@ const AuthLayout = (props) => {
                       </Avatar>);
         })}
                   {ProfileAvatars.map((avatar, index) => {
-            return (<Avatar className="hidden lg:flex" key={index} size="md">
+            return (<Avatar className="hidden lg:flex" key={index + 2} size="md">
                         <AvatarImage source={avatar} className="border-2 border-primary-500"/>
                       </Avatar>);
         })}

@@ -449,7 +449,7 @@ const MainContent = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack className="h-full w-full" space="2xl">
           <Image
-            source={require("./assets/image2.png")}
+            source={require("@/assets/profile-screens/profile/image2.png")}
             className="w-full md:h-[478px] h-[332px]"
           />
           <HStack className="absolute pt-6 px-10 hidden md:flex">
@@ -531,7 +531,10 @@ const MainContent = () => {
               space="2xl"
             >
               <HStack space="2xl" className="items-center">
-                <Image source={require("./assets/image1.png")} size="md" />
+                <Image
+                  source={require("@/assets/profile-screen/profile/image1.png")}
+                  size="md"
+                />
                 <VStack>
                   <Text className="text-typography-900 text-lg" size="lg">
                     Invite & get rewards

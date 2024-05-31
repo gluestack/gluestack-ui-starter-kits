@@ -14,7 +14,7 @@
     "@gluestack-ui/overlay": "latest",
     "@gluestack-ui/toast": "latest",
     "@gluestack/ui-next-adapter": "latest",
-    "@unitools/image-next": "^0.0.1",
+    "@unitools/image-next": "^0.0.6",
     "@unitools/link-next": "^0.0.1",
     "@unitools/router-next": "^0.0.1",
     "autoprefixer": "latest",
