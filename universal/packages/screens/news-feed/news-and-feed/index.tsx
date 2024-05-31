@@ -17,7 +17,7 @@ import { GlobeIcon } from "./assets/icons/globe";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { useState } from "react";
 import { Heading } from "@/components/ui/heading";
-import { Image } from "@/components/ui/image";
+import Image from "@unitools/image";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import {
@@ -328,11 +328,15 @@ const MainContent = () => {
                   className="rounded-xl border border-border-300 p-5"
                   key={index}
                 >
-                  <Image
-                    source={item.bannerUri}
-                    className="w-full h-64 rounded"
-                    alt={item.bannerUri}
-                  />
+                  <Box className="w-full h-64 rounded">
+                    <Image
+                      height={"100%"}
+                      width={"100%"}
+                      source={item.bannerUri}
+                      alt={item.bannerUri}
+                      contentFit="cover"
+                    />
+                  </Box>
                   <VStack className="mt-4" space="md">
                     <Text className="text-sm">{item.publishedDate}</Text>
                     <Heading size="md">{item.title}</Heading>
@@ -362,12 +366,15 @@ const MainContent = () => {
                         space="lg"
                         key={index}
                       >
-                        <Image
-                          source={item.bannerUri}
-                          className="w-40 h-full rounded"
-                          alt={item.bannerUri}
-                        />
-
+                        <Box className="relative h-full w-40 rounded">
+                          <Image
+                            height={"100%"}
+                            width={"100%"}
+                            contentFit="cover"
+                            source={item.bannerUri}
+                            alt={item.title}
+                          />
+                        </Box>
                         <VStack className="justify-between h-full" space="md">
                           <Text className="text-sm">{item.publishedDate}</Text>
                           <Heading size="md">{item.title}</Heading>
@@ -395,6 +402,7 @@ const MainContent = () => {
                             //@ts-ignore
                             source={item.bannerUri}
                             alt={item.bannerUri}
+                            contentFit="cover"
                           />
                         </Avatar>
                         <Button
