@@ -467,6 +467,8 @@ const MainContent = () => {
             <VStack space="lg" className="items-center">
               <Avatar size="2xl" className="bg-primary-600">
                 <AvatarImage
+                  height={"100%"}
+                  width={"100%"}
                   source={require("@/assets/profile-screens/profile/image.png")}
                 />
                 <AvatarBadge />
