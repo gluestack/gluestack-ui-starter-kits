@@ -4215,10 +4215,10 @@
   resolved "https://registry.yarnpkg.com/@unitools/image-expo/-/image-expo-0.0.5.tgz#3bde7ac271471d23c9f53f7fa0b2161e818b8a02"
   integrity sha512-IWR3Gxqfqdzw80+LOr0k0HQfv3ajYSYaEPXGeZWMvjdK1uRptUQqKiFSPtL/jTzEOYtmOvO7BDPJ1NhWAm4Pog==
 
-"@unitools/image-next@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@unitools/image-next/-/image-next-0.0.5.tgz#0a906197abf664a8d6d78fa444a5f878c7c97a25"
-  integrity sha512-97kXzueEw/4LRQgYBsA8WQ0EL/m2HWW3bsGr5VXVSGhi0MnCK58StPgrbc8wJ2A41g4tajqmUlOXLTnRvvKi9Q==
+"@unitools/image-next@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@unitools/image-next/-/image-next-0.0.6.tgz#2ea66dd546574c291e0d72a268c6b75a51e64617"
+  integrity sha512-AX3COKgelSq6Ae72nbBFpbADa61RH2390eN0y82/ZKo1ssPpOL06mPZKJFj+rt6chJHzLACwGVIjiCQbDacXjA==
 
 "@unitools/image@^0.0.4":
   version "0.0.4"

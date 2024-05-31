@@ -41,10 +41,10 @@ const loginSchema = z.object({
     rememberme: z.boolean().optional(),
 });
 const ProfileAvatars = [
-    require("@/assets/auth/signin/image.png"),
-    require("@/assets/auth/signin/image1.png"),
-    require("@/assets/auth/signin/image2.png"),
-    require("@/assets/auth/signin/image3.png"),
+    require("@/assets/auth/image.png"),
+    require("@/assets/auth/image1.png"),
+    require("@/assets/auth/image2.png"),
+    require("@/assets/auth/image3.png"),
 ];
 const formDetails = {
     heading: " gluestack-ui",
@@ -72,22 +72,12 @@ const AuthLayout = (props) => {
                 <AvatarGroup>
                   {ProfileAvatars.slice(0, 2).map((avatar, index) => {
             return (<Avatar className="flex lg:hidden" key={index} size="md">
-                        <AvatarImage source={avatar} 
-            // style={{
-            //   height: 48,
-            //   width: 48,
-            // }}
-            className="border-2 border-primary-500"/>
+                        <AvatarImage source={avatar} className="border-2 border-primary-500"/>
                       </Avatar>);
         })}
                   {ProfileAvatars.map((avatar, index) => {
             return (<Avatar className="hidden lg:flex" key={index + 2} size="md">
-                        <AvatarImage source={avatar} 
-            // style={{
-            //   height: 48,
-            //   width: 48,
-            // }}
-            className="border-2 border-primary-500"/>
+                        <AvatarImage source={avatar} className="border-2 border-primary-500"/>
                       </Avatar>);
         })}
                   <Avatar className="flex lg:hidden" size="md">

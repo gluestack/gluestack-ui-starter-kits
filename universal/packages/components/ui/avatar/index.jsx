@@ -17,7 +17,9 @@ const UIAvatar = createAvatar({
 cssInterop(UIAvatar, { className: "style" });
 cssInterop(UIAvatar.Badge, { className: "style" });
 cssInterop(UIAvatar.Group, { className: "style" });
-cssInterop(UIAvatar.Image, { className: "style" });
+cssInterop(UIAvatar.Image, 
+//@ts-ignore
+Image.displayName === "NextImage" ? {} : { className: "style" });
 cssInterop(UIAvatar.FallbackText, { className: "style" });
 const avatarStyle = tva({
     base: "rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5",

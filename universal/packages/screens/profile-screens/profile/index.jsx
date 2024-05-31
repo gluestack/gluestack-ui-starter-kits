@@ -281,7 +281,7 @@ const MainContent = () => {
       <ModalComponent showModal={showModal} setShowModal={setShowModal}/>
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack className="h-full w-full" space="2xl">
-          <Image source={require("./assets/image2.png")} className="w-full md:h-[478px] h-[332px]"/>
+          <Image source={require("@/assets/profile-screens/profile/image2.png")} className="w-full md:h-[478px] h-[332px]"/>
           <HStack className="absolute pt-6 px-10 hidden md:flex">
             <Text className="text-typography-900 font-roboto">
               home &gt; {` `}
@@ -291,7 +291,7 @@ const MainContent = () => {
           <Center className="absolute md:mt-14 mt-6 w-full md:px-10 md:pt-6 pb-4">
             <VStack space="lg" className="items-center">
               <Avatar size="2xl" className="bg-primary-600">
-                <AvatarImage source={require("./assets/image.png")}/>
+                <AvatarImage source={require("@/assets/profile-screens/profile/image.png")}/>
                 <AvatarBadge />
               </Avatar>
               <VStack className="gap-1 w-full items-center">
@@ -351,7 +351,7 @@ const MainContent = () => {
           <VStack className="mx-6" space="2xl">
             <HStack className="py-5 px-6 border rounded-xl border-border-300 justify-between items-center" space="2xl">
               <HStack space="2xl" className="items-center">
-                <Image source={require("./assets/image1.png")} size="md"/>
+                <Image source={require("@/assets/profile-screens/profile/image1.png")} size="md"/>
                 <VStack>
                   <Text className="text-typography-900 text-lg" size="lg">
                     Invite & get rewards
@@ -416,7 +416,7 @@ const MobileScreen = () => {
         reset();
     };
     return (<VStack className="md:hidden mb-5">
-      <Image source={require("./assets/image2.png")} className="w-full h-[188px]"/>
+      <Image source={require("@/assets/profile-screens/profile/image2.png")} className="w-full h-[188px]"/>
       <Pressable className="absolute bg-background-950 rounded-full items-center justify-center h-8 w-8 right-6 top-[172px]">
         <Icon as={CameraSparklesIcon}/>
       </Pressable>
@@ -741,7 +741,7 @@ const ModalComponent = ({ showModal, setShowModal, }) => {
         }} finalFocusRef={ref} size="lg">
       <ModalBackdrop />
       <ModalContent>
-        <Image source={require("./assets/image2.png")} className={"w-full h-[215px] "}/>
+        <Image source={require("@/assets/profile-screens/profile/image2.png")} className={"w-full h-[215px] "}/>
         <Pressable className="absolute bg-background-500 rounded-full items-center justify-center h-8 w-8 right-6 top-44">
           <Icon as={CameraSparklesIcon}/>
         </Pressable>
@@ -755,7 +755,7 @@ const ModalComponent = ({ showModal, setShowModal, }) => {
         </ModalHeader>
         <Center className="w-full absolute top-16">
           <Avatar size="2xl">
-            <AvatarImage source={require("./assets/image.png")}/>
+            <AvatarImage source={require("@/assets/profile-screens/profile/image.png")}/>
             <AvatarBadge className="justify-center items-center bg-background-500">
               <Icon as={EditPhotoIcon}/>
             </AvatarBadge>
