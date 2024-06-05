@@ -8,7 +8,6 @@ const index = () => {
   return (
     <SafeAreaView>
       <VStack className="m-2" space="xl">
-        <Heading>Auth Screen</Heading>
         <Button
           onPress={() => {
             router.push("auth/splash-screen");
