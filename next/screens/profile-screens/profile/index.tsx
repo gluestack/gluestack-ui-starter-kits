@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box } from "@/components/ui/box";
 import { HStack } from "@/components/ui/hstack";
 import {
@@ -19,7 +19,7 @@ import { Pressable } from "@/components/ui/pressable";
 import { AlertCircle, type LucideIcon } from "lucide-react-native";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
-import { Image } from "@/components/ui/image";
+import Image from "@unitools/image";
 import { ScrollView } from "@/components/ui/scroll-view";
 import {
   Modal,
@@ -448,10 +448,15 @@ const MainContent = () => {
       <ModalComponent showModal={showModal} setShowModal={setShowModal} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack className="h-full w-full" space="2xl">
-          <Image
-            source={require("@/assets/profile-screens/profile/image2.png")}
-            className="w-full md:h-[478px] h-[332px]"
-          />
+          <Box className="relative w-full md:h-[478px] h-[332px]">
+            <Image
+              source={require("@/assets/profile-screens/profile/image2.png")}
+              height={"100%"}
+              width={"100%"}
+              alt="Banner Image"
+              contentFit="cover"
+            />
+          </Box>
           <HStack className="absolute pt-6 px-10 hidden md:flex">
             <Text className="text-typography-900 font-roboto">
               home &gt; {` `}
@@ -461,7 +466,11 @@ const MainContent = () => {
           <Center className="absolute md:mt-14 mt-6 w-full md:px-10 md:pt-6 pb-4">
             <VStack space="lg" className="items-center">
               <Avatar size="2xl" className="bg-primary-600">
-                <AvatarImage source={require("./assets/image.png")} />
+                <AvatarImage
+                  height={"100%"}
+                  width={"100%"}
+                  source={require("@/assets/profile-screens/profile/image.png")}
+                />
                 <AvatarBadge />
               </Avatar>
               <VStack className="gap-1 w-full items-center">
@@ -532,8 +541,10 @@ const MainContent = () => {
             >
               <HStack space="2xl" className="items-center">
                 <Image
-                  source={require("@/assets/profile-screen/profile/image1.png")}
-                  size="md"
+                  source={require("@/assets/profile-screens/profile/image1.png")}
+                  height={80}
+                  width={80}
+                  alt="Promo Image"
                 />
                 <VStack>
                   <Text className="text-typography-900 text-lg" size="lg">
@@ -552,11 +563,10 @@ const MainContent = () => {
             <VStack className="py-2 px-4 border rounded-xl border-border-300 justify-between items-center">
               {accountData.map((item, index) => {
                 return (
-                  <>
+                  <React.Fragment key={index}>
                     <HStack
                       space="2xl"
                       className="justify-between items-center w-full flex-1 py-3 px-2"
-                      key={index}
                     >
                       <HStack className="items-center" space="md">
                         <Icon as={item.iconName} />
@@ -567,7 +577,7 @@ const MainContent = () => {
                     {accountData.length - 1 !== index && (
                       <Divider className="my-1" />
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </VStack>
@@ -577,7 +587,7 @@ const MainContent = () => {
             <VStack className="py-2 px-4 border rounded-xl border-border-300 justify-between items-center">
               {accountData.map((item, index) => {
                 return (
-                  <>
+                  <React.Fragment key={index}>
                     <HStack
                       space="2xl"
                       className="justify-between items-center w-full flex-1 py-3 px-2"
@@ -592,7 +602,7 @@ const MainContent = () => {
                     {accountData.length - 1 !== index && (
                       <Divider className="my-1" />
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
             </VStack>
@@ -624,16 +634,22 @@ const MobileScreen = () => {
 
   return (
     <VStack className="md:hidden mb-5">
-      <Image
-        source={require("./assets/image2.png")}
-        className="w-full h-[188px]"
-      />
+      <Box className="w-full h-[188px]">
+        <Image
+          source={require("@/assets/profile-screens/profile/image2.png")}
+          height={"100%"}
+          width={"100%"}
+          alt="Banner Image"
+        />
+      </Box>
       <Pressable className="absolute bg-background-950 rounded-full items-center justify-center h-8 w-8 right-6 top-[172px]">
         <Icon as={CameraSparklesIcon} />
       </Pressable>
       <Center className="w-full absolute top-10">
         <Avatar size="2xl">
-          <AvatarImage source={require("./assets/image.png")} />
+          <AvatarImage
+            source={require("@/assets/profile-screens/profile/image.png")}
+          />
           <AvatarBadge className="justify-center items-center bg-background-950">
             <Icon as={EditPhotoIcon} />
           </AvatarBadge>
@@ -1062,10 +1078,14 @@ const ModalComponent = ({
     >
       <ModalBackdrop />
       <ModalContent>
-        <Image
-          source={require("./assets/image2.png")}
-          className={"w-full h-[215px] "}
-        />
+        <Box className={"w-full h-[215px] "}>
+          <Image
+            source={require("@/assets/profile-screens/profile/image2.png")}
+            height={"100%"}
+            width={"100%"}
+            alt="Banner Image"
+          />
+        </Box>
         <Pressable className="absolute bg-background-500 rounded-full items-center justify-center h-8 w-8 right-6 top-44">
           <Icon as={CameraSparklesIcon} />
         </Pressable>
@@ -1083,7 +1103,9 @@ const ModalComponent = ({
         </ModalHeader>
         <Center className="w-full absolute top-16">
           <Avatar size="2xl">
-            <AvatarImage source={require("./assets/image.png")} />
+            <AvatarImage
+              source={require("@/assets/profile-screens/profile/image.png")}
+            />
             <AvatarBadge className="justify-center items-center bg-background-500">
               <Icon as={EditPhotoIcon} />
             </AvatarBadge>

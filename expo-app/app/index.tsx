@@ -3,12 +3,10 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native";
 import { VStack } from "@/components/ui/vstack";
-import { Heading } from "@/components/ui/heading";
 const index = () => {
   return (
     <SafeAreaView>
       <VStack className="m-2" space="xl">
-        <Heading>Auth Screen</Heading>
         <Button
           onPress={() => {
             router.push("auth/splash-screen");
