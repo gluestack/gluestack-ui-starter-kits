@@ -2,7 +2,8 @@
 import React from "react";
 import { createAvatar } from "@gluestack-ui/avatar";
 
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
+import Image from "@unitools/image";
 
 import { tva } from "@gluestack-ui/nativewind-utils/tva";
 import {
@@ -24,7 +25,11 @@ const UIAvatar = createAvatar({
 cssInterop(UIAvatar, { className: "style" });
 cssInterop(UIAvatar.Badge, { className: "style" });
 cssInterop(UIAvatar.Group, { className: "style" });
-cssInterop(UIAvatar.Image, { className: "style" });
+cssInterop(
+  UIAvatar.Image,
+  //@ts-ignore
+  Image.displayName === "NextImage" ? {} : { className: "style" }
+);
 cssInterop(UIAvatar.FallbackText, { className: "style" });
 
 const avatarStyle = tva({

@@ -19,12 +19,6 @@ module.exports = function (api) {
           },
         },
       ],
-      [
-        imageBabel,
-        {
-          assetPath: path.join(__dirname, "assets"),
-        },
-      ],
       "react-native-reanimated/plugin",
     ],
   };

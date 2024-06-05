@@ -17,7 +17,7 @@ import { GlobeIcon } from "./assets/icons/globe";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { useState } from "react";
 import { Heading } from "@/components/ui/heading";
-import { Image } from "@/components/ui/image";
+import Image from "@unitools/image";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import {
@@ -100,35 +100,35 @@ interface CreatorData {
 
 const WORLD_DATA: BlogData[] = [
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image3.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image4.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image4.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image5.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image5.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image3.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image4.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image4.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
@@ -137,21 +137,21 @@ const WORLD_DATA: BlogData[] = [
 ];
 const BLOGS_DATA: BlogData[] = [
   {
-    bannerUri: require("./assets/image.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image2.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image2.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
     publishedDate: "May 15, 2023",
   },
   {
-    bannerUri: require("./assets/image2.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image2.png"),
     title: "The Power of Positive Thinking",
     description:
       "Discover how the power of positive thinking can transform your life, boost your confidence, and help you overcome challenges. Explore practical tips and techniques to cultivate a positive mindset for greater happiness and success.",
@@ -160,17 +160,17 @@ const BLOGS_DATA: BlogData[] = [
 ];
 const CREATORS_DATA: CreatorData[] = [
   {
-    bannerUri: require("./assets/image6.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image6.png"),
     name: "Emily Zho",
     description: "Designer by heart, writer by profession, talks about design",
   },
   {
-    bannerUri: require("./assets/image7.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image7.png"),
     name: "Ram Narayan",
     description: "Founder of Fortune 500 company Alo, talks about",
   },
   {
-    bannerUri: require("./assets/image8.png"),
+    bannerUri: require("@/assets/news-feed/news-and-feed/image8.png"),
     name: "David John",
     description: "Creator of all things metal, talks about music and art. ",
   },
@@ -328,11 +328,15 @@ const MainContent = () => {
                   className="rounded-xl border border-border-300 p-5"
                   key={index}
                 >
-                  <Image
-                    source={item.bannerUri}
-                    className="w-full h-64 rounded"
-                    alt={item.bannerUri}
-                  />
+                  <Box className="w-full h-64 rounded">
+                    <Image
+                      height={"100%"}
+                      width={"100%"}
+                      source={item.bannerUri}
+                      alt={item.bannerUri}
+                      contentFit="cover"
+                    />
+                  </Box>
                   <VStack className="mt-4" space="md">
                     <Text className="text-sm">{item.publishedDate}</Text>
                     <Heading size="md">{item.title}</Heading>
@@ -362,12 +366,15 @@ const MainContent = () => {
                         space="lg"
                         key={index}
                       >
-                        <Image
-                          source={item.bannerUri}
-                          className="w-40 h-full rounded"
-                          alt={item.bannerUri}
-                        />
-
+                        <Box className="relative h-full w-40 rounded">
+                          <Image
+                            height={"100%"}
+                            width={"100%"}
+                            contentFit="cover"
+                            source={item.bannerUri}
+                            alt={item.title}
+                          />
+                        </Box>
                         <VStack className="justify-between h-full" space="md">
                           <Text className="text-sm">{item.publishedDate}</Text>
                           <Heading size="md">{item.title}</Heading>
@@ -395,6 +402,7 @@ const MainContent = () => {
                             //@ts-ignore
                             source={item.bannerUri}
                             alt={item.bannerUri}
+                            contentFit="cover"
                           />
                         </Avatar>
                         <Button

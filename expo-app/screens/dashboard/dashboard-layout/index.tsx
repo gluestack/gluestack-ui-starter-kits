@@ -27,7 +27,6 @@ import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Platform } from "react-native";
-import { useBreakpointValue } from "@/hooks/useBreakpointValue";
 type MobileHeaderProps = {
   title: string;
 };
@@ -106,27 +105,27 @@ interface ColleaguesCardData {
 
 const HeadingCards: CardData[] = [
   {
-    bannerUri: require("./assets/image.png"),
+    bannerUri: require("@/assets/dashboard/dashboard-layout/image.png"),
     title: "Update your profile",
     description: "Add your details",
   },
   {
-    bannerUri: require("./assets/image2.png"),
+    bannerUri: require("@/assets/dashboard/dashboard-layout/image2.png"),
     title: "Your skills",
     description: "Add your skills here",
   },
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/dashboard/dashboard-layout/image3.png"),
     title: "Your goals",
     description: "Set a target to accomplish",
   },
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/dashboard/dashboard-layout/image3.png"),
     title: "Your goals",
     description: "Set a target to accomplish",
   },
   {
-    bannerUri: require("./assets/image3.png"),
+    bannerUri: require("@/assets/dashboard/dashboard-layout/image3.png"),
     title: "Your goals",
     description: "Set a target to accomplish",
   },
@@ -181,22 +180,22 @@ const LeavesCards: LeavesCardData[] = [
 ];
 const ColleaguesCards: ColleaguesCardData[] = [
   {
-    image: require("./assets/image7.png"),
+    image: require("@/assets/dashboard/dashboard-layout/image7.png"),
     title: "Emily Zho",
     position: "UI/UX Designer",
   },
   {
-    image: require("./assets/image4.png"),
+    image: require("@/assets/dashboard/dashboard-layout/image4.png"),
     title: "Marilyn Monroe",
     position: "SDE II",
   },
   {
-    image: require("./assets/image5.png"),
+    image: require("@/assets/dashboard/dashboard-layout/image5.png"),
     title: "James Kant",
     position: "SDE III",
   },
   {
-    image: require("./assets/image6.png"),
+    image: require("@/assets/dashboard/dashboard-layout/image6.png"),
     title: "Richard Faynmen",
     position: "CEO Marketing",
   },
@@ -371,6 +370,8 @@ const MainContent = () => {
                     <HStack space="xl" className="items-center">
                       <Avatar>
                         <AvatarImage
+                          height={"100%"}
+                          width={"100%"}
                           //@ts-ignore
                           source={item.bannerUri}
                         />
@@ -521,7 +522,11 @@ const MainContent = () => {
                   return (
                     <HStack space="lg" key={index} className="w-full px-4 py-2">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage source={item.image} />
+                        <AvatarImage
+                          height={"100%"}
+                          width={"100%"}
+                          source={item.image}
+                        />
                       </Avatar>
                       <VStack>
                         <Text className="text-typography-900 font-roboto line-clamp-1">
@@ -558,7 +563,11 @@ const MainContent = () => {
                   return (
                     <HStack space="lg" key={index} className="px-4 py-2 w-full">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage source={item.image} />
+                        <AvatarImage
+                          height={"100%"}
+                          width={"100%"}
+                          source={item.image}
+                        />
                       </Avatar>
                       <VStack>
                         <Text className="text-typography-900 font-roboto line-clamp-1">

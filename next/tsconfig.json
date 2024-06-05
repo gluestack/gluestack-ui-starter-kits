@@ -21,7 +21,12 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
+      "@/assets/*": [
+        "../../packages/shared/assets/*",
+        "./public/assets/*"
+      ],
       "@/*": [
         "./*"
       ]
