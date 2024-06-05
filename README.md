@@ -68,6 +68,7 @@ cd universal && yarn run:next
 - `app/expo`: Contains the Expo application.
 - `packages/components`: Shared components used across platforms.
 - `packages/screens`: Shared screens that can be used in both Next.js and Expo projects.
+- `packages/shared`: Shared assets
 
 # Usage
 
