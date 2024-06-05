@@ -75,7 +75,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
     <SafeAreaView className="w-full h-full">
       <HStack className="w-full h-full bg-background-0">
         <VStack
-          className="relative w-0 hidden md:flex md:h-full bg-primary-500 md:min-w-[50%] items-center  justify-center p-7"
+          className="relative w-0 hidden md:flex md:h-full md:min-w-[50%] items-center  justify-center p-7"
           space="md"
         >
           <Image
