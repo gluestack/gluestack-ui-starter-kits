@@ -8,7 +8,6 @@ const Page = () => {
 
   return (
     <VStack className="m-2" space="xl">
-      <Heading>Auth Screens</Heading>
       <Button
         onPress={() => {
           router.push("auth/splash-screen");
