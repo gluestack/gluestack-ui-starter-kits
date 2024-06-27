@@ -76,6 +76,8 @@ import {
 } from "@/components/ui/select";
 import { CameraSparklesIcon } from "./assets/icons/camera-sparkles";
 import { EditPhotoIcon } from "./assets/icons/edit-photo";
+import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
+
 
 type MobileHeaderProps = {
   title: string;
@@ -448,7 +450,13 @@ const MainContent = () => {
   return (
     <VStack className="h-full w-full mb-16 md:mb-0">
       <ModalComponent showModal={showModal} setShowModal={setShowModal} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: isWeb ? 0 : 160,
+          flexGrow: 1,
+        }}
+      >
         <VStack className="h-full w-full pb-8" space="2xl">
           <Box className="relative w-full md:h-[478px] h-[380px]">
             <Image
@@ -546,8 +554,8 @@ const MainContent = () => {
                 <Box className="md:h-20 md:w-20 h-10 w-10">
                   <Image
                     source={require("@/assets/profile-screens/profile/image1.png")}
-                    height={'100%'}
-                    width={'100%'}
+                    height={"100%"}
+                    width={"100%"}
                     alt="Promo Image"
                   />
                 </Box>
@@ -1098,7 +1106,7 @@ const ModalComponent = ({
           <Icon as={CameraSparklesIcon} />
         </Pressable>
         <ModalHeader className="absolute w-full">
-          <Heading size="2xl" className="text-typography-0">
+          <Heading size="2xl" className="text-typography-800">
             Edit Profile
           </Heading>
           <ModalCloseButton>
