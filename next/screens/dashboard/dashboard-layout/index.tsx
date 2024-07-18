@@ -280,7 +280,7 @@ function MobileFooter({ footerIcons }: { footerIcons: any }) {
           return (
             <Pressable
               className="px-0.5 flex-1 flex-col items-center"
-              key={index}
+              key={item.iconName}
               onPress={() => router.push("/dashboard/dashboard-layout")}
             >
               <Icon
@@ -345,7 +345,8 @@ const MainContent = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: isWeb ? 0 : 50,
+          paddingBottom: isWeb ? 0 : 100,
+          flexGrow:1
         }}
         className="flex-1 mb-20 md:mb-2"
       >

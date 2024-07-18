@@ -3,10 +3,10 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
-    "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
-    "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
-    "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
+    "start": "npx expo start",
+    "android": "npx expo start --android",
+    "ios": "npx expo start --ios",
+    "web": "npx expo start --web",
     "test": "jest --watchAll"
   },
   "jest": {
