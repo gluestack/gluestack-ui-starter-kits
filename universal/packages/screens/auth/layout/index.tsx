@@ -17,14 +17,14 @@ export const AuthLayout = (props: AuthLayoutProps) => {
       >
         <HStack className="w-full h-full bg-background-0 flex-grow justify-center">
           <VStack
-            className="relative hidden md:flex h-full w-full flex-1  items-center  justify-center p-7"
+            className="relative hidden md:flex h-full w-full flex-1  items-center  justify-center"
             space="md"
           >
             <Image
               height="100%"
               width="100%"
               source={require("@/assets/auth/radialGradient.png")}
-              className="object-cover"
+              className="object-cover h-full w-full"
               alt="Radial Gradient"
             />
           </VStack>
