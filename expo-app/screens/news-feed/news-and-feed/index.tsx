@@ -398,12 +398,11 @@ const MainContent = () => {
                         key={index}
                       >
                         <Avatar>
-                          <AvatarImage
-                            //@ts-ignore
-                            source={item.bannerUri}
-                            alt={item.bannerUri}
-                            contentFit="cover"
-                          />
+                          <Avatar>
+                            <AvatarFallbackText>
+                              {item.name?.[0] ?? "U"}
+                            </AvatarFallbackText>
+                          </Avatar>
                         </Avatar>
                         <Button
                           variant="outline"
