@@ -304,7 +304,7 @@ const MainContent = () => {
       className="p-4 pb-0 md:px-10 md:pt-6 md:pb-0 h-full w-full max-w-[1500px] self-center  mb-20 md:mb-2"
       space="2xl"
     >
-      <Input className="text-center md:hidden">
+      <Input className="text-center md:hidden border-border-100">
         <InputField placeholder="Search" />
         <InputSlot className="pr-3">
           <InputIcon as={SearchIcon} />
@@ -347,7 +347,7 @@ const MainContent = () => {
             })}
           </VStack>
         </ScrollView>
-        <VStack className="max-w-[500px] hidden md:flex" space="2xl">
+        <VStack className="max-w-[500px] hidden lg:flex" space="2xl">
           <Input className="text-center">
             <InputField placeholder="Search" />
             <InputSlot className="pr-3">
@@ -398,12 +398,11 @@ const MainContent = () => {
                         key={index}
                       >
                         <Avatar>
-                          <AvatarImage
-                            //@ts-ignore
-                            source={item.bannerUri}
-                            alt={item.bannerUri}
-                            contentFit="cover"
-                          />
+                          <Avatar>
+                            <AvatarFallbackText>
+                              {item.name?.[0] ?? "U"}
+                            </AvatarFallbackText>
+                          </Avatar>
                         </Avatar>
                         <Button
                           variant="outline"

@@ -316,7 +316,7 @@ const SignUpWithLeftBackground = () => {
             <ButtonIcon as={GoogleIcon} />
           </Button>
         </VStack>
-        <HStack className="self-center">
+        <HStack className="self-center" space="sm">
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
             <LinkText

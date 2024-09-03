@@ -347,7 +347,7 @@ const MainContent = () => {
             })}
           </VStack>
         </ScrollView>
-        <VStack className="max-w-[500px] hidden md:flex" space="2xl">
+        <VStack className="max-w-[500px] hidden lg:flex" space="2xl">
           <Input className="text-center">
             <InputField placeholder="Search" />
             <InputSlot className="pr-3">

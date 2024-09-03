@@ -78,7 +78,6 @@ import { CameraSparklesIcon } from "./assets/icons/camera-sparkles";
 import { EditPhotoIcon } from "./assets/icons/edit-photo";
 import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 
-
 type MobileHeaderProps = {
   title: string;
 };
@@ -477,6 +476,7 @@ const MainContent = () => {
             <VStack space="lg" className="items-center">
               <Avatar size="2xl" className="bg-primary-600">
                 <AvatarImage
+                  alt="Profile Image"
                   height={"100%"}
                   width={"100%"}
                   source={require("@/assets/profile-screens/profile/image.png")}
@@ -484,10 +484,10 @@ const MainContent = () => {
                 <AvatarBadge />
               </Avatar>
               <VStack className="gap-1 w-full items-center">
-                <Text size="2xl" className="font-roboto text-typography-900">
+                <Text size="2xl" className="font-roboto text-dark">
                   Alexander Leslie
                 </Text>
-                <Text className="font-roboto text-sm text-typography-900">
+                <Text className="font-roboto text-sm text-typograpphy-700">
                   United States
                 </Text>
               </VStack>
@@ -496,37 +496,37 @@ const MainContent = () => {
                   return (
                     <HStack className="items-center gap-1" key={index}>
                       <VStack className="py-3 px-4 items-center" space="xs">
-                        <Text className="text-typography-900 font-roboto font-semibold justify-center items-center">
+                        <Text className="text-dark font-roboto font-semibold justify-center items-center">
                           {item.friends}
                         </Text>
-                        <Text className="text-typography-900 text-xs font-roboto">
+                        <Text className="text-dark text-xs font-roboto">
                           {item.friendsText}
                         </Text>
                       </VStack>
                       <Divider orientation="vertical" className="h-10" />
                       <VStack className="py-3 px-4 items-center" space="xs">
-                        <Text className="text-typography-900 font-roboto font-semibold">
+                        <Text className="text-dark font-roboto font-semibold">
                           {item.followers}
                         </Text>
-                        <Text className="text-typography-900 text-xs font-roboto">
+                        <Text className="text-dark text-xs font-roboto">
                           {item.followersText}
                         </Text>
                       </VStack>
                       <Divider orientation="vertical" className="h-10" />
                       <VStack className="py-3 px-4 items-center" space="xs">
-                        <Text className="text-typography-900 font-roboto font-semibold">
+                        <Text className="text-dark font-roboto font-semibold">
                           {item.rewards}
                         </Text>
-                        <Text className="text-typography-900 text-xs font-roboto">
+                        <Text className="text-dark text-xs font-roboto">
                           {item.rewardsText}
                         </Text>
                       </VStack>
                       <Divider orientation="vertical" className="h-10" />
                       <VStack className="py-3 px-4 items-center" space="xs">
-                        <Text className="text-typography-900 font-roboto font-semibold">
+                        <Text className="text-dark font-roboto font-semibold">
                           {item.posts}
                         </Text>
-                        <Text className="text-typography-900 text-xs font-roboto">
+                        <Text className="text-dark text-xs font-roboto">
                           {item.postsText}
                         </Text>
                       </VStack>
@@ -540,7 +540,7 @@ const MainContent = () => {
                 onPress={() => setShowModal(true)}
                 className="gap-3 relative"
               >
-                <ButtonText>Edit Profile</ButtonText>
+                <ButtonText className="text-dark">Edit Profile</ButtonText>
                 <ButtonIcon as={EditIcon} />
               </Button>
             </VStack>
@@ -586,7 +586,7 @@ const MainContent = () => {
                       className="justify-between items-center w-full flex-1 py-3 px-2"
                     >
                       <HStack className="items-center" space="md">
-                        <Icon as={item.iconName} />
+                        <Icon as={item.iconName} className="stroke-[#747474]" />
                         <Text size="lg">{item.subText}</Text>
                       </HStack>
                       <Icon as={item.endIcon} />
@@ -611,7 +611,7 @@ const MainContent = () => {
                       key={index}
                     >
                       <HStack className="items-center" space="md">
-                        <Icon as={item.iconName} />
+                        <Icon as={item.iconName} className="stroke-[#747474]" />
                         <Text size="lg">{item.subText}</Text>
                       </HStack>
                       <Icon as={item.endIcon} />

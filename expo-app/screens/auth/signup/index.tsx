@@ -316,11 +316,11 @@ const SignUpWithLeftBackground = () => {
             <ButtonIcon as={GoogleIcon} />
           </Button>
         </VStack>
-        <HStack className="self-center">
+        <HStack className="self-center" space="sm">
           <Text size="md">Already have an account?</Text>
           <Link href="/auth/signin">
             <LinkText
-              className="font-medium text-primary-700 ml-1 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
+              className="font-medium text-primary-700 group-hover/link:text-primary-600 group-hover/pressed:text-primary-700"
               size="md"
             >
               Login
