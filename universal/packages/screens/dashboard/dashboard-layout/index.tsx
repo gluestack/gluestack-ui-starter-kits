@@ -27,6 +27,7 @@ import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Platform } from "react-native";
+import Image from "@unitools/image"
 type MobileHeaderProps = {
   title: string;
 };
@@ -346,7 +347,7 @@ const MainContent = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: isWeb ? 0 : 100,
-          flexGrow:1
+          flexGrow: 1,
         }}
         className="flex-1 mb-20 md:mb-2"
       >
@@ -370,11 +371,13 @@ const MainContent = () => {
                   >
                     <HStack space="xl" className="items-center">
                       <Avatar>
-                        <AvatarImage
+                        <Image
+                          source={item.bannerUri}
                           height={"100%"}
                           width={"100%"}
-                          //@ts-ignore
-                          source={item.bannerUri}
+                          alt="Avatar Image"
+                          contentFit="cover"
+                          style={{ borderRadius: "100%" }}
                         />
                       </Avatar>
                       <VStack>
@@ -523,10 +526,13 @@ const MainContent = () => {
                   return (
                     <HStack space="lg" key={index} className="w-full px-4 py-2">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage
+                        <Image
+                          source={item.image}
                           height={"100%"}
                           width={"100%"}
-                          source={item.image}
+                          alt="Avatar Image"
+                          contentFit="cover"
+                          style={{ borderRadius: "100%" }}
                         />
                       </Avatar>
                       <VStack>
@@ -564,10 +570,13 @@ const MainContent = () => {
                   return (
                     <HStack space="lg" key={index} className="px-4 py-2 w-full">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage
+                        <Image
+                          source={item.image}
                           height={"100%"}
                           width={"100%"}
-                          source={item.image}
+                          alt="Avatar Image"
+                          contentFit="cover"
+                          style={{ borderRadius: "100%" }}
                         />
                       </Avatar>
                       <VStack>
