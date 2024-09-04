@@ -398,11 +398,13 @@ const MainContent = () => {
                         key={index}
                       >
                         <Avatar>
-                          <AvatarImage
-                            //@ts-ignore
+                          <Image
                             source={item.bannerUri}
-                            alt={item.bannerUri}
+                            height={"100%"}
+                            width={"100%"}
+                            alt="Avatar Image"
                             contentFit="cover"
+                            style={{ borderRadius: "100%" }}
                           />
                         </Avatar>
                         <Button

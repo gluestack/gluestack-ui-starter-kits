@@ -26,7 +26,7 @@
     "@gluestack-ui/actionsheet": "latest",
     "@gluestack-ui/alert": "latest",
     "@gluestack-ui/alert-dialog": "latest",
-    "@gluestack-ui/avatar": "latest",
+    "@gluestack-ui/avatar": "^0.1.16",
     "@gluestack-ui/button": "latest",
     "@gluestack-ui/checkbox": "latest",
     "@gluestack-ui/divider": "latest",
