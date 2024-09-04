@@ -1034,7 +1034,7 @@ const ModalComponent = ({ showModal, setShowModal }) => {
           <Icon as={CameraSparklesIcon} />
         </Pressable>
         <ModalHeader className="absolute w-full">
-          <Heading size="2xl" className="text-typography-0">
+          <Heading size="2xl" className="text-typography-0 pt-4 pl-4">
             Edit Profile
           </Heading>
           <ModalCloseButton>
