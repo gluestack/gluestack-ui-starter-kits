@@ -851,10 +851,10 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/alert/-/alert-0.1.14.tgz#a92e042e5a7fa3013f11265f014e761d7ab74817"
   integrity sha512-eBQTfZrktiTria3/2mWpnEjptvjlVv1Vn3fDs6RBJCqA7k/c5RTfipyawixejRcg5zT+PoWwR11hvnEPv3UDng==
 
-"@gluestack-ui/avatar@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/avatar/-/avatar-0.1.16.tgz#87e60a171cd510084ec1d0c5bbe0602b3e771abc"
-  integrity sha512-5and3vzYuv/Si0q2n+5qOp1mmaT5GKgBBNtMBr+/gtYtqxPV299B0AUL513JDSRaDiJHw/gb0Xxaf5VbgJ0UNA==
+"@gluestack-ui/avatar@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/avatar/-/avatar-0.1.17.tgz#7657defaa103c72c02fd57300bc79dc93ea47b77"
+  integrity sha512-L7R3GVjYK6o+tdCiCDZXvHjPi1FKwt9XAFHGlEsQ4dX6Qe7yWEi3K+e5UBpS1ugvja7SmNS+YZwvr+nnVcmohQ==
   dependencies:
     "@gluestack-ui/utils" "^0.1.12"
 

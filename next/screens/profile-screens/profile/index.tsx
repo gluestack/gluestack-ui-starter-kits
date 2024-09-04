@@ -78,7 +78,6 @@ import { CameraSparklesIcon } from "./assets/icons/camera-sparkles";
 import { EditPhotoIcon } from "./assets/icons/edit-photo";
 import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 
-
 type MobileHeaderProps = {
   title: string;
 };
@@ -476,10 +475,13 @@ const MainContent = () => {
           <Center className="absolute md:mt-14 mt-6 w-full md:px-10 md:pt-6 pb-4">
             <VStack space="lg" className="items-center">
               <Avatar size="2xl" className="bg-primary-600">
-                <AvatarImage
+                <Image
+                  source={require("@/assets/profile-screens/profile/image.png")}
                   height={"100%"}
                   width={"100%"}
-                  source={require("@/assets/profile-screens/profile/image.png")}
+                  alt="Avatar Imagee"
+                  contentFit="cover"
+                  style={{ borderRadius: "100%" }}
                 />
                 <AvatarBadge />
               </Avatar>
