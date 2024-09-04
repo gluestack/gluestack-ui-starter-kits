@@ -1,3 +1,5 @@
+const gluestackPlugin = require("@gluestack-ui/nativewind-utils/tailwind-plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -205,5 +207,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [gluestackPlugin],
 };

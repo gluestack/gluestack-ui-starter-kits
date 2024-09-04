@@ -1,4 +1,4 @@
-export const GluestackIcon: any = () => {
+export const GluestackIconDark: any = () => {
   return (
     <svg
       width="219"
@@ -93,7 +93,7 @@ export const GluestackIcon: any = () => {
   );
 };
 
-export const GluestackIconDark: any = () => {
+export const GluestackIcon: any = () => {
   return (
     <svg
       width="219"
