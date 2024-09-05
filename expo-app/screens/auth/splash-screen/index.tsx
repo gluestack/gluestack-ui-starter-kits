@@ -10,7 +10,7 @@ import { useColorScheme } from "nativewind";
 import useRouter from "@unitools/router";
 import { AuthLayout } from "../layout";
 
-const SplashScreenWithLeftBackground = ({}: {}) => {
+const SplashScreenWithLeftBackground = () => {
   const router = useRouter();
   const { colorScheme } = useColorScheme();
   return (
