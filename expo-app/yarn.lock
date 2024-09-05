@@ -1084,7 +1084,7 @@
 
 "@expo/html-elements@^0.10.1":
   version "0.10.1"
-  resolved "https://registry.npmjs.org/@expo/html-elements/-/html-elements-0.10.1.tgz"
+  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.10.1.tgz#ec2625370cf1d4cb78efa954df45d422532d5ab6"
   integrity sha512-3PTmtkV15D7+lykXVtvkH1jQ5Y6JE+e3zCaoMMux7z2cSLGQUNwDEUwG37gew3OEB1/E4/SEWgjvg8m7E6/e2Q==
 
 "@expo/image-utils@^0.5.0":
@@ -1313,7 +1313,7 @@
 
 "@gluestack-ui/actionsheet@^0.2.44":
   version "0.2.44"
-  resolved "https://registry.npmjs.org/@gluestack-ui/actionsheet/-/actionsheet-0.2.44.tgz"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.44.tgz#3cec30acfed7d590b2d783b34d40b24eb7074a0d"
   integrity sha512-sLw/Pq5iMNliiddX1wGao3rj+6Brb2NZg6z2jRIoe6bvZoZ2x6ggQt2QznNeu6qRg0/sw3nwJUs5ZGMHGr4VeA==
   dependencies:
     "@gluestack-ui/hooks" "0.1.11"
@@ -1343,7 +1343,7 @@
 
 "@gluestack-ui/avatar@^0.1.17":
   version "0.1.17"
-  resolved "https://registry.npmjs.org/@gluestack-ui/avatar/-/avatar-0.1.17.tgz"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/avatar/-/avatar-0.1.17.tgz#7657defaa103c72c02fd57300bc79dc93ea47b77"
   integrity sha512-L7R3GVjYK6o+tdCiCDZXvHjPi1FKwt9XAFHGlEsQ4dX6Qe7yWEi3K+e5UBpS1ugvja7SmNS+YZwvr+nnVcmohQ==
   dependencies:
     "@gluestack-ui/utils" "^0.1.12"
@@ -1543,7 +1543,7 @@
 
 "@gluestack-ui/select@^0.1.29":
   version "0.1.29"
-  resolved "https://registry.npmjs.org/@gluestack-ui/select/-/select-0.1.29.tgz"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/select/-/select-0.1.29.tgz#9869573a3f74caeadac8372d942b048b51cb7eb6"
   integrity sha512-YbcF2v2DfP1Z1VGPEUXzjC9EvDR2QDgFLCpuUbNpztZqjAFHmdIWtJtxyCg6TrjbfsSKkVuoiXZ5VFRiymfOdQ==
   dependencies:
     "@gluestack-ui/form-control" "^0.1.18"
@@ -1965,7 +1965,7 @@
 
 "@legendapp/motion@^2.4.0":
   version "2.4.0"
-  resolved "https://registry.npmjs.org/@legendapp/motion/-/motion-2.4.0.tgz"
+  resolved "https://registry.yarnpkg.com/@legendapp/motion/-/motion-2.4.0.tgz#eef6f934b784e07fe94631d5648d412f34fa0c6b"
   integrity sha512-AAYpRLGvxGD5hIGl9sVHyoUufr66zoH82PuxYcKiPSMdCBI3jwZFWh6CuHjV1leRKVIRk2py1rSvIVabG8eqcw==
   dependencies:
     "@legendapp/tools" "2.0.1"
