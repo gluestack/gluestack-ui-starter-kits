@@ -28,7 +28,7 @@ jobs:
 
       - name: Start Next
         working-directory: ${{ env.working-directory }}
-        run: yarn dev
+        run: yarn dev --no-daemon
 
       - name: Build Next
         run: yarn build

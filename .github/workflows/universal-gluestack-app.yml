@@ -27,11 +27,11 @@ jobs:
 
       - name: Start Expo
         working-directory: ${{ env.working-directory }}
-        run: yarn run:expo
+        run: yarn run:expo --non-interactive
 
       - name: Start Next
         working-directory: ${{ env.working-directory }}
-        run: yarn run:next
+        run: yarn run:next  --no-daemon
 
       - name: Build Next
         working-directory: ${{ env.working-directory }}

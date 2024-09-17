@@ -26,6 +26,6 @@ jobs:
         working-directory: ${{ env.working-directory }}
         run: yarn
 
-      - name: Start Expo        
+      - name: Start Expo
         working-directory: ${{ env.working-directory }}
-        run: yarn start
+        run: yarn start --non-interactive
