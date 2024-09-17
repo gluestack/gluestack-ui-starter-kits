@@ -1,0 +1,31 @@
+name: Gluestack-ui Expo App | Start and Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Start Expo
+        run: yarn start
+
+      - name: Build Expo
+        run: eas build --platform android --non-interactive
