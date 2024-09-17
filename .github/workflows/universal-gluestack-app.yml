@@ -26,10 +26,13 @@ jobs:
         run: yarn
 
       - name: Start Expo
+        working-directory: ${{ env.working-directory }}
         run: yarn run:expo
 
       - name: Start Next
+        working-directory: ${{ env.working-directory }}
         run: yarn run:next
 
       - name: Build Next
+        working-directory: ${{ env.working-directory }}
         run: yarn build

@@ -23,7 +23,9 @@ jobs:
           node-version: 18.x
 
       - name: Install dependencies
+        working-directory: ${{ env.working-directory }}
         run: yarn
 
-      - name: Start Expo
+      - name: Start Expo        
+        working-directory: ${{ env.working-directory }}
         run: yarn start
