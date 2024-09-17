@@ -11,7 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      working-directory: expo-app
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -26,6 +27,3 @@ jobs:
 
       - name: Start Expo
         run: yarn start
-
-      - name: Build Expo
-        run: eas build --platform android --non-interactive
