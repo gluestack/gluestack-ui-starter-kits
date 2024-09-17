@@ -20,16 +20,16 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v1
         with:
-          node-version: "18.x"
+          node-version: 18.x
 
       - name: Install dependencies
         run: yarn
 
       - name: Start Expo
-        run: yarn start
+        run: yarn run:expo
 
       - name: Start Next
-        run: yarn dev
+        run: yarn run:next
 
       - name: Build Next
         run: yarn build
