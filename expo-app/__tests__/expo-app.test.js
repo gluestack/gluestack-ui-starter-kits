@@ -1,7 +1,7 @@
 // __tests__/App.test.js
 import React from "react";
 import { render } from "@testing-library/react-native";
-import App from "../App"; // Adjust the import based on your file structure
+import App from "../app"; // Adjust the import based on your file structure
 
 test("renders correctly", () => {
   const { getByText } = render(<App />);
