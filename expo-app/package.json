@@ -10,9 +10,6 @@
     "test": "jest",
     "postinstall": "patch-package"
   },
-  "jest": {
-    "preset": "jest-expo"
-  },
   "dependencies": {
     "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "^14.0.0",
