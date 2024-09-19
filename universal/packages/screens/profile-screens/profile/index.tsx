@@ -76,6 +76,7 @@ import {
 } from "@/components/ui/select";
 import { CameraSparklesIcon } from "./assets/icons/camera-sparkles";
 import { EditPhotoIcon } from "./assets/icons/edit-photo";
+import { isWeb } from "@gluestack-ui/nativewind-utils/IsWeb";
 
 type MobileHeaderProps = {
   title: string;
@@ -182,37 +183,38 @@ const Sidebar = () => {
     // router.push("/profile/profile");
   };
   return (
-    <VStack
-      className="h-full w-[280px] flex-1 py-4 pr-4 pl-8 items-center border-r border-border-300"
-      space="xl"
-    >
-      <VStack className="w-full px-2 pt-3 pb-4" space="xs">
-        <Text className="text-typography-600 px-4 py-2">SETTINGS</Text>
-        {SettingsList.map((item, index) => {
-          return (
-            <Pressable
-              onPress={() => handlePress(index)}
-              key={index}
-              className={`flex-row px-4 py-3 items-center gap-2 rounded
+    <ScrollView className=" h-full" contentContainerStyle={{ flexGrow: 1 }}>
+      <VStack
+        className="h-full flex-1 w-[280px] py-4 pr-4 pl-8 items-center border-r border-border-300"
+        space="xl"
+      >
+        <VStack className="w-full px-2 pt-3 pb-4" space="xs">
+          <Text className="text-typography-600 px-4 py-2">SETTINGS</Text>
+          {SettingsList.map((item, index) => {
+            return (
+              <Pressable
+                onPress={() => handlePress(index)}
+                key={index}
+                className={`flex-row px-4 py-3 items-center gap-2 rounded
               ${
                 index === selectedIndex
                   ? "bg-background-950 "
                   : "bg-background-0"
               }
               `}
-            >
-              <Icon
-                as={item.iconName}
-                className={`
+              >
+                <Icon
+                  as={item.iconName}
+                  className={`
               ${
                 index === selectedIndex
                   ? "stroke-background-0 fill-background-800"
                   : "stroke-background-800 fill-none"
               }
               `}
-              />
-              <Text
-                className={`
+                />
+                <Text
+                  className={`
               ${
                 index === selectedIndex
                   ? "text-typography-0"
@@ -220,31 +222,31 @@ const Sidebar = () => {
               }
 
               `}
-              >
-                {item.iconText}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </VStack>
-      <VStack className="w-full px-2 pt-3 pb-4" space="xs">
-        <Text className="text-typography-600 px-4 py-2">RESOURCES</Text>
-        {ResourcesList.map((item, index) => {
-          return (
-            <Pressable
-              onPress={() => handlePressResources(index)}
-              key={index}
-              className={`flex-row px-4 py-3 items-center gap-2 rounded
+                >
+                  {item.iconText}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </VStack>
+        <VStack className="w-full px-2 pt-3 pb-4" space="xs">
+          <Text className="text-typography-600 px-4 py-2">RESOURCES</Text>
+          {ResourcesList.map((item, index) => {
+            return (
+              <Pressable
+                onPress={() => handlePressResources(index)}
+                key={index}
+                className={`flex-row px-4 py-3 items-center gap-2 rounded
               ${
                 index === selectedIndexResources
                   ? "bg-background-950 "
                   : "bg-background-0"
               }
               `}
-            >
-              <Icon
-                as={item.iconName}
-                className={`
+              >
+                <Icon
+                  as={item.iconName}
+                  className={`
               ${
                 index === selectedIndexResources
                   ? "stroke-background-0"
@@ -253,9 +255,9 @@ const Sidebar = () => {
               
               h-10 w-10
               `}
-              />
-              <Text
-                className={`
+                />
+                <Text
+                  className={`
               ${
                 index === selectedIndexResources
                   ? "text-typography-0"
@@ -263,14 +265,15 @@ const Sidebar = () => {
               }
 
               `}
-              >
-                {item.iconText}
-              </Text>
-            </Pressable>
-          );
-        })}
+                >
+                  {item.iconText}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </VStack>
       </VStack>
-    </VStack>
+    </ScrollView>
   );
 };
 
@@ -446,9 +449,15 @@ const MainContent = () => {
   return (
     <VStack className="h-full w-full mb-16 md:mb-0">
       <ModalComponent showModal={showModal} setShowModal={setShowModal} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <VStack className="h-full w-full" space="2xl">
-          <Box className="relative w-full md:h-[478px] h-[332px]">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: isWeb ? 0 : 160,
+          flexGrow: 1,
+        }}
+      >
+        <VStack className="h-full w-full pb-8" space="2xl">
+          <Box className="relative w-full md:h-[478px] h-[380px]">
             <Image
               source={require("@/assets/profile-screens/profile/image2.png")}
               height={"100%"}
@@ -466,10 +475,13 @@ const MainContent = () => {
           <Center className="absolute md:mt-14 mt-6 w-full md:px-10 md:pt-6 pb-4">
             <VStack space="lg" className="items-center">
               <Avatar size="2xl" className="bg-primary-600">
-                <AvatarImage
+                <Image
+                  source={require("@/assets/profile-screens/profile/image.png")}
                   height={"100%"}
                   width={"100%"}
-                  source={require("@/assets/profile-screens/profile/image.png")}
+                  alt="Avatar Image"
+                  contentFit="cover"
+                  style={{ borderRadius: "100%" }}
                 />
                 <AvatarBadge />
               </Avatar>
@@ -481,53 +493,54 @@ const MainContent = () => {
                   United States
                 </Text>
               </VStack>
-
-              {userData.map((item, index) => {
-                return (
-                  <HStack className="items-center gap-1" key={index}>
-                    <VStack className="py-3 px-4 items-center" space="xs">
-                      <Text className="text-typography-900 font-roboto font-semibold justify-center items-center">
-                        {item.friends}
-                      </Text>
-                      <Text className="text-typography-900 text-xs font-roboto">
-                        {item.friendsText}
-                      </Text>
-                    </VStack>
-                    <Divider orientation="vertical" className="h-10" />
-                    <VStack className="py-3 px-4 items-center" space="xs">
-                      <Text className="text-typography-900 font-roboto font-semibold">
-                        {item.followers}
-                      </Text>
-                      <Text className="text-typography-900 text-xs font-roboto">
-                        {item.followersText}
-                      </Text>
-                    </VStack>
-                    <Divider orientation="vertical" className="h-10" />
-                    <VStack className="py-3 px-4 items-center" space="xs">
-                      <Text className="text-typography-900 font-roboto font-semibold">
-                        {item.rewards}
-                      </Text>
-                      <Text className="text-typography-900 text-xs font-roboto">
-                        {item.rewardsText}
-                      </Text>
-                    </VStack>
-                    <Divider orientation="vertical" className="h-10" />
-                    <VStack className="py-3 px-4 items-center" space="xs">
-                      <Text className="text-typography-900 font-roboto font-semibold">
-                        {item.posts}
-                      </Text>
-                      <Text className="text-typography-900 text-xs font-roboto">
-                        {item.postsText}
-                      </Text>
-                    </VStack>
-                  </HStack>
-                );
-              })}
+              <>
+                {userData.map((item, index) => {
+                  return (
+                    <HStack className="items-center gap-1" key={index}>
+                      <VStack className="py-3 px-4 items-center" space="xs">
+                        <Text className="text-typography-900 font-roboto font-semibold justify-center items-center">
+                          {item.friends}
+                        </Text>
+                        <Text className="text-typography-900 text-xs font-roboto">
+                          {item.friendsText}
+                        </Text>
+                      </VStack>
+                      <Divider orientation="vertical" className="h-10" />
+                      <VStack className="py-3 px-4 items-center" space="xs">
+                        <Text className="text-typography-900 font-roboto font-semibold">
+                          {item.followers}
+                        </Text>
+                        <Text className="text-typography-900 text-xs font-roboto">
+                          {item.followersText}
+                        </Text>
+                      </VStack>
+                      <Divider orientation="vertical" className="h-10" />
+                      <VStack className="py-3 px-4 items-center" space="xs">
+                        <Text className="text-typography-900 font-roboto font-semibold">
+                          {item.rewards}
+                        </Text>
+                        <Text className="text-typography-900 text-xs font-roboto">
+                          {item.rewardsText}
+                        </Text>
+                      </VStack>
+                      <Divider orientation="vertical" className="h-10" />
+                      <VStack className="py-3 px-4 items-center" space="xs">
+                        <Text className="text-typography-900 font-roboto font-semibold">
+                          {item.posts}
+                        </Text>
+                        <Text className="text-typography-900 text-xs font-roboto">
+                          {item.postsText}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  );
+                })}
+              </>
               <Button
                 variant="outline"
                 action="secondary"
                 onPress={() => setShowModal(true)}
-                className="gap-3"
+                className="gap-3 relative"
               >
                 <ButtonText>Edit Profile</ButtonText>
                 <ButtonIcon as={EditIcon} />
@@ -540,21 +553,27 @@ const MainContent = () => {
               space="2xl"
             >
               <HStack space="2xl" className="items-center">
-                <Image
-                  source={require("@/assets/profile-screens/profile/image1.png")}
-                  height={80}
-                  width={80}
-                  alt="Promo Image"
-                />
+                <Box className="md:h-20 md:w-20 h-10 w-10">
+                  <Image
+                    source={require("@/assets/profile-screens/profile/image1.png")}
+                    height={"100%"}
+                    width={"100%"}
+                    alt="Promo Image"
+                  />
+                </Box>
                 <VStack>
                   <Text className="text-typography-900 text-lg" size="lg">
                     Invite & get rewards
                   </Text>
-                  <Text className="font-roboto">Your code r45dAsdeK8</Text>
+                  <Text className="font-roboto text-sm md:text-[16px]">
+                    Your code r45dAsdeK8
+                  </Text>
                 </VStack>
               </HStack>
-              <Button>
-                <ButtonText>Invite</ButtonText>
+              <Button className="p-0 md:py-2 md:px-4 bg-background-0 active:bg-background-0 md:bg-background-900 ">
+                <ButtonText className="md:text-typography-0 text-typography-800 text-sm">
+                  Invite
+                </ButtonText>
               </Button>
             </HStack>
             <Heading className="font-roboto" size="xl">
@@ -608,7 +627,6 @@ const MainContent = () => {
             </VStack>
           </VStack>
         </VStack>
-        <MobileScreen />
       </ScrollView>
     </VStack>
   );
@@ -647,8 +665,13 @@ const MobileScreen = () => {
       </Pressable>
       <Center className="w-full absolute top-10">
         <Avatar size="2xl">
-          <AvatarImage
+          <Image
             source={require("@/assets/profile-screens/profile/image.png")}
+            height={"100%"}
+            width={"100%"}
+            alt="Avatar Image"
+            contentFit="cover"
+            style={{ borderRadius: "100%" }}
           />
           <AvatarBadge className="justify-center items-center bg-background-950">
             <Icon as={EditPhotoIcon} />
@@ -1090,7 +1113,7 @@ const ModalComponent = ({
           <Icon as={CameraSparklesIcon} />
         </Pressable>
         <ModalHeader className="absolute w-full">
-          <Heading size="2xl" className="text-typography-0">
+          <Heading size="2xl" className="text-typography-800 pt-4 pl-4">
             Edit Profile
           </Heading>
           <ModalCloseButton>
@@ -1103,8 +1126,13 @@ const ModalComponent = ({
         </ModalHeader>
         <Center className="w-full absolute top-16">
           <Avatar size="2xl">
-            <AvatarImage
+            <Image
               source={require("@/assets/profile-screens/profile/image.png")}
+              height={"100%"}
+              width={"100%"}
+              alt="Avatar Image"
+              contentFit="cover"
+              style={{ borderRadius: "100%" }}
             />
             <AvatarBadge className="justify-center items-center bg-background-500">
               <Icon as={EditPhotoIcon} />

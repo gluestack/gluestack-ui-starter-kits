@@ -347,7 +347,7 @@ const MainContent = () => {
             })}
           </VStack>
         </ScrollView>
-        <VStack className="max-w-[500px] hidden md:flex" space="2xl">
+        <VStack className="max-w-[500px] hidden lg:flex" space="2xl">
           <Input className="text-center">
             <InputField placeholder="Search" />
             <InputSlot className="pr-3">
@@ -398,11 +398,13 @@ const MainContent = () => {
                         key={index}
                       >
                         <Avatar>
-                          <AvatarImage
-                            //@ts-ignore
+                          <Image
                             source={item.bannerUri}
-                            alt={item.bannerUri}
+                            height={"100%"}
+                            width={"100%"}
+                            alt="Avatar Image"
                             contentFit="cover"
+                            style={{ borderRadius: "100%" }}
                           />
                         </Avatar>
                         <Button

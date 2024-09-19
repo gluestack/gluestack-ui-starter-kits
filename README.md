@@ -9,12 +9,13 @@ Welcome to the gluestack-ui Starter Kit! This project is designed to help you ki
 1. Clone the repository:
 
 ```bash
-https://github.com/gluestack/gluestack-ui-starter-kits.git
+git clone https://github.com/gluestack/gluestack-ui-starter-kits.git
+cd gluestack-ui-starter-kits
 ```
 
 2. Install dependencies:
 
-Go to `expo-app`, `next` and `universal` folders and run the following command:
+Go to `expo-app`, `next` and `universal` folders and run the following command in each:
 
 ```bash
 yarn
@@ -40,13 +41,13 @@ cd expo-app && yarn start
 
 #### Universal
 
-To run expo app, run the following command:
+For the Expo app in the universal project, run the following command:
 
 ```bash
 cd universal && yarn run:expo
 ```
 
-To run next app, run the following command:
+For the Next.js app in the universal project, run the following command:
 
 ```bash
 cd universal && yarn run:next
@@ -68,10 +69,11 @@ cd universal && yarn run:next
 - `app/expo`: Contains the Expo application.
 - `packages/components`: Shared components used across platforms.
 - `packages/screens`: Shared screens that can be used in both Next.js and Expo projects.
+- `packages/shared`: Shared assets
 
 # Usage
 
-You can copy project of your choice and start building your application.
+You can copy the project of your choice (Next.js, Expo, or Universal) and start building your application. The starter kit provides a basic structure and shared components to help you get started quickly.
 
 # Ejection
 

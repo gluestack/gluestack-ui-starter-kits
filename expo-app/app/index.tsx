@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, ButtonText } from "@/components/ui/button";
 import { router } from "expo-router";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { VStack } from "@/components/ui/vstack";
-const index = () => {
+function index() {
   return (
-    <SafeAreaView>
-      <VStack className="m-2" space="xl">
+    <SafeAreaView className="md:flex flex-col items-center justify-center md:w-full h-full">
+      <VStack className="p-2 md:max-w-[440px] w-full" space="xl">
         <Button
           onPress={() => {
             router.push("auth/splash-screen");
@@ -67,6 +67,6 @@ const index = () => {
       </VStack>
     </SafeAreaView>
   );
-};
+}
 
 export default index;
