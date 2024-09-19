@@ -2,7 +2,7 @@ module.exports = {
   roots: ["<rootDir>/__tests__"],
   testEnvironment: "node",
   modulePaths: ["<rootDir>/src"],
-  testPathIgnorePatterns: ["/node_modules/", "/dist/", "__test__/apps"],
+  testPathIgnorePatterns: ["/node_modules/"],
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{js,jsx}"],
   reporters: ["default", "jest-junit"],
