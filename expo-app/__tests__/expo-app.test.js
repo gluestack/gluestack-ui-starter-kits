@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react-native";
-import App from "../app";
+import App from "../app/index";
 
 test("renders correctly", () => {
   render(<App />);

@@ -3,12 +3,10 @@ module.exports = {
   roots: ["<rootDir>/__tests__"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   testEnvironment: "jsdom",
-  testPathIgnorePatterns: ["/node_modules/", "__test__"],
   transformIgnorePatterns: [
-    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)",
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|@gluestack-ui/.*|tailwind-variants)",
   ],
   setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
-  collectCoverage: true,
   collectCoverageFrom: ["app/**/*.{ts,tsx}"],
   reporters: ["default", "jest-junit"],
 
