@@ -1,4 +1,4 @@
-name: Universal gluestack-ui App (Expo and NextJs) | Start and Build
+name: Universal App | Start and Build
 
 on:
   push:
