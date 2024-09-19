@@ -7,10 +7,7 @@
     "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
     "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
     "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
-    "test": "jest --watchAll"
-  },
-  "jest": {
-    "preset": "jest-expo"
+    "test": "jest"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
@@ -37,11 +34,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^12.7.2",
     "@types/react": "~18.2.45",
     "@unitools/babel-plugin-universal-image": "^1.0.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "jest": "^29.2.1",
     "jest-expo": "~51.0.1",
+    "jest-junit": "^16.0.0",
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },

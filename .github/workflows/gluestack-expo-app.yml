@@ -30,13 +30,8 @@ jobs:
         working-directory: ${{ env.working-directory }}
         run: |
           yarn web --port 19006 &
-          echo $! > expo_pid.txt
           sleep 60 # Wait for Expo to start
 
       - name: Run tests
         working-directory: ${{ env.working-directory }}
         run: yarn test
-
-      - name: Kill Expo server
-        run: |
-          kill $(cat expo_pid.txt)

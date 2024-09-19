@@ -11,6 +11,7 @@
     "run:expo": "cd apps/expo-app && yarn start",
     "run:next": "cd apps/next && yarn dev",
     "build:next": "cd apps/next && yarn build",
+    "test:expo": "cd apps/expo-app && yarn test",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "postinstall": "patch-package",
     "eject": "npx @gluestack-ui/universal-cli@latest eject"
