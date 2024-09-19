@@ -25,10 +25,21 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Start Expo
-        working-directory: ${{ env.working-directory }}
-        run: yarn run:expo --non-interactive
-
       - name: Build Next
         working-directory: ${{ env.working-directory }}
-        run: yarn build
+        run: yarn build:next
+
+      - name: Start Expo on port 19007
+        working-directory: ${{ env.working-directory }}
+        run: |
+          cd apps/expo-app && yarn start:web --port 19007 &
+          echo $! > expo_pid.txt
+          sleep 60 # Wait for Expo to start
+
+      - name: Run tests
+        working-directory: ${{ env.working-directory }}
+        run: yarn test
+
+      - name: Kill Expo server
+        run: |
+          kill $(cat expo_pid.txt)
