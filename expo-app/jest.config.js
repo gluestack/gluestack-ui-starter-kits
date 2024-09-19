@@ -9,7 +9,7 @@ module.exports = {
   ],
   setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
   collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.{js,jsx}"],
+  collectCoverageFrom: ["app/**/*.{ts,tsx}"],
   reporters: ["default", "jest-junit"],
 
   testMatch: ["<rootDir>/__tests__/**/*.test.(js|jsx)"],
