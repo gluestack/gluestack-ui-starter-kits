@@ -1,6 +1,6 @@
 import { VStack } from "@/components/ui/vstack";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Icon } from "@/components/ui/icon";
+import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
+import { ArrowLeftIcon, Icon } from "@/components/ui/icon";
 import {
   GluestackIcon,
   GluestackIconDark,
@@ -30,7 +30,7 @@ const SplashScreenWithLeftBackground = () => {
             router.push("/auth/signin");
           }}
         >
-          <ButtonText className="font-medium">Log in</ButtonText>
+          <ButtonText className="font-medium">Log In</ButtonText>
         </Button>
         <Button
           onPress={() => {
@@ -38,6 +38,20 @@ const SplashScreenWithLeftBackground = () => {
           }}
         >
           <ButtonText className="font-medium">Sign Up</ButtonText>
+        </Button>
+        <Button
+          onPress={() => {
+            router.replace("/");
+          }}
+        >
+          <ButtonIcon
+            as={ArrowLeftIcon}
+            className="md:hidden stroke-background-100"
+            size="xl"
+          />
+          <ButtonText className="font-medium hidden md:block">
+            Go Back
+          </ButtonText>
         </Button>
       </VStack>
     </VStack>

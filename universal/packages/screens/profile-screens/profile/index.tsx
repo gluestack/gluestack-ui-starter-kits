@@ -41,7 +41,7 @@ import { ProfileIcon } from "./assets/icons/profile";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Center } from "@/components/ui/center";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
-import { Keyboard, Platform } from "react-native";
+import { Keyboard, Platform, StatusBar } from "react-native";
 import { SubscriptionIcon } from "./assets/icons/subscription";
 import { DownloadIcon } from "./assets/icons/download";
 import { FaqIcon } from "./assets/icons/faq";
@@ -1541,7 +1541,12 @@ const ModalComponent = ({
 };
 export const Profile = () => {
   return (
-    <SafeAreaView className="h-full w-full">
+    <SafeAreaView
+      className="h-full w-full"
+      style={{
+        marginTop: StatusBar.currentHeight,
+      }}
+    >
       <DashboardLayout title="Company Name" isSidebarVisible={true}>
         <MainContent />
       </DashboardLayout>

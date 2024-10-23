@@ -126,6 +126,20 @@ const SplashScreenWithLeftBackground = () => {
         >
           <ButtonText className="font-medium">Sign Up</ButtonText>
         </Button>
+        <Button
+          onPress={() => {
+            router.replace("/");
+          }}
+        >
+          <ButtonIcon
+            as={ArrowLeftIcon}
+            className="md:hidden stroke-background-100"
+            size="xl"
+          />
+          <ButtonText className="font-medium hidden md:block">
+            Go Back
+          </ButtonText>
+        </Button>
       </VStack>
     </>
   );

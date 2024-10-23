@@ -26,7 +26,7 @@ import { ProfileIcon } from "./assets/icons/profile";
 import { CalendarIcon } from "./assets/icons/calendar";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
-import { Platform } from "react-native";
+import { Platform, StatusBar } from "react-native";
 type MobileHeaderProps = {
   title: string;
 };
@@ -592,7 +592,12 @@ const MainContent = () => {
 
 export const Dashboard = () => {
   return (
-    <SafeAreaView className="h-full w-full">
+    <SafeAreaView
+      className="h-full w-full"
+      style={{
+        marginTop: StatusBar.currentHeight,
+      }}
+    >
       <DashboardLayout title="Dashboard" isSidebarVisible={true}>
         <MainContent />
       </DashboardLayout>

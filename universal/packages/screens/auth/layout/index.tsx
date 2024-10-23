@@ -3,6 +3,7 @@ import { VStack } from "@/components/ui/vstack";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Image } from "@/components/ui/image";
+import { StatusBar } from "react-native";
 
 type AuthLayoutProps = {
   children: React.ReactNode;
@@ -10,7 +11,12 @@ type AuthLayoutProps = {
 
 export const AuthLayout = (props: AuthLayoutProps) => {
   return (
-    <SafeAreaView className="w-full h-full">
+    <SafeAreaView
+      className="w-full h-full"
+      style={{
+        marginTop: StatusBar.currentHeight,
+      }}
+    >
       <ScrollView
         className="w-full h-full"
         contentContainerStyle={{ flexGrow: 1 }}

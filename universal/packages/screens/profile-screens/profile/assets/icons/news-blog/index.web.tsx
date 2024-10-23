@@ -1,4 +1,4 @@
-export const NewsBlogIcon: any = () => {
+export const NewsBlogIcon = () => {
   return (
     <svg
       width="16"

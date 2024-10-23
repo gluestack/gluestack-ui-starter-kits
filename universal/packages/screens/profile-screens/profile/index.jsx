@@ -39,6 +39,7 @@ import {
 import useRouter from "@unitools/router";
 import { ProfileIcon } from "./assets/icons/profile";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
+import { StatusBar } from "react-native";
 import { Center } from "@/components/ui/center";
 import { cn } from "@gluestack-ui/nativewind-utils/cn";
 import { Keyboard, Platform } from "react-native";
@@ -1462,7 +1463,12 @@ const ModalComponent = ({ showModal, setShowModal }) => {
 };
 export const Profile = () => {
   return (
-    <SafeAreaView className="h-full w-full">
+    <SafeAreaView
+      className="h-full w-full"
+      style={{
+        marginTop: StatusBar.currentHeight,
+      }}
+    >
       <DashboardLayout title="Company Name" isSidebarVisible={true}>
         <MainContent />
       </DashboardLayout>
