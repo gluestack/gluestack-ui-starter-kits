@@ -29,6 +29,9 @@
       ],
       "@/*": [
         "./*"
+      ],
+      "tailwind.config": [
+        "./tailwind.config.js"
       ]
     },
     "jsxImportSource": "nativewind"

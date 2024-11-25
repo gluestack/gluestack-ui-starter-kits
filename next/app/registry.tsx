@@ -1,14 +1,12 @@
-"use client";
+'use client';
 
-import "../styles/global.css";
-import React, { useRef, useState } from "react";
-import { useServerInsertedHTML } from "next/navigation";
-import { StyleRegistry, createStyleRegistry } from "styled-jsx";
-// eslint-disable-next-line @next/next/no-document-import-in-page
-import { Main } from "next/document";
-import { flush } from "@gluestack-ui/nativewind-utils/flush";
+import React, { useRef, useState } from 'react';
+import { useServerInsertedHTML } from 'next/navigation';
+import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
+import { Main } from 'next/document';
 // @ts-ignore
-import { AppRegistry } from "react-native-web";
+import { AppRegistry } from 'react-native-web';
+import { flush } from '@gluestack-ui/nativewind-utils/flush';
 
 export default function StyledJsxRegistry({
   children,
@@ -21,8 +19,8 @@ export default function StyledJsxRegistry({
   const isServerInserted = useRef(false);
 
   useServerInsertedHTML(() => {
-    AppRegistry.registerComponent("Main", () => Main);
-    const { getStyleElement } = AppRegistry.getApplication("Main");
+    AppRegistry.registerComponent('Main', () => Main);
+    const { getStyleElement } = AppRegistry.getApplication('Main');
     if (!isServerInserted.current) {
       isServerInserted.current = true;
       const styles = [getStyleElement(), jsxStyleRegistry.styles(), flush()];

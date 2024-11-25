@@ -1,76 +1,36 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { createInput } from '@gluestack-ui/input';
-import { Svg } from 'react-native-svg';
-import { View, Pressable, TextInput, Platform } from 'react-native';
+import { View, Pressable, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
+
 const SCOPE = 'INPUT';
 
-type IPrimitiveIcon = {
-  height?: number | string;
-  width?: number | string;
-  fill?: string;
-  color?: string;
-  size?: number | string;
-  stroke?: string;
-  as?: React.ElementType;
-  className?: string;
-};
-
-const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
-  IPrimitiveIcon
->(({ height, width, fill, color, size, stroke, as: AsComp, ...props }, ref) => {
-  const sizeProps = useMemo(() => {
-    if (size) return { size };
-    if (height && width) return { height, width };
-    if (height) return { height };
-    if (width) return { width };
-    return {};
-  }, [size, height, width]);
-
-  let colorProps = {};
-  if (color) {
-    colorProps = { ...colorProps, color: color };
-  }
-  if (stroke) {
-    colorProps = { ...colorProps, stroke: stroke };
-  }
-  if (fill) {
-    colorProps = { ...colorProps, fill: fill };
-  }
-  if (AsComp) {
-    return <AsComp ref={ref} {...sizeProps} {...colorProps} {...props} />;
-  }
-  return (
-    <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
-  );
-});
-
-const InputWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
-  return <View {...props} ref={ref} />;
-});
-
 const UIInput = createInput({
-  // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(InputWrapper, SCOPE)
-      : withStyleContextAndStates(InputWrapper, SCOPE),
-  Icon: PrimitiveIcon,
+  Root: withStyleContext(View, SCOPE),
+  Icon: UIIcon,
   Slot: Pressable,
-  Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
+  Input: TextInput,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
 });
 
 const inputStyle = tva({
@@ -137,25 +97,6 @@ const inputFieldStyle = tva({
       '4xl': 'text-4xl',
       '5xl': 'text-5xl',
       '6xl': 'text-6xl',
-    },
-  },
-});
-
-cssInterop(InputWrapper, { className: 'style' });
-cssInterop(UIInput.Slot, { className: 'style' });
-cssInterop(UIInput.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
-});
-cssInterop(UIInput.Icon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      // @ts-ignore
-      fill: true,
-      color: true,
-      stroke: true,
     },
   },
 });
