@@ -1,7 +1,6 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { createAccordion } from '@gluestack-ui/accordion';
-import { Svg } from 'react-native-svg';
 import { View, Pressable, Text, Platform, TextProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
@@ -9,9 +8,9 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { H3 } from '@expo/html-elements';
 import { cssInterop } from 'nativewind';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'ACCORDION';
 /** Styles */
@@ -30,7 +29,9 @@ const accordionStyle = tva({
     },
   },
 });
+
 const accordionItemStyle = tva({
+  base: 'py-3 px-4',
   parentVariants: {
     variant: {
       filled: 'bg-background-0',
@@ -65,7 +66,7 @@ const accordionContentTextStyle = tva({
   base: 'text-typography-700 font-normal',
   parentVariants: {
     size: {
-      sm: 'text-sm ',
+      sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
     },
@@ -75,79 +76,13 @@ const accordionHeaderStyle = tva({
   base: 'mx-0 my-0',
 });
 const accordionContentStyle = tva({
-  base: 'px-5 mt-2 pb-5',
+  base: 'mt-4',
 });
 const accordionTriggerStyle = tva({
-  base: 'w-full py-5 px-5 flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
 });
 
-type IPrimitiveIcon = {
-  height?: number | string;
-  width?: number | string;
-  fill?: string;
-  color?: string;
-  size?: number | string;
-  stroke?: string;
-  as?: React.ElementType;
-  className?: string;
-};
-
-const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
-  IPrimitiveIcon & React.ComponentPropsWithoutRef<typeof Svg>
->(
-  (
-    {
-      height,
-      width,
-      fill,
-      color,
-      size,
-      stroke = 'currentColor',
-      as: AsComp,
-      ...props
-    },
-    ref
-  ) => {
-    const sizeProps = useMemo(() => {
-      if (size) return { size };
-      if (height && width) return { height, width };
-      if (height) return { height };
-      if (width) return { width };
-      return {};
-    }, [size, height, width]);
-
-    const colorProps =
-      stroke === 'currentColor' && color !== undefined ? color : stroke;
-
-    if (AsComp) {
-      return (
-        <AsComp
-          ref={ref}
-          fill={fill}
-          {...props}
-          {...sizeProps}
-          stroke={colorProps}
-        />
-      );
-    }
-    return (
-      <Svg
-        ref={ref}
-        height={height}
-        width={width}
-        fill={fill}
-        stroke={colorProps}
-        {...props}
-      />
-    );
-  }
-);
-
-const Root =
-  Platform.OS === 'web'
-    ? withStyleContext(View, SCOPE)
-    : withStyleContextAndStates(View, SCOPE);
+const Root = withStyleContext(View, SCOPE);
 
 const Header = (
   Platform.OS === 'web' ? H3 : View
@@ -159,30 +94,20 @@ const UIAccordion = createAccordion({
   Item: View,
   Header: Header,
   Trigger: Pressable,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
   TitleText: Text,
   ContentText: Text,
   Content: View,
 });
 
-cssInterop(UIAccordion, { className: 'style' });
-cssInterop(UIAccordion.Item, { className: 'style' });
-cssInterop(UIAccordion.Header, { className: 'style' });
-cssInterop(UIAccordion.Trigger, { className: 'style' });
-cssInterop(UIAccordion.Icon, { className: 'style' });
-cssInterop(UIAccordion.TitleText, { className: 'style' });
-cssInterop(UIAccordion.Content, { className: 'style' });
-cssInterop(UIAccordion.ContentText, { className: 'style' });
-// @ts-ignore
-cssInterop(UIAccordion.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
-      color: true,
+      color: 'classNameColor',
       stroke: true,
     },
   },

@@ -1,7 +1,6 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { H4 } from '@expo/html-elements';
-import { Svg } from 'react-native-svg';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
 import {
   Pressable,
@@ -11,81 +10,17 @@ import {
   VirtualizedList,
   FlatList,
   SectionList,
-  Platform,
   PressableProps,
 } from 'react-native';
-
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { cssInterop } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
-
-type IPrimitiveIcon = {
-  height?: number | string;
-  width?: number | string;
-  fill?: string;
-  color?: string;
-  size?: number | string;
-  stroke?: string;
-  as?: React.ElementType;
-  className?: string;
-};
-const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
-  IPrimitiveIcon & React.ComponentPropsWithoutRef<typeof Svg>
->(
-  (
-    {
-      height,
-      width,
-      fill,
-      color,
-      size,
-      stroke = 'currentColor',
-      as: AsComp,
-      ...props
-    },
-    ref
-  ) => {
-    const sizeProps = useMemo(() => {
-      if (size) return { size };
-      if (height && width) return { height, width };
-      if (height) return { height };
-      if (width) return { width };
-      return {};
-    }, [size, height, width]);
-
-    const colorProps =
-      stroke === 'currentColor' && color !== undefined ? color : stroke;
-
-    if (AsComp) {
-      return (
-        <AsComp
-          ref={ref}
-          fill={fill}
-          {...props}
-          {...sizeProps}
-          stroke={colorProps}
-        />
-      );
-    }
-    return (
-      <Svg
-        ref={ref}
-        height={height}
-        width={width}
-        fill={fill}
-        stroke={colorProps}
-        {...props}
-      />
-    );
-  }
-);
 
 const ItemWrapper = React.forwardRef<
   React.ElementRef<typeof Pressable>,
@@ -99,7 +34,7 @@ const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: Motion.View,
-  Item: Platform.OS === 'web' ? ItemWrapper : withStates(ItemWrapper),
+  Item: ItemWrapper,
   ItemText: Text,
   DragIndicator: View,
   IndicatorWrapper: View,
@@ -109,7 +44,7 @@ export const UIActionsheet = createActionsheet({
   FlatList: FlatList,
   SectionList: SectionList,
   SectionHeaderText: H4,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
   AnimatePresence: AnimatePresence,
 });
 
@@ -142,15 +77,15 @@ cssInterop(UIActionsheet.FlatList, {
 });
 cssInterop(UIActionsheet.SectionList, { className: 'style' });
 cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
-cssInterop(UIActionsheet.Icon, {
+
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
-      color: true,
+      color: 'classNameColor',
       stroke: true,
     },
   },
