@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@types/react": "^18.2.46",
@@ -32,7 +33,7 @@
     "@gluestack-ui/divider": "latest",
     "@gluestack-ui/fab": "latest",
     "@gluestack-ui/form-control": "latest",
-    "@gluestack-ui/icon": "latest",
+    "@gluestack-ui/icon": "^0.1.24-alpha.0",
     "@gluestack-ui/image": "latest",
     "@gluestack-ui/input": "latest",
     "@gluestack-ui/link": "latest",
