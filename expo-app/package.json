@@ -7,8 +7,7 @@
     "android": "DARK_MODE=media npx expo start --android",
     "ios": "DARK_MODE=media npx expo start --ios",
     "web": "DARK_MODE=media npx expo start --web",
-    "test": "jest --watchAll",
-    "postinstall": "patch-package"
+    "test": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
