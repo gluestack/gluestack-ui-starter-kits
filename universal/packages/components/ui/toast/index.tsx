@@ -1,169 +1,158 @@
-'use client';
-import React from 'react';
-import { createToast, createToastHook } from '@gluestack-ui/toast';
-import { Text, View, Platform } from 'react-native';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from 'nativewind';
-import { Motion, AnimatePresence } from '@legendapp/motion';
+"use client";
+import React from "react";
+import { createToastHook } from "@gluestack-ui/toast";
+import { AccessibilityInfo, Text, View } from "react-native";
+import { tva } from "@gluestack-ui/nativewind-utils/tva";
+import { cssInterop } from "nativewind";
+import { Motion, AnimatePresence } from "@legendapp/motion";
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+} from "@gluestack-ui/nativewind-utils/withStyleContext";
+import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 export const useToast = createToastHook(Motion.View, AnimatePresence);
-const SCOPE = 'TOAST';
-export const UIToast = createToast({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
-  Title: Text,
-  Description: Text,
-});
+const SCOPE = "TOAST";
 
-cssInterop(Motion.View, { className: 'style' });
-cssInterop(UIToast, { className: 'style' });
-cssInterop(UIToast.Title, { className: 'style' });
-cssInterop(UIToast.Description, { className: 'style' });
+cssInterop(Motion.View, { className: "style" });
 
 const toastStyle = tva({
-  base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
+  base: "p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100",
   variants: {
     action: {
-      error: 'bg-error-800',
-      warning: 'bg-warning-700',
-      success: 'bg-success-700',
-      info: 'bg-info-700',
-      muted: 'bg-secondary-700',
+      error: "bg-error-800",
+      warning: "bg-warning-700",
+      success: "bg-success-700",
+      info: "bg-info-700",
+      muted: "bg-background-800",
     },
 
     variant: {
-      solid: '',
-      outline: 'border bg-background-0',
+      solid: "",
+      outline: "border bg-background-0",
     },
   },
 });
 
 const toastTitleStyle = tva({
-  base: 'text-typography-0 font-medium font-body tracking-md text-left',
+  base: "text-typography-0 font-medium font-body tracking-md text-left",
   variants: {
     isTruncated: {
-      true: '',
+      true: "",
     },
     bold: {
-      true: 'font-bold',
+      true: "font-bold",
     },
     underline: {
-      true: 'underline',
+      true: "underline",
     },
     strikeThrough: {
-      true: 'line-through',
+      true: "line-through",
     },
     size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
+      "2xs": "text-2xs",
+      xs: "text-xs",
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
+      xl: "text-xl",
+      "2xl": "text-2xl",
+      "3xl": "text-3xl",
+      "4xl": "text-4xl",
+      "5xl": "text-5xl",
+      "6xl": "text-6xl",
     },
   },
   parentVariants: {
     variant: {
-      solid: '',
-      outline: '',
+      solid: "",
+      outline: "",
     },
     action: {
-      error: '',
-      warning: '',
-      success: '',
-      info: '',
-      muted: '',
+      error: "",
+      warning: "",
+      success: "",
+      info: "",
+      muted: "",
     },
   },
   parentCompoundVariants: [
     {
-      variant: 'outline',
-      action: 'error',
-      class: 'text-error-800',
+      variant: "outline",
+      action: "error",
+      class: "text-error-800",
     },
     {
-      variant: 'outline',
-      action: 'warning',
-      class: 'text-warning-800',
+      variant: "outline",
+      action: "warning",
+      class: "text-warning-800",
     },
     {
-      variant: 'outline',
-      action: 'success',
-      class: 'text-success-800',
+      variant: "outline",
+      action: "success",
+      class: "text-success-800",
     },
     {
-      variant: 'outline',
-      action: 'info',
-      class: 'text-info-800',
+      variant: "outline",
+      action: "info",
+      class: "text-info-800",
     },
     {
-      variant: 'outline',
-      action: 'muted',
-      class: 'text-background-800',
+      variant: "outline",
+      action: "muted",
+      class: "text-background-800",
     },
   ],
 });
 
 const toastDescriptionStyle = tva({
-  base: 'font-normal font-body tracking-md text-left',
+  base: "font-normal font-body tracking-md text-left",
   variants: {
     isTruncated: {
-      true: '',
+      true: "",
     },
     bold: {
-      true: 'font-bold',
+      true: "font-bold",
     },
     underline: {
-      true: 'underline',
+      true: "underline",
     },
     strikeThrough: {
-      true: 'line-through',
+      true: "line-through",
     },
     size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
+      "2xs": "text-2xs",
+      xs: "text-xs",
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
+      xl: "text-xl",
+      "2xl": "text-2xl",
+      "3xl": "text-3xl",
+      "4xl": "text-4xl",
+      "5xl": "text-5xl",
+      "6xl": "text-6xl",
     },
   },
   parentVariants: {
     variant: {
-      solid: 'text-typography-50',
-      outline: 'text-typography-900',
+      solid: "text-typography-50",
+      outline: "text-typography-900",
     },
   },
 });
 
-type IToastProps = React.ComponentProps<typeof UIToast> & {
+const Root = withStyleContext(View, SCOPE);
+type IToastProps = React.ComponentProps<typeof Root> & {
   className?: string;
 } & VariantProps<typeof toastStyle>;
 
 export const Toast = React.forwardRef<
-  React.ElementRef<typeof UIToast>,
+  React.ElementRef<typeof Root>,
   IToastProps
->(({ className, variant = 'solid', action = 'muted', ...props }, ref) => {
+>(({ className, variant = "solid", action = "muted", ...props }, ref) => {
   return (
-    <UIToast
+    <Root
       ref={ref}
       className={toastStyle({ variant, action, class: className })}
       context={{ variant, action }}
@@ -172,20 +161,29 @@ export const Toast = React.forwardRef<
   );
 });
 
-type IToastTitleProps = React.ComponentProps<typeof UIToast.Title> & {
+type IToastTitleProps = React.ComponentProps<typeof Text> & {
   className?: string;
 } & VariantProps<typeof toastTitleStyle>;
 
 export const ToastTitle = React.forwardRef<
-  React.ElementRef<typeof UIToast.Title>,
+  React.ElementRef<typeof Text>,
   IToastTitleProps
->(({ className, size = 'md', ...props }, ref) => {
+>(({ className, size = "md", children, ...props }, ref) => {
   const { variant: parentVariant, action: parentAction } =
     useStyleContext(SCOPE);
+  React.useEffect(() => {
+    // Issue from react-native side
+    // Hack for now, will fix this later
+    AccessibilityInfo.announceForAccessibility(children as string);
+  }, [children]);
+
   return (
-    <UIToast.Title
-      ref={ref}
+    <Text
       {...props}
+      ref={ref}
+      aria-live="assertive"
+      aria-atomic="true"
+      role="alert"
       className={toastTitleStyle({
         size,
         class: className,
@@ -194,23 +192,23 @@ export const ToastTitle = React.forwardRef<
           action: parentAction,
         },
       })}
-    />
+    >
+      {children}
+    </Text>
   );
 });
 
-type IToastDescriptionProps = React.ComponentProps<
-  typeof UIToast.Description
-> & {
+type IToastDescriptionProps = React.ComponentProps<typeof Text> & {
   className?: string;
 } & VariantProps<typeof toastDescriptionStyle>;
 
 export const ToastDescription = React.forwardRef<
-  React.ElementRef<typeof UIToast.Description>,
+  React.ElementRef<typeof Text>,
   IToastDescriptionProps
->(({ className, size = 'md', ...props }, ref) => {
+>(({ className, size = "md", ...props }, ref) => {
   const { variant: parentVariant } = useStyleContext(SCOPE);
   return (
-    <UIToast.Description
+    <Text
       ref={ref}
       {...props}
       className={toastDescriptionStyle({

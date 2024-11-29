@@ -1,80 +1,32 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { createFab } from '@gluestack-ui/fab';
-import { Platform, Text } from 'react-native';
-import { Pressable } from 'react-native';
-import { Svg } from 'react-native-svg';
+import { Pressable, Text } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
-type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
-  height?: number | string;
-  width?: number | string;
-  fill?: string;
-  color?: string;
-  size?: number | string;
-  stroke?: string;
-  as?: React.ElementType;
-  className?: string;
-};
-
-const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
-  IPrimitiveIcon
->(({ height, width, fill, color, size, stroke, as: AsComp, ...props }, ref) => {
-  const sizeProps = useMemo(() => {
-    if (size) return { size };
-    if (height && width) return { height, width };
-    if (height) return { height };
-    if (width) return { width };
-    return {};
-  }, [size, height, width]);
-
-  let colorProps = {};
-  if (color) {
-    colorProps = { ...colorProps, color: color };
-  }
-  if (stroke) {
-    colorProps = { ...colorProps, stroke: stroke };
-  }
-  if (fill) {
-    colorProps = { ...colorProps, fill: fill };
-  }
-  if (AsComp) {
-    return <AsComp ref={ref} {...sizeProps} {...colorProps} {...props} />;
-  }
-  return (
-    <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
-  );
-});
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'FAB';
+const Root = withStyleContext(Pressable, SCOPE);
 const UIFab = createFab({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(Pressable, SCOPE)
-      : withStyleContextAndStates(Pressable, SCOPE),
+  Root: Root,
   Label: Text,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
 });
 
-cssInterop(UIFab, { className: 'style' });
-cssInterop(UIFab.Label, { className: 'style' });
-cssInterop(UIFab.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
-      color: true,
+      color: 'classNameColor',
       stroke: true,
     },
   },
@@ -147,7 +99,7 @@ const fabLabelStyle = tva({
 });
 
 const fabIconStyle = tva({
-  base: 'text-typography-50 hover:text-typography-0 active:text-typography-0 fill-none',
+  base: 'text-typography-50 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',

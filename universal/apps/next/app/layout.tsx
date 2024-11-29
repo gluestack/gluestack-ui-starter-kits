@@ -1,10 +1,11 @@
 "use client";
-
 import { Inter } from "next/font/google";
 import StyledJsxRegistry from "./registry";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import "@/styles/global.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
 export default function RootLayout({
   children,
 }: Readonly<{

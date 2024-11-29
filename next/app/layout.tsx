@@ -1,6 +1,6 @@
 "use client";
-
 import { Inter } from "next/font/google";
+import "@/styles/global.css";
 import StyledJsxRegistry from "./registry";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 
