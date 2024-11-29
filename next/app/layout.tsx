@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { Inter } from "next/font/google";
 import "@/styles/global.css";
 import StyledJsxRegistry from "./registry";
@@ -14,7 +14,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} style={{ display: "flex" }}>
         <StyledJsxRegistry>
-          <GluestackUIProvider mode="light" >{children}</GluestackUIProvider>
+          <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
         </StyledJsxRegistry>
       </body>
     </html>
